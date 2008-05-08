@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<?fileVersion 3.1.0?>
+<ManagedProjectBuildInfo>
+  <project id="whiteTiger.cdt.managedbuild.target.gnu.so.61799382" name="Shared Library (Gnu)" projectType="cdt.managedbuild.target.gnu.so">
+    <configuration id="cdt.managedbuild.config.gnu.so.debug.69414362" name="Debug" description="" parent="cdt.managedbuild.config.gnu.so.debug" artifactName="whiteTiger" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" artifactExtension="" cleanCommand="rm -rf">
+      <toolChain superClass="cdt.managedbuild.toolchain.gnu.so.debug" id="cdt.managedbuild.toolchain.gnu.so.debug.743200959" name="GCC Tool Chain">
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.compiler.so.debug" id="cdt.managedbuild.tool.gnu.cpp.compiler.so.debug.642562289" name="GCC C++ Compiler">
+          <option superClass="gnu.cpp.compiler.option.preprocessor.def" id="gnu.cpp.compiler.option.preprocessor.def.1299421828" valueType="definedSymbols">
+            <listOptionValue value="_FILE_OFFSET_BITS=64" builtIn="false"/>
+            <listOptionValue value="_LARGE_FILES" builtIn="false"/>
+            <listOptionValue value="__WXGTK__" builtIn="false"/>
+          </option>
+          <option superClass="gnu.cpp.compiler.option.include.paths" id="gnu.cpp.compiler.option.include.paths.1757564158" valueType="includePath">
+            <listOptionValue value="&quot;${ProjDirPath}/include&quot;" builtIn="false"/>
+            <listOptionValue value="/usr/lib/wx/include/gtk2-unicode-release-2.8" builtIn="false"/>
+            <listOptionValue value="/usr/include/wx-2.8" builtIn="false"/>
+            <listOptionValue value="/home/saumil/opt/include" builtIn="false"/>
+          </option>
+          <option superClass="gnu.cpp.compiler.option.other.other" id="gnu.cpp.compiler.option.other.other.1024629273" value="-c -fmessage-length=0 -pthread" valueType="string"/>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.compiler.so.debug" id="cdt.managedbuild.tool.gnu.c.compiler.so.debug.1444699732" name="GCC C Compiler">
+          <option superClass="gnu.c.compiler.option.include.paths" id="gnu.c.compiler.option.include.paths.1884807063"/>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.linker.so.debug" id="cdt.managedbuild.tool.gnu.c.linker.so.debug.1812824324" name="GCC C Linker"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.debug" id="cdt.managedbuild.tool.gnu.cpp.linker.so.debug.15254710" name="GCC C++ Linker" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}">
+          <option superClass="gnu.cpp.link.option.libs" id="gnu.cpp.link.option.libs.284903403" valueType="libs">
+            <listOptionValue value="pcap" builtIn="false"/>
+            <listOptionValue value="PocoFoundationd" builtIn="false"/>
+            <listOptionValue value="PocoNetd" builtIn="false"/>
+            <listOptionValue value="PocoUtild" builtIn="false"/>
+            <listOptionValue value="PocoXMLd" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_aui-2.8" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_xrc-2.8" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_qa-2.8" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_html-2.8" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_adv-2.8" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_core-2.8" builtIn="false"/>
+            <listOptionValue value="wx_baseu_xml-2.8" builtIn="false"/>
+            <listOptionValue value="wx_baseu_net-2.8" builtIn="false"/>
+            <listOptionValue value="wx_baseu-2.8" builtIn="false"/>
+          </option>
+          <option superClass="gnu.cpp.link.option.paths" id="gnu.cpp.link.option.paths.862576703" valueType="stringList">
+            <listOptionValue value="/home/saumil/opt/lib" builtIn="false"/>
+          </option>
+          <option superClass="gnu.cpp.link.so.debug.option.shared" id="gnu.cpp.link.so.debug.option.shared.504204765" value="false" valueType="boolean"/>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.assembler.so.debug" id="cdt.managedbuild.tool.gnu.assembler.so.debug.120721445" name="GCC Assembler"/>
+        <macros/>
+      </toolChain>
+    </configuration>
+    <configuration id="cdt.managedbuild.config.gnu.so.release.1955975165" name="Release" description="" parent="cdt.managedbuild.config.gnu.so.release" artifactName="whiteTiger" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser" artifactExtension="" cleanCommand="rm -rf">
+      <toolChain superClass="cdt.managedbuild.toolchain.gnu.so.release" id="cdt.managedbuild.toolchain.gnu.so.release.617074415" name="GCC Tool Chain">
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.compiler.so.release" id="cdt.managedbuild.tool.gnu.cpp.compiler.so.release.77832134" name="GCC C++ Compiler">
+          <option superClass="gnu.cpp.compiler.option.include.paths" id="gnu.cpp.compiler.option.include.paths.1872356511" valueType="includePath">
+            <listOptionValue value="&quot;${{ProjDirPath}/include&quot;" builtIn="false"/>
+            <listOptionValue value="/usr/lib/wx/include/gtk2-unicode-release-2.8" builtIn="false"/>
+            <listOptionValue value="/usr/include/wx-2.8" builtIn="false"/>
+            <listOptionValue value="/home/saumil/opt/include" builtIn="false"/>
+          </option>
+          <option superClass="gnu.cpp.compiler.option.preprocessor.def" id="gnu.cpp.compiler.option.preprocessor.def.1558129631" valueType="definedSymbols">
+            <listOptionValue value="_FILE_OFFSET_BITS=64" builtIn="false"/>
+            <listOptionValue value="_LARGE_FILES" builtIn="false"/>
+            <listOptionValue value="__WXGTK__" builtIn="false"/>
+          </option>
+          <option superClass="gnu.cpp.compiler.option.other.other" id="gnu.cpp.compiler.option.other.other.1292388901" value="-c -fmessage-length=0 -pthread" valueType="string"/>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.compiler.so.release" id="cdt.managedbuild.tool.gnu.c.compiler.so.release.1535024771" name="GCC C Compiler"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.c.linker.so.release" id="cdt.managedbuild.tool.gnu.c.linker.so.release.1603968596" name="GCC C Linker"/>
+        <tool superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.release" id="cdt.managedbuild.tool.gnu.cpp.linker.so.release.1054136121" name="GCC C++ Linker">
+          <option superClass="gnu.cpp.link.so.release.option.shared" id="gnu.cpp.link.so.release.option.shared.1668090517" value="false" valueType="boolean"/>
+          <option superClass="gnu.cpp.link.option.libs" id="gnu.cpp.link.option.libs.1384808226" valueType="libs">
+            <listOptionValue value="pcap" builtIn="false"/>
+            <listOptionValue value="PocoFoundation" builtIn="false"/>
+            <listOptionValue value="PocoNet" builtIn="false"/>
+            <listOptionValue value="PocoUtil" builtIn="false"/>
+            <listOptionValue value="PocoXML" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_aui-2.8" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_xrc-2.8" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_qa-2.8" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_html-2.8" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_adv-2.8" builtIn="false"/>
+            <listOptionValue value="wx_gtk2u_core-2.8" builtIn="false"/>
+            <listOptionValue value="wx_baseu_xml-2.8" builtIn="false"/>
+            <listOptionValue value="wx_baseu_net-2.8" builtIn="false"/>
+            <listOptionValue value="wx_baseu-2.8" builtIn="false"/>
+          </option>
+          <option superClass="gnu.cpp.link.option.paths" id="gnu.cpp.link.option.paths.1180219388" valueType="stringList">
+            <listOptionValue value="/home/saumil/opt/lib" builtIn="false"/>
+          </option>
+        </tool>
+        <tool superClass="cdt.managedbuild.tool.gnu.assembler.so.release" id="cdt.managedbuild.tool.gnu.assembler.so.release.1551323316" name="GCC Assembler"/>
+        <macros/>
+      </toolChain>
+    </configuration>
+    <macros/>
+  </project>
+</ManagedProjectBuildInfo>
