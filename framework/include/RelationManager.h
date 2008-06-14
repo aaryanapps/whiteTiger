@@ -3,9 +3,12 @@
 
 //#include "WtObject.h"
 #include "Globals.h"
-#include "sqlite3x.hpp"
 #include "WtObjectDb.h"
 #include "RelationInfo.h"
+#include "Poco/Data/Session.h"
+
+namespace wt {
+namespace framework {
 
 class CRelationManager {
 
@@ -30,10 +33,12 @@ public:
 private:
 	void Init();
 	
-	bool m_init;
-	sqlite3 * m_db;
-	sqlite3x::sqlite3_connection * m_dbCon;
+	bool 					m_init;
+	Poco::Data::Session* 	_mdbSession;
 	
 };
+
+}
+}
 
 #endif /*RELATIONMANAGER_H_*/

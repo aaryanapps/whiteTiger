@@ -4,6 +4,8 @@
 
 DEFINE_STATIC_LOGGER("bll.WtObject", devLogger);
 
+using namespace wt::framework;
+
 CWtObject::CWtObject()
 {
 }

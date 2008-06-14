@@ -1,14 +1,17 @@
 
 #include "RelationManager.h"
-//#include "Globals.h"
-#include "sqlite3x.hpp"
 #include "RelationInfo.h"
 #include "WtObjectDb.h"
 #include "WtObject.h"
 #include "WtLogger.h"
 
-//using namespace sqlite3x;
-DEFINE_STATIC_LOGGER("bll.RelationManager", devLogger);
+#include "Poco/Data/RecordSet.h"
+
+using namespace wt::framework;
+using namespace Poco::Data;
+using namespace Poco::Data::Keywords;
+
+DEFINE_STATIC_LOGGER("framework.RelationManager", devLogger);
 
 CRelationManager::CRelationManager() :
 	m_init(false)
@@ -48,13 +51,10 @@ bool CRelationManager::AddRelation(WtoHandle from,
     uint32_t fromType = pObj->GetTypeId();
     uint32_t toType = cObj->GetTypeId();
 	
-    sqlite3x::sqlite3_command cmd(*m_dbCon, "Insert into ExistingRelations values(?,?,?,?,?);");
-    cmd.bind(1, (int32_t)from);
-    cmd.bind(2, (int32_t)to);
-    cmd.bind(3, (int32_t)fromType);
-    cmd.bind(4, (int32_t)toType);    
-    cmd.bind(5, (int32_t)relId.m_relId.AsInt());
-    cmd.executenonquery();
+    uint32_t rel = relId.m_relId.AsInt();
+    Statement stmt(*_mdbSession);
+    stmt << "Insert into ExistingRelations values(:from,:to,:fromType,:totype,:rel)" , use(from) , use(to), use(fromType), use(toType), use(rel) ;
+    stmt.execute();
     
     return true;
 }
@@ -63,16 +63,11 @@ bool CRelationManager::RemoveRelation(WtoHandle from,
 		   							  WtoHandle to, 
 		   							  RelationType relId)
 {
-	std::stringstream s;
-	s << "Delete From ExistingRelations " ;
-	s << "Where " ;
-	s << " fromWt=" << from << " AND ";
-	s << " toWt=" << to << " AND ";
-	s << " relId=" << relId.m_relId.AsInt() << " ;";
+	Statement stmt(*_mdbSession);
+	uint32_t rel = relId.m_relId.AsInt();
+	stmt << "Delete From ExistingRelations Where fromWt=:frm AND toWt=:to AND relId=:rel" , use(from), use(to), use(rel) ;
 	
-	sqlite3x::sqlite3_command cmd(*m_dbCon, s.str());
-    cmd.executenonquery();
-    
+	stmt.execute();
     return true;
 	
 }
@@ -82,25 +77,27 @@ void CRelationManager::GetObjects(WtoVec& wtv,
 								  uint32_t toType, 
 								  RelationType relId)
 {
+
+	Statement stmt(*_mdbSession);
+	uint32_t rel = relId.m_relId.AsInt();
+	stmt << "SELECT toWt FROM ExistingRelations where fromWt=:frmWt AND toWtType=:toWt AND relId=:rel" , use(from) , use(toType), use(rel) ;
+	stmt.execute();
 	
-	std::stringstream s;
-	s << "select toWt ExistingRelations where ";
-	s << "fromWt=" << from << " AND ";
-	s << "toWtType=" << toType << " AND ";
-	s << "relId=" << relId.m_relId.AsInt() << " ;";
+	RecordSet rs(stmt);
+		
+	bool more = rs.moveFirst();
 	
-	sqlite3x::sqlite3_command cmd(*m_dbCon, s.str());
-	sqlite3x::sqlite3_cursor reader=cmd.executecursor();
-	const int colcount = reader.colcount();
 	CWtObjectDb& wtoDb = CWtObjectDb::Instance();
-	while (reader.step() ) 
+	while ( more ) 
 	{
 		std::stringstream ss;
-		for (int i = 0; i < colcount; ++i ) /*Will run one time one column*/
+		std::size_t cols = rs.columnCount();
+		for (std::size_t col = 0; col < cols; ++col ) /*Will run one time for one column*/
 		{
 			/*Get tht object pointer froWtoHandlem map in WtObjectDb*/
-			int32_t hnd = reader.getint(i);
-			ss << "Column:" << i << "=" <<  hnd;
+			
+			int32_t hnd = rs[col].convert<int>();
+			ss << "Column:" << col << "=" <<  hnd;
 			ss << "   ," ;
 			CWtObject* obj = wtoDb.GetObject((WtoHandle)hnd);
 			if (obj)
@@ -115,6 +112,7 @@ void CRelationManager::GetObjects(WtoVec& wtv,
 			}
 		}
 		LOG_DEBUG( devLogger(), ss.str())
+		more = rs.moveNext();
 	}
 	
 }
@@ -122,24 +120,27 @@ void CRelationManager::GetObjects(WtoVec& wtv,
 CWtObject* CRelationManager::GetParent(WtoHandle to)
 {
 	RelationType rel = ParentChild();
-	std::stringstream s;
-	s << "select fromWt from ExistingRelations where ";
-	s << "toWt=" << to << " AND ";
-	s << "relId=" << rel.Id() << " ;";
+	uint32_t re = rel.Id();
+	Statement stmt(*_mdbSession);
+	stmt << "select fromWt from ExistingRelations where toWt=:to AND relId=:r" , use(to) , use(re) ;
+	stmt.execute();
 	
-	sqlite3x::sqlite3_command cmd(*m_dbCon, s.str());
-	sqlite3x::sqlite3_cursor reader=cmd.executecursor();
-	const int colcount = reader.colcount();
+	RecordSet rs(stmt);
+	bool more = rs.moveFirst();
+	
 	CWtObjectDb& wtoDb = CWtObjectDb::Instance();
 	CWtObject* pObj = NULL;
-	while (reader.step() ) /*Should run one or zero time*/
+	while ( more ) /*Should run one or zero time*/
 	{
-		for (int i = 0; i < colcount; ++i ) /*Will run one time one column*/
+		std::size_t cols = rs.columnCount();
+		for (std::size_t col = 0; col < cols; ++cols ) /*Will run one time one column*/
 		{
 			/*Get tht object pointer froWtoHandlem map in WtObjectDb*/
-			int32_t hnd = reader.getint(i);
+			int32_t hnd = rs[col].convert<int>();
 			pObj = wtoDb.GetObject((WtoHandle)hnd);
 		}
+		
+		more = rs.moveNext();
 	}
 	
 	if (!pObj)
@@ -162,20 +163,11 @@ CWtObject* CRelationManager::GetObject(WtoHandle from,
 
 void CRelationManager::Init()
 {
-    m_db = NULL;
-    sqlite3_open( ":memory:", &m_db );
-	m_dbCon = new sqlite3x::sqlite3_connection(m_db);
-	std::stringstream s;
-	s << "CREATE TABLE " ;
-	s << "ExistingRelations (" ;
-	s << "fromWt INT(4), " ;
-	s << "toWt INT(4), " ;
-	s << "fromWtType INT(4), " ;
-	s << "toWtType INT(4), " ;
-	s << "relId INT(4));";
 	
-	m_dbCon->executenonquery(s.str());
-	sqlite3x::sqlite3_command st(*m_dbCon, "select * from sqlite_master where type='ExistingRelations'");
+	_mdbSession = new Session("SQLite", ":memory:");	
+	
+	*_mdbSession << "CREATE TABLE ExistingRelations (fromWt INT(4), toWt INT(4), fromWtType INT(4), toWtType INT(4), relId INT(4))" , now;
+	
 	m_init = true;
 	
 }
