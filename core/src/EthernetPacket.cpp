@@ -54,7 +54,7 @@ bool CEthernetPacket::ParsePacket()
 
 bool CEthernetPacket::CreateHeaders()
 {
-	CRelationManager *rm = CRelationManager::Instance();
+	wt::framework::CRelationManager *rm = wt::framework::CRelationManager::Instance();
 	CPacketHeaderDb& phd = CPacketHeaderDb::Instance();
 	
 	uint32_t hdrOffset = 0 ;

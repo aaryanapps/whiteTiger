@@ -29,8 +29,8 @@ private:
 	
 	ether_arp 	*m_etArpHdr;
 	uint16_t 	m_opCode;
-	CMacAddress m_src;
-	CMacAddress m_dst;
+	wt::framework::types::CMacAddress m_src;
+	wt::framework::types::CMacAddress m_dst;
 	Poco::Net::IPAddress m_srcIp;
 	Poco::Net::IPAddress m_dstIp;
 	

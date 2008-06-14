@@ -51,7 +51,7 @@ WtoHandle CPacketHeaderDb::AddNewHeader(WtoHandle parentPkt,
 	newHdr->Init(wHnd, hdrOffset, pktData);
 	m_hdrDb.insert(std::make_pair(wHnd, newHdr));
 
-	CRelationManager *rm = CRelationManager::Instance();
+	wt::framework::CRelationManager *rm = wt::framework::CRelationManager::Instance();
 	rm->AddRelation(parentPkt, wHnd, RelationType(ParentChild()));	
 	
 	return wHnd;

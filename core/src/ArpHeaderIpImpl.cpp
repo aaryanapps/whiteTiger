@@ -104,7 +104,7 @@ std::string CArpHeaderIpImpl::GetProtoFromOpCode()
 std::string CArpHeaderIpImpl::GetInfoStr()
 {
 	std::stringstream ss;
-	CMacAddress tMac;
+	wt::framework::types::CMacAddress tMac;
 	switch(m_opCode)
 	{
 	case WT_ARPOP_REQUEST:

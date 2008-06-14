@@ -5,6 +5,7 @@
 #include "PcapDefs.h"
 #include "CommonPacketUtils.h"
 #include "ArpHeaderIpImpl.h"
+#include "AppConsts.h"
 
 
 CArpHeader::CArpHeader() : 

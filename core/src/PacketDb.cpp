@@ -47,7 +47,7 @@ WtoHandle CPacketDb::AddNewPacket(WtoHandle parentCap,
 	}
 
 	newPkt->SetWtoHandle(wHnd);
-	CRelationManager *rm = CRelationManager::Instance();
+	wt::framework::CRelationManager *rm = wt::framework::CRelationManager::Instance();
 	rm->AddRelation(parentCap, wHnd, RelationType(ParentChild()));
 	
 	newPkt->Init(wHnd, pkt, pktData);

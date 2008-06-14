@@ -1,7 +1,6 @@
 #ifndef _WT_LIVECAPTURE_H__
 #define _WT_LIVECAPTURE_H__
 
-#include "TraceOptions.h"
 #include "Poco/Runnable.h"
 #include "Globals.h"
 #include "PcapDefs.h"

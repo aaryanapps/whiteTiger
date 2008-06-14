@@ -61,9 +61,22 @@
 </tool>
 <tool id="cdt.managedbuild.tool.gnu.cpp.linker.so.debug.840925533" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.so.debug">
 <option defaultValue="true" id="gnu.cpp.link.so.debug.option.shared.1524167098" name="Shared (-shared)" superClass="gnu.cpp.link.so.debug.option.shared" valueType="boolean"/>
-<option id="gnu.cpp.link.option.libs.1972721256" superClass="gnu.cpp.link.option.libs" valueType="libs">
+<option id="gnu.cpp.link.option.libs.1972721256" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 <listOptionValue builtIn="false" value="framework"/>
 </option>
+<option id="gnu.cpp.link.option.nostart.1824190128" name="Do not use standard start files (-nostartfiles)" superClass="gnu.cpp.link.option.nostart"/>
+<option id="gnu.cpp.link.option.nodeflibs.247065466" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.cpp.link.option.nodeflibs"/>
+<option id="gnu.cpp.link.option.nostdlibs.527495403" name="No startup or default libs (-nostdlib)" superClass="gnu.cpp.link.option.nostdlibs"/>
+<option id="gnu.cpp.link.option.strip.295369997" name="Omit all symbol information (-s)" superClass="gnu.cpp.link.option.strip"/>
+<option id="gnu.cpp.link.option.paths.2027165930" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/framework/Debug}&quot;"/>
+</option>
+<option id="gnu.cpp.link.option.flags.110830805" name="Linker flags" superClass="gnu.cpp.link.option.flags"/>
+<option id="gnu.cpp.link.option.other.1787556753" name="Other options (-Xlinker [option])" superClass="gnu.cpp.link.option.other"/>
+<option id="gnu.cpp.link.option.userobjs.908879006" name="Other objects" superClass="gnu.cpp.link.option.userobjs"/>
+<option id="gnu.cpp.link.option.soname.1486573090" name="Shared object name (-Wl,-soname=)" superClass="gnu.cpp.link.option.soname"/>
+<option id="gnu.cpp.link.option.implname.1360935510" name="Import Library name (-Wl,--out-implib=)" superClass="gnu.cpp.link.option.implname"/>
+<option id="gnu.cpp.link.option.defname.838668018" name="DEF file name (-Wl,--output-def=)" superClass="gnu.cpp.link.option.defname"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.973163497" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 <additionalInput kind="additionalinput" paths="$(LIBS)"/>

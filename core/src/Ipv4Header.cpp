@@ -6,6 +6,7 @@
 #include "PcapDefs.h"
 #include "CommonPacketUtils.h"
 #include "WtLogger.h"
+#include "AppConsts.h"
 
 //DEFINE_STATIC_LOGGER("bll.Ipv4Header", devLogger);
 

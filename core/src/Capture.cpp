@@ -1,6 +1,7 @@
 #include "Capture.h"
 #include "PacketDb.h"
 #include "WtLogger.h"
+#include "AppConsts.h"
 
 using Poco::Timestamp;
 

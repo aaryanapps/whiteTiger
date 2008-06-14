@@ -1,12 +1,14 @@
 
 #include "BoundCapture.h"
-#include "PcapHandler.h"
+//#include "NetworkInterfaceAdapterManager.h"
 #include "Packet.h"
 #include "PacketDb.h"
 #include "FastDelegate.h"
 #include <iostream>
 #include "WtLogger.h"
+#include "AppConsts.h"
 
+//using namespace wt::framework::networkintf;
 
 CBoundCapture::CBoundCapture() :
 	m_name("Default Capture"), m_typeId(CBoundCapture_Class_Id)
@@ -27,12 +29,14 @@ CBoundCapture::~CBoundCapture()
 
 void CBoundCapture::run()
 {
-    CPcapHandler& ph = CPcapHandler::Instance();
+	//CNetworkInterfaceAdapterManager& ph = CNetworkInterfaceAdapterManager::Instance();
 
     //Register delegate for new packet.
-    Poco::Delegate<CWtObject, WtoHandle> dl((CWtObject*))this, &CBoundCapture::OnPacket);
-    ph.RegisterNewPacketNotification(GetWtoHandle(), dl);
 
+	/* TODO: Refactor Comment
+	Poco::Delegate<CWtObject, WtoHandle> dl((CWtObject*))this, &CBoundCapture::OnPacket);
+    ph.RegisterNewPacketNotification(GetWtoHandle(), dl);
+	*/
 }
 
 void CBoundCapture::OnPacket(const void* pSender, WtoHandle& data)

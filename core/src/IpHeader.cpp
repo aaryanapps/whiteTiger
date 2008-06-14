@@ -2,6 +2,7 @@
 #include "IpHeader.h"
 #include "Globals.h"
 #include "net/HeaderTypes.h"
+#include "AppConsts.h"
 
 CIpHeader::CIpHeader() :
 						m_typeId(CIpHeader_Class_Id)

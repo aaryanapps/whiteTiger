@@ -5,7 +5,7 @@
 #include "PacketHeaderDb.h"
 #include "PcapDefs.h"
 #include "CommonPacketUtils.h"
-
+#include "AppConsts.h"
 
 CUdpHeader::CUdpHeader() :
 						  m_typeId(CUdpHeader_Class_Id)

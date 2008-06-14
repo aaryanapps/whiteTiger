@@ -2,6 +2,7 @@
 #include "Ipv6Header.h"
 #include "Globals.h"
 #include "net/HeaderTypes.h"
+#include "AppConsts.h"
 
 CIpv6Header::CIpv6Header() :
 							m_typeId(CIpv6Header_Class_Id)

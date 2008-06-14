@@ -12,6 +12,7 @@
 #include "Poco/DateTimeFormatter.h"
 #include "Capture.h"
 #include "CommonPacketUtils.h"
+#include "AppConsts.h"
 
 DEFINE_STATIC_LOGGER("bll.Packet", devLogger);
 
