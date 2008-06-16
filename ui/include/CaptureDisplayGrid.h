@@ -4,7 +4,6 @@
 #include <wx/wx.h>
 #include <wx/menu.h>
 #include <wx/listctrl.h>
-#include "Globals.h"
 
 class CCapture;
 

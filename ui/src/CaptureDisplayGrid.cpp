@@ -4,6 +4,7 @@
 #include "Capture.h"
 #include "CentralCaptureManager.h"
 #include "Packet.h"
+#include <iostream>
 
 
 /*

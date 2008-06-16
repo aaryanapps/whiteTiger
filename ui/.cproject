@@ -36,6 +36,7 @@
 <option id="gnu.cpp.compiler.option.preprocessor.undef.1091443253" name="Undefined symbols (-U)" superClass="gnu.cpp.compiler.option.preprocessor.undef"/>
 <option id="gnu.cpp.compiler.option.include.paths.405690959" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="/usr/lib/wx/include/gtk2-unicode-release-2.8"/>
+<listOptionValue builtIn="false" value="&quot;${workspace_loc:/core/include}&quot;"/>
 <listOptionValue builtIn="false" value="/usr/include/wx-2.8"/>
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/ui/include}&quot;"/>
 </option>
@@ -71,6 +72,18 @@
 <listOptionValue builtIn="false" value="wx_gtk2u_html-2.8"/>
 <listOptionValue builtIn="false" value="wx_gtk2u_adv-2.8"/>
 </option>
+<option id="gnu.cpp.link.option.nostart.2064123946" name="Do not use standard start files (-nostartfiles)" superClass="gnu.cpp.link.option.nostart"/>
+<option id="gnu.cpp.link.option.nodeflibs.1047550351" name="Do not use default libraries (-nodefaultlibs)" superClass="gnu.cpp.link.option.nodeflibs"/>
+<option id="gnu.cpp.link.option.nostdlibs.630153649" name="No startup or default libs (-nostdlib)" superClass="gnu.cpp.link.option.nostdlibs"/>
+<option id="gnu.cpp.link.option.strip.1025094784" name="Omit all symbol information (-s)" superClass="gnu.cpp.link.option.strip"/>
+<option id="gnu.cpp.link.option.paths.2071624313" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths"/>
+<option id="gnu.cpp.link.option.flags.1247275055" name="Linker flags" superClass="gnu.cpp.link.option.flags"/>
+<option id="gnu.cpp.link.option.other.908103437" name="Other options (-Xlinker [option])" superClass="gnu.cpp.link.option.other"/>
+<option id="gnu.cpp.link.option.userobjs.1920355865" name="Other objects" superClass="gnu.cpp.link.option.userobjs"/>
+<option id="gnu.cpp.link.option.shared.1660556226" name="Shared (-shared)" superClass="gnu.cpp.link.option.shared"/>
+<option id="gnu.cpp.link.option.soname.1233941375" name="Shared object name (-Wl,-soname=)" superClass="gnu.cpp.link.option.soname"/>
+<option id="gnu.cpp.link.option.implname.1956962315" name="Import Library name (-Wl,--out-implib=)" superClass="gnu.cpp.link.option.implname"/>
+<option id="gnu.cpp.link.option.defname.699983662" name="DEF file name (-Wl,--output-def=)" superClass="gnu.cpp.link.option.defname"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.763106564" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 <additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 <additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -502,6 +515,7 @@
 </scannerConfigBuildInfo>
 </storageModule>
 <storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
 </cconfiguration>
 <cconfiguration id="cdt.managedbuild.config.gnu.exe.release.1564999634">
 <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.exe.release.1564999634" moduleId="org.eclipse.cdt.core.settings" name="Release">
@@ -964,6 +978,7 @@
 </scannerConfigBuildInfo>
 </storageModule>
 <storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
 </cconfiguration>
 </storageModule>
 <storageModule moduleId="cdtBuildSystem" version="4.0.0">
