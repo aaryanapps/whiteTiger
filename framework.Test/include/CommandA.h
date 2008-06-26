@@ -16,11 +16,16 @@ public:
 	
 	void runTask();		
 	
+	void SetSleepDuration(int dur) {_sleepDuration = dur ;}
+	
+	int GetSleepDuration(){return _sleepDuration;}
+	
 private:
 	CommandA();
 	
 	Poco::Event _event;
-	bool  _fail;
+	bool  		_fail;
+	int			_sleepDuration;
 	
 };
 
