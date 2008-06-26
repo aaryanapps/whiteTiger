@@ -1,5 +1,6 @@
 
 #include "Command.h"
+#include "TaskManager.h"
 
 using namespace wt::framework;
 
@@ -28,6 +29,10 @@ void CCommand::Execute()
 	}
 	
 	//Add the command to Task Manager Queue
+	CTaskManager& tm = CTaskManager::Instance();
+	
+	tm.start((Poco::Task*)this);
+	
 	
 	//Register callbacks for notifications
 	
@@ -68,7 +73,7 @@ void CCommand::commandFailed(TaskFailedNotification* pNf)
 
 void CCommand::commandProgress(TaskProgressNotification* pNf)
 {
-        _bfProgress = pNf->progress();
+        _mfProgress = pNf->progress();
         pNf->release();
 }
 

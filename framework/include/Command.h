@@ -32,8 +32,19 @@ public:
 
 	void SetAutoDestroy(bool autoDest) {_mbAutoDestroy = autoDest;}
 
-	
 
+	/*Notification Handlers*/
+	void commandStarted(TaskStartedNotification* );
+
+	void commandCancelled(TaskCancelledNotification* pNf);
+	
+	void commandFinished(TaskFinishedNotification* pNf);
+	
+	void commandFailed(TaskFailedNotification* pNf);
+	
+	void commandProgress(TaskProgressNotification* pNf);
+	
+	
 private:
 	CCommand();
 	

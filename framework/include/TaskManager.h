@@ -10,7 +10,7 @@ namespace framework {
 
 class CTaskManager : public Poco::TaskManager {
 public:
-	CTaskManager& Instance();
+	static CTaskManager& Instance();
 	
 	
 	

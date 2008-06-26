@@ -92,6 +92,8 @@
 <listOptionValue builtIn="false" value="PocoNetd"/>
 <listOptionValue builtIn="false" value="PocoUtild"/>
 <listOptionValue builtIn="false" value="PocoXMLd"/>
+<listOptionValue builtIn="false" value="PocoDatad"/>
+<listOptionValue builtIn="false" value="PocoSQLited"/>
 </option>
 <option id="gnu.cpp.link.option.paths.2121740661" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths"/>
 <option id="gnu.cpp.link.option.flags.26544994" name="Linker flags" superClass="gnu.cpp.link.option.flags"/>
