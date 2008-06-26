@@ -26,16 +26,23 @@ public:
 		
 	virtual void Reset() = 0;
 	
-	void runTask() = 0;	
+	virtual void runTask() = 0;	
+	
+	
+	/* Getters - Setters */
 	
 	bool GetAutoDestroy() {return _mbAutoDestroy;}
 
 	void SetAutoDestroy(bool autoDest) {_mbAutoDestroy = autoDest;}
 
+	bool GetRunInBg() {return _mbRunInBg;}
 
-	/*Notification Handlers*/
-	void commandStarted(TaskStartedNotification* );
-
+	void SetRunInBg(bool runBg) {_mbRunInBg = runBg;}
+	
+	
+	/*Handle Notifications*/
+	void commandStarted(TaskStartedNotification* pNf);
+	
 	void commandCancelled(TaskCancelledNotification* pNf);
 	
 	void commandFinished(TaskFinishedNotification* pNf);
@@ -49,7 +56,8 @@ private:
 	CCommand();
 	
 	bool 		_mbAutoDestroy;
-    bool       	_mbStarted;
+	bool		_mbRunInBg;
+	bool       	_mbStarted;
     bool       	_mbCancelled;
     bool       	_mbFinished;
     float      	_mfProgress;

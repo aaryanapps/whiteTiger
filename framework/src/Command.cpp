@@ -33,18 +33,18 @@ void CCommand::Execute()
 	
 	tm.start((Poco::Task*)this);
 	
-	
-	//Register callbacks for notifications
+	/*TODO:
+	 * If we need to run in background, do not join.
+	 * else do tm.join here.
+	 * */
+		
+	if(_mbRunInBg)
+	{
+		tm.joinAll();
+	}
 	
 	
 }
-
-void CCommand::runTask()
-{
-	bool runCommand();
-	return ;
-}
-
 
 
 void CCommand::commandStarted(TaskStartedNotification* pNf)
