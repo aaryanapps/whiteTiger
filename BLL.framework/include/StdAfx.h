@@ -18,8 +18,7 @@
 #include <winsock2.h>
 #include <windows.h>
 #undef GetObject
-#endif
-
 #pragma warning( disable: 4251 )
+#endif
 
 #endif

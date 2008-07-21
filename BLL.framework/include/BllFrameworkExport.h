@@ -18,6 +18,4 @@
 #endif
 
 
-
-
 #endif //_WT_BLL_FRAMEWORK_EXPORT_H
