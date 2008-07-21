@@ -4,7 +4,7 @@
 #include "RelationManager.h"
 #include "WtLogger.h"
 
-DEFINE_STATIC_LOGGER("bll.WtObject", devLogger);
+DEFINE_STATIC_LOGGER("bll.WtObject", devLogger)
 
 using namespace wt::framework;
 

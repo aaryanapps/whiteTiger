@@ -15,7 +15,7 @@
 #include "CommonPacketUtils.h"
 #include "AppConsts.h"
 
-DEFINE_STATIC_LOGGER("bll.Packet", devLogger);
+DEFINE_STATIC_LOGGER("bll.Packet", devLogger)
 
 CPacket::CPacket() :
 					m_typeId(CPacket_Class_Id)

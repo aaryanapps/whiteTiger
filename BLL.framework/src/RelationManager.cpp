@@ -12,7 +12,7 @@ using namespace wt::framework;
 using namespace Poco::Data;
 using namespace Poco::Data::Keywords;
 
-DEFINE_STATIC_LOGGER("framework.RelationManager", devLogger);
+DEFINE_STATIC_LOGGER("framework.RelationManager", devLogger)
 
 CRelationManager::CRelationManager() :
 	m_init(false)

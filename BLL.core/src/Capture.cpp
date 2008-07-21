@@ -7,7 +7,7 @@
 
 using Poco::Timestamp;
 
-DEFINE_STATIC_LOGGER("bll.Capture", devLogger);
+DEFINE_STATIC_LOGGER("bll.Capture", devLogger)
 
 CCapture::CCapture() :
 					  m_typeId(CCapture_Class_Id)

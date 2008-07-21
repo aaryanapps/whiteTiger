@@ -12,7 +12,7 @@
 #include "RelationInfo.h"
 #include "WtLogger.h"
 
-DEFINE_STATIC_LOGGER("bll.EthernetPacket", devLogger);
+DEFINE_STATIC_LOGGER("bll.EthernetPacket", devLogger)
 
 
 CEthernetPacket::CEthernetPacket() :

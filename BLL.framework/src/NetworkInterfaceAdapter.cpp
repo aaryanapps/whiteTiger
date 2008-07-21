@@ -8,7 +8,7 @@
 using namespace wt::framework::networkintf;
 
 
-DEFINE_STATIC_LOGGER("frmwrk.netintf.NetworkInterfaceAdapter", devLogger);
+DEFINE_STATIC_LOGGER("frmwrk.netintf.NetworkInterfaceAdapter", devLogger)
 
 CNetworkInterfaceAdapter::CNetworkInterfaceAdapter(std::string& adpName) :
 													_pPcapDesc(NULL),

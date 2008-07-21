@@ -8,7 +8,7 @@
 #include "WtLogger.h"
 #include "AppConsts.h"
 
-DEFINE_STATIC_LOGGER("wt.core.LiveCapture", devLogger);
+DEFINE_STATIC_LOGGER("wt.core.LiveCapture", devLogger)
 
 CLiveCapture::CLiveCapture() :
 							  m_typeId(CLiveCapture_Class_Id)

@@ -3,6 +3,7 @@
 	<name>BLL.framework.Test</name>
 	<comment></comment>
 	<projects>
+		<project>BLL.framework</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
