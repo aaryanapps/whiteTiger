@@ -1,3 +1,5 @@
+#include "StdAfx.h"
+
 #include "WtObject.h"
 #include "RelationManager.h"
 #include "WtLogger.h"

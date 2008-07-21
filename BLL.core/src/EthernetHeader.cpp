@@ -1,5 +1,6 @@
+#include "StdAfx.h"
 
-#include <netinet/in.h>		/* ntohs() */
+//#include <netinet/in.h>		/* ntohs() */
 
 #include "net/ether_types.h"
 #include "net/ether.h"

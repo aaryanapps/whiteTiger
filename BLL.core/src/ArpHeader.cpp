@@ -1,4 +1,6 @@
 
+#include "StdAfx.h"
+
 #include "ArpHeader.h"
 #include "Globals.h"
 #include "net/HeaderTypes.h"

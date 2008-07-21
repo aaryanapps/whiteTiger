@@ -1,6 +1,8 @@
 #ifndef _WT_COMMANDNOTIFICATIONMANAGER_H__
 #define _WT_COMMANDNOTIFICATIONMANAGER_H__
 
+#include "BllFrameworkExport.h"
+
 //Poco
 #include "Poco/Task.h"
 #include "Poco/TaskNotification.h"
@@ -24,7 +26,7 @@ enum NotificationType {
 	CMD_PROGRESS
 };
 
-class CCommandNotificationManager {
+class FRAMEWORK_EXPORT CCommandNotificationManager {
 
 public:
 	

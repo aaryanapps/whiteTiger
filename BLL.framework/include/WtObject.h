@@ -1,13 +1,14 @@
 #ifndef WT_CWTOBJECT_H__
 #define WT_CWTOBJECT_H__
 
+#include "BllFrameworkExport.h"
+
 #include "WtObjectDefs.h"
 #include "RelationInfo.h"
 
 typedef uint32_t WtoType;
 
-class CWtObject
-{
+class FRAMEWORK_EXPORT CWtObject {
 public:
 	CWtObject();
 	virtual ~CWtObject();

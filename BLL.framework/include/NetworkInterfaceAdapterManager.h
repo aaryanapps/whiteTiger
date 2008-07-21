@@ -1,6 +1,8 @@
 #ifndef _WT_NETWORKINTERFACEADAPTERMANAGER_H__
 #define _WT_NETWORKINTERFACEADAPTERMANAGER_H__
 
+#include "BllFrameworkExport.h"
+
 #include "DataTypes.h"
 #include "Poco/Delegate.h"
 #include "WtObjectDefs.h"
@@ -15,7 +17,7 @@ typedef std::map<std::string , CNetworkInterfaceAdapter*> activeAdapters;
 typedef std::vector<std::string> adapterVec;
 
 
-class CNetworkInterfaceAdapterManager {
+class FRAMEWORK_EXPORT CNetworkInterfaceAdapterManager {
 public:
 	static 	CNetworkInterfaceAdapterManager& Instance();
 	

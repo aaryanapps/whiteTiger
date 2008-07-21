@@ -1,3 +1,4 @@
+#include "StdAfx.h"
 
 #include "Command.h"
 #include "TaskManager.h"

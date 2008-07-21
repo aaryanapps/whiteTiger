@@ -1,3 +1,4 @@
+#include "StdAfx.h"
 
 #include "PacketDb.h"
 #include "Packet.h"

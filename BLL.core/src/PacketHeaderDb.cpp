@@ -1,3 +1,4 @@
+#include "StdAfx.h"
 
 #include "PacketHeaderDb.h"
 #include "PacketHeader.h"

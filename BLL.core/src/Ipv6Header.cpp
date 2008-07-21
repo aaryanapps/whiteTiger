@@ -1,3 +1,4 @@
+#include "StdAfx.h"
 
 #include "Ipv6Header.h"
 #include "Globals.h"

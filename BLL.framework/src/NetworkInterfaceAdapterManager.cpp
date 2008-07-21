@@ -1,3 +1,4 @@
+#include "StdAfx.h"
 
 #include "NetworkInterfaceAdapterManager.h"
 #include "pcap.h"
@@ -28,8 +29,8 @@ CNetworkInterfaceAdapterManager::GetAdaptersList(adapterVec& adVec)
 
 	adVec.clear();
 	
-	pcap_if_t** ifs;
-	char* err;
+	pcap_if_t** ifs = NULL;
+	char* err = NULL;
 	
     // Retrieve the interfaces list
     if (pcap_findalldevs(ifs, err) == -1)

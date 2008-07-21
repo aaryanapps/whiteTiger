@@ -1,6 +1,8 @@
 #ifndef _WT_RELATIONMANAGER_H__
 #define _WT_RELATIONMANAGER_H__
 
+#include "BllFrameworkExport.h"
+
 //#include "WtObject.h"
 #include "Globals.h"
 #include "WtObjectDb.h"
@@ -10,7 +12,7 @@
 namespace wt {
 namespace framework {
 
-class CRelationManager {
+class FRAMEWORK_EXPORT CRelationManager {
 
 public:
 	CRelationManager();

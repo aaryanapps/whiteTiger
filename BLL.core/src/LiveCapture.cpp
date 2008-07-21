@@ -1,3 +1,4 @@
+#include "StdAfx.h"
 
 #include "LiveCapture.h"
 #include "pcap.h"

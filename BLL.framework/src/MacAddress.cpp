@@ -1,6 +1,8 @@
+#include "StdAfx.h"
 
 #include "net/MacAddress.h"
 #include "Globals.h"
+#include <algorithm>
 
 using namespace wt::framework::types;
 

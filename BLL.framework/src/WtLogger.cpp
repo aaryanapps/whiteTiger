@@ -1,3 +1,5 @@
+#include "StdAfx.h"
+
 #include "WtLogger.h"
 #include "Globals.h"
 #include "Poco/Logger.h"

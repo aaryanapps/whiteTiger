@@ -1,6 +1,8 @@
 #ifndef _WT_NETWORKINTERFACEADAPTER_H__
 #define _WT_NETWORKINTERFACEADAPTER_H__
 
+#include "BllFrameworkExport.h"
+
 #include "pcap.h"
 #include "Poco/Runnable.h"
 #include "Poco/BasicEvent.h"
@@ -12,7 +14,7 @@ namespace wt {
 namespace framework {
 namespace networkintf {
 
-class CNetworkInterfaceAdapter : public Poco::Runnable {
+class FRAMEWORK_EXPORT CNetworkInterfaceAdapter : public Poco::Runnable {
 
 public:
 	

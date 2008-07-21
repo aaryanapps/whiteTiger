@@ -1,12 +1,14 @@
 #ifndef _WT_WTOBJECTDB_H__
 #define _WT_WTOBJECTDB_H__
 
+#include "BllFrameworkExport.h"
+
 #include "Globals.h"
 #include "WtObjectDefs.h"
 
 class CWtObject;
 
-class CWtObjectDb
+class FRAMEWORK_EXPORT CWtObjectDb
 {
 public:
 	CWtObjectDb();

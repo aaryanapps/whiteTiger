@@ -1,8 +1,15 @@
+#include "StdAfx.h"
 
 #include "CommonPacketUtils.h"
 #include "net/HeaderTypes.h"
 #include "Globals.h"
+#ifdef WIN32
+#include <winsock2.h>
+#pragma comment(lib,"ws2_32.lib")
+#else
 #include <netinet/in.h>
+#endif
+
 #include <iomanip>
 using namespace std;
 

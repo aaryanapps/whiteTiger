@@ -1,12 +1,13 @@
 #ifndef _WTLOGGERFACTORY_H__
 #define _WTLOGGERFACTORY_H__
 
+#include "BllFrameworkExport.h"
 
 #include "Globals.h"
 #include "Poco/Message.h"
 #include "Poco/Logger.h"
 
-class CWtLoggerFactory : public Poco::Logger {
+class FRAMEWORK_EXPORT CWtLoggerFactory : public Poco::Logger {
 
 public:
 	CWtLoggerFactory(std::string& name, Poco::Channel* pCha, int level);

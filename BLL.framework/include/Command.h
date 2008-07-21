@@ -1,6 +1,8 @@
 #ifndef _WT_COMMAND_H__
 #define _WT_COMMAND_H__
 
+#include "BllFrameworkExport.h"
+
 #include <string>
 
 //Poco
@@ -17,7 +19,7 @@ using Poco::TaskProgressNotification;
 namespace wt {
 namespace framework {
 
-class CCommand : public Poco::Task {
+class FRAMEWORK_EXPORT CCommand : public Poco::Task {
 public:
 	CCommand(const std::string& strImage = "Base Command");
 	virtual ~CCommand();
@@ -53,7 +55,7 @@ public:
 	
 	
 private:
-	CCommand();
+	//CCommand();
 	
 	bool 		_mbAutoDestroy;
 	bool		_mbRunInBg;

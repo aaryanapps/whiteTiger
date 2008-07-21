@@ -1,3 +1,4 @@
+#include "StdAfx.h"
 
 #include "RelationManager.h"
 #include "RelationInfo.h"

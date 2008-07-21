@@ -1,3 +1,5 @@
+#include "StdAfx.h"
+
 #include "Capture.h"
 #include "PacketDb.h"
 #include "WtLogger.h"
@@ -38,14 +40,14 @@ Timestamp& CCapture::GetStartTimeStamp()
 
 CPacket* CCapture::GetLastPacket()
 {
-	uint32_t sz = m_pkts.size();
+	uint32_t sz = (uint32_t) m_pkts.size();
 	CPacket* pkt = GetPacketAt(sz - 1);	
 	return pkt ;
 }
 
 CPacket* CCapture::GetFirstPacket()
 {
-	uint32_t sz = m_pkts.size();
+	uint32_t sz = (uint32_t) m_pkts.size();
 	if (sz != 0)
 	{
 		CPacket* pkt = GetPacketAt(1);	

@@ -1,3 +1,4 @@
+#include "StdAfx.h"
 
 #include "ArpHeaderIpImpl.h"
 #include "net/arp.h"

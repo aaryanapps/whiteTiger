@@ -1,3 +1,4 @@
+#include "StdAfx.h"
 
 #include "NetworkInterfaceAdapter.h"
 #include "WtLogger.h"

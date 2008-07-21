@@ -1,6 +1,7 @@
 #ifndef _WT_MACADDRESS_H__
 #define _WT_MACADDRESS_H__
 
+#include "BllFrameworkExport.h"
 //#include "Globals.h"
 #include "DataTypes.h"
 
@@ -10,7 +11,7 @@ namespace types {
 
 #define MAC_ADDR_LENGTH 6
 
-class CMacAddress {
+class FRAMEWORK_EXPORT CMacAddress {
 
 public:
 	CMacAddress();
