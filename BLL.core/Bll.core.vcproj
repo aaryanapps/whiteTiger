@@ -60,8 +60,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../BLL.framework/$(ConfigurationName)/BLL.framework.lib ../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib ../lib/Win32/$(ConfigurationName)/PocoNetd.lib ../lib/Win32/$(ConfigurationName)/PocoDatad.lib"
-				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName).dll"
+				AdditionalDependencies="../BLL.framework/$(ConfigurationName)/BLL.frameworkd.lib ../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib ../lib/Win32/$(ConfigurationName)/PocoNetd.lib ../lib/Win32/$(ConfigurationName)/PocoDatad.lib"
+				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName)d.dll"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 			/>

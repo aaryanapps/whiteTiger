@@ -61,7 +61,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib ../lib/Win32/$(ConfigurationName)/PocoDatad.lib ../lib/Win32/$(ConfigurationName)/PocoSQLited.lib ../lib/Win32/$(ConfigurationName)/PocoUtild.lib ../lib/Win32/$(ConfigurationName)/PocoNetd.lib ../lib/Win32/$(ConfigurationName)/PocoXMLd.lib ../lib/Win32/common/wpcap.lib"
-				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName).dll"
+				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName)d.dll"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 			/>
@@ -88,7 +88,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy .\$(ConfigurationName)\$(ProjectName).dll ..\bin\Win32\$(ConfigurationName)\$(TargetName).dll&#x0D;&#x0A;"
+				CommandLine="copy .\$(ConfigurationName)\$(ProjectName)d.dll ..\bin\Win32\$(ConfigurationName)\$(TargetName)d.dll&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -135,7 +135,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib"
+				AdditionalDependencies="../lib/Win32/Debug/PocoFoundationd.lib ../lib/Win32/Debug/PocoDatad.lib ../lib/Win32/Debug/PocoSQLited.lib ../lib/Win32/Debug/PocoUtild.lib ../lib/Win32/Debug/PocoNetd.lib ../lib/Win32/Debug/PocoXMLd.lib ../lib/Win32/common/wpcap.lib"
 				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName).dll"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
@@ -210,6 +210,14 @@
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
 					>
 					<Tool
 						Name="VCCLCompilerTool"
