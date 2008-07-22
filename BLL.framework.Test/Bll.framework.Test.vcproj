@@ -60,8 +60,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../BLL.framework/$(ConfigurationName)/BLL.framework.lib ../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib"
-				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName).exe"
+				AdditionalDependencies="../BLL.framework/$(ConfigurationName)/BLL.frameworkd.lib ../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib"
+				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName)d.exe"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 			/>
@@ -88,7 +88,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy .\$(ConfigurationName)\$(ProjectName).exe ..\bin\Win32\$(ConfigurationName)\$(TargetName).exe&#x0D;&#x0A;"
+				CommandLine="copy .\$(ConfigurationName)\$(ProjectName)d.exe ..\bin\Win32\$(ConfigurationName)\$(TargetName)d.exe&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -116,6 +116,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="./include;../Bll.framework/include;../include"
 				PreprocessorDefinitions="WIN32"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"
@@ -134,7 +135,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../BLL.framework/$(ConfigurationName)/BLL.framework.lib ../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib"
+				AdditionalDependencies="../BLL.framework/$(ConfigurationName)/BLL.framework.lib ../lib/Win32/Debug/PocoFoundationd.lib"
 				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName).exe"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
@@ -164,7 +165,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy .\$(ConfigurationName)\$(ProjectName).dll ..\bin\Win32\$(ConfigurationName)\$(TargetName).dll&#x0D;&#x0A;"
+				CommandLine="copy .\$(ConfigurationName)\$(ProjectName).exe ..\bin\Win32\$(ConfigurationName)\$(TargetName).exe&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
