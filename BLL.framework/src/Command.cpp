@@ -6,19 +6,19 @@
 using namespace wt::framework;
 
 CCommand::CCommand(const std::string& cName) :
-			Poco::Task(cName), 
+			Poco::Task(cName),
 			_mbAutoDestroy(true),
 			_mbStarted(false),
 			_mbCancelled(false),
 			_mbFinished(false),
 			_mfProgress(0.0)
 {
-	
+
 }
 
 CCommand::~CCommand()
 {
-	
+
 }
 
 void CCommand::Execute()
@@ -28,23 +28,26 @@ void CCommand::Execute()
 	{
 		duplicate();
 	}
-	
-	//Add the command to Task Manager Queue
-	CTaskManager& tm = CTaskManager::Instance();
-	
+
+	//Add the command to Command Manager Queue
+	CCommandManager& tm = CCommandManager::Instance();
+
 	tm.start((Poco::Task*)this);
-	
+
 	/*TODO:
 	 * If we need to run in background, do not join.
-	 * else do tm.join here.
+	 * else do tm.joinAll here.
+	 * Also, we need to change this as currently we are
+	 * assuming that there will be only one task being
+	 * executed at a time. This will need to be changed.
 	 * */
-		
+
 	if(_mbRunInBg)
 	{
 		tm.joinAll();
 	}
-	
-	
+
+
 }
 
 

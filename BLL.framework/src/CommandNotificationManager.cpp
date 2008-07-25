@@ -10,42 +10,42 @@ using namespace wt::framework;
 
 CCommandNotificationManager::CCommandNotificationManager()
 {
-	
+
 }
 
 CCommandNotificationManager::~CCommandNotificationManager()
 {
-	
+
 }
 
-CCommandNotificationManager& 
+CCommandNotificationManager&
 CCommandNotificationManager::Instance()
 {
 	static CCommandNotificationManager* cnm;
 	static bool _init = false;
-	
+
 	if (!_init)
 	{
 		cnm = new CCommandNotificationManager();
-		
+
 		//Register observers with Task Manager.
-		wt::framework::CTaskManager& tm =  wt::framework::CTaskManager::Instance();
+		wt::framework::CCommandManager& tm =  wt::framework::CCommandManager::Instance();
 	    tm.addObserver(Poco::NObserver<CCommandNotificationManager, TaskStartedNotification>(*cnm, &CCommandNotificationManager::commandStarted));
 	    tm.addObserver(Poco::NObserver<CCommandNotificationManager, TaskCancelledNotification>(*cnm, &CCommandNotificationManager::commandCancelled));
 	    tm.addObserver(Poco::NObserver<CCommandNotificationManager, TaskFailedNotification>(*cnm, &CCommandNotificationManager::commandFailed));
 	    tm.addObserver(Poco::NObserver<CCommandNotificationManager, TaskFinishedNotification>(*cnm, &CCommandNotificationManager::commandFinished));
 	    tm.addObserver(Poco::NObserver<CCommandNotificationManager, TaskProgressNotification>(*cnm, &CCommandNotificationManager::commandProgress));
-		
+
 		_init = true;
 	}
-	
+
 	return *cnm;
 }
 
 void CCommandNotificationManager::commandStarted(const Poco::AutoPtr<TaskStartedNotification>& pNf)
 {
 	//Read the Command(task) handle.
-	//If any registered observers, fire delegates	
+	//If any registered observers, fire delegates
 }
 
 
@@ -54,7 +54,7 @@ void CCommandNotificationManager::commandCancelled(
 		)
 {
 	//Read the Command(task) handle.
-	//If any registered observers, fire delegates	
+	//If any registered observers, fire delegates
 }
 
 
@@ -73,7 +73,7 @@ void CCommandNotificationManager::commandFailed(
 {
 	//Read the Command(task) handle.
 	//If any registered observers, fire delegates
-	
+
 }
 
 
@@ -82,6 +82,6 @@ void CCommandNotificationManager::commandProgress(
 		)
 {
 	//Read the Command(task) handle.
-	//If any registered observers, fire delegates	
+	//If any registered observers, fire delegates
 }
 

@@ -9,15 +9,15 @@
 namespace wt {
 namespace framework {
 
-class FRAMEWORK_EXPORT CTaskManager : public Poco::TaskManager {
+class FRAMEWORK_EXPORT CCommandManager : public Poco::TaskManager {
 public:
-	static CTaskManager& Instance();
-	
-	
+	static CCommandManager& Instance();
+
+
 private:
-	CTaskManager();
-	~CTaskManager();
-	
+	CCommandManager();
+	~CCommandManager();
+
 };
 
 
