@@ -8,30 +8,30 @@ using namespace wt::framework::networkintf;
 
 CNetworkInterfaceAdapterManager::CNetworkInterfaceAdapterManager()
 {
-	
+
 }
 
 CNetworkInterfaceAdapterManager::~CNetworkInterfaceAdapterManager()
 {
-	
+
 }
 
-CNetworkInterfaceAdapterManager& 
+CNetworkInterfaceAdapterManager&
 CNetworkInterfaceAdapterManager::Instance()
 {
 	static CNetworkInterfaceAdapterManager _am;
 	return _am;
 }
 
-void 
+void
 CNetworkInterfaceAdapterManager::GetAdaptersList(adapterVec& adVec)
 {
 
 	adVec.clear();
-	
+
 	pcap_if_t** ifs = NULL;
 	char* err = NULL;
-	
+
     // Retrieve the interfaces list
     if (pcap_findalldevs(ifs, err) == -1)
     {
@@ -51,22 +51,21 @@ CNetworkInterfaceAdapterManager::GetAdaptersList(adapterVec& adVec)
         {
     		adVec.push_back(std::string((*ifs)->name));
         }
-        
+
         (*ifs) = (*ifs)->next;
     }
-    
+
 	return;
 }
 
 
-bool 
+bool
 CNetworkInterfaceAdapterManager::IsAdapterCapturing(std::string& adpName)
 {
-	
 	return false;
 }
 
-bool 
+bool
 CNetworkInterfaceAdapterManager::RegisterNewPacketNotification(std::string& adpName,
 												Poco::Delegate<CWtObject, WtoHandle>& dl)
 {
@@ -80,3 +79,4 @@ CNetworkInterfaceAdapterManager::StartCapture(std::string& adpName,
 {
 	return false;
 }
+

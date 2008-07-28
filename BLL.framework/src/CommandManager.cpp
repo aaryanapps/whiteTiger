@@ -1,6 +1,6 @@
 #include "StdAfx.h"
 
-#include "TaskManager.h"
+#include "CommandManager.h"
 
 using namespace wt::framework;
 

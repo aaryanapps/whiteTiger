@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
 #include "CommandNotificationManager.h"
-#include "TaskManager.h"
+#include "CommandManager.h"
 
 #include "Poco/AutoPtr.h"
 #include "Poco/NObserver.h"
