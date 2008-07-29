@@ -88,7 +88,6 @@
 <option id="gnu.cpp.link.option.nostdlibs.1288626732" name="No startup or default libs (-nostdlib)" superClass="gnu.cpp.link.option.nostdlibs"/>
 <option id="gnu.cpp.link.option.strip.1072297001" name="Omit all symbol information (-s)" superClass="gnu.cpp.link.option.strip"/>
 <option id="gnu.cpp.link.option.libs.554687371" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-<listOptionValue builtIn="false" value="pcap"/>
 <listOptionValue builtIn="false" value="PocoFoundationd"/>
 <listOptionValue builtIn="false" value="PocoNetd"/>
 <listOptionValue builtIn="false" value="PocoUtild"/>
@@ -123,6 +122,7 @@
 <storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
 
 <storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+
 <storageModule moduleId="scannerConfiguration">
 <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
 <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
@@ -371,8 +371,8 @@
 </scannerInfoProvider>
 </profile>
 </scannerConfigBuildInfo>
-<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.so.release.428549481;cdt.managedbuild.config.gnu.so.release.428549481.;cdt.managedbuild.tool.gnu.c.compiler.so.release.1403587731;cdt.managedbuild.tool.gnu.c.compiler.input.1229503499">
-<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.so.debug.594411369;cdt.managedbuild.config.gnu.so.debug.594411369.;cdt.managedbuild.tool.gnu.cpp.compiler.so.debug.547141075;cdt.managedbuild.tool.gnu.cpp.compiler.input.805577291">
+<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
 <buildOutputProvider>
 <openAction enabled="true" filePath=""/>
@@ -454,8 +454,8 @@
 </scannerInfoProvider>
 </profile>
 </scannerConfigBuildInfo>
-<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.so.debug.594411369;cdt.managedbuild.config.gnu.so.debug.594411369.;cdt.managedbuild.tool.gnu.cpp.compiler.so.debug.547141075;cdt.managedbuild.tool.gnu.cpp.compiler.input.805577291">
-<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
+<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.so.release.428549481;cdt.managedbuild.config.gnu.so.release.428549481.;cdt.managedbuild.tool.gnu.c.compiler.so.release.1403587731;cdt.managedbuild.tool.gnu.c.compiler.input.1229503499">
+<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
 <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
 <buildOutputProvider>
 <openAction enabled="true" filePath=""/>
@@ -606,7 +606,6 @@
 <option id="gnu.cpp.link.option.nostdlibs.675021626" name="No startup or default libs (-nostdlib)" superClass="gnu.cpp.link.option.nostdlibs"/>
 <option id="gnu.cpp.link.option.strip.1087318469" name="Omit all symbol information (-s)" superClass="gnu.cpp.link.option.strip"/>
 <option id="gnu.cpp.link.option.libs.356740405" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-<listOptionValue builtIn="false" value="pcap"/>
 <listOptionValue builtIn="false" value="PocoFoundation"/>
 <listOptionValue builtIn="false" value="PocoData"/>
 <listOptionValue builtIn="false" value="PocoSQLite"/>
@@ -641,6 +640,7 @@
 <storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
 
 <storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+
 <storageModule moduleId="scannerConfiguration">
 <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
 <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
@@ -889,8 +889,8 @@
 </scannerInfoProvider>
 </profile>
 </scannerConfigBuildInfo>
-<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.so.release.428549481;cdt.managedbuild.config.gnu.so.release.428549481.;cdt.managedbuild.tool.gnu.c.compiler.so.release.1403587731;cdt.managedbuild.tool.gnu.c.compiler.input.1229503499">
-<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.so.debug.594411369;cdt.managedbuild.config.gnu.so.debug.594411369.;cdt.managedbuild.tool.gnu.cpp.compiler.so.debug.547141075;cdt.managedbuild.tool.gnu.cpp.compiler.input.805577291">
+<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
 <buildOutputProvider>
 <openAction enabled="true" filePath=""/>
@@ -972,8 +972,8 @@
 </scannerInfoProvider>
 </profile>
 </scannerConfigBuildInfo>
-<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.so.debug.594411369;cdt.managedbuild.config.gnu.so.debug.594411369.;cdt.managedbuild.tool.gnu.cpp.compiler.so.debug.547141075;cdt.managedbuild.tool.gnu.cpp.compiler.input.805577291">
-<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
+<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.so.release.428549481;cdt.managedbuild.config.gnu.so.release.428549481.;cdt.managedbuild.tool.gnu.c.compiler.so.release.1403587731;cdt.managedbuild.tool.gnu.c.compiler.input.1229503499">
+<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
 <profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
 <buildOutputProvider>
 <openAction enabled="true" filePath=""/>

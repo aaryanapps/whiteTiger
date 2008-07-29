@@ -7,12 +7,13 @@
 #include "Poco/BasicEvent.h"
 #include "Poco/Delegate.h"
 //#include "Poco/Thread.h"
+
 #include "WtObjectDefs.h"
 #include "WtObject.h"
 #include "CaptureLibraryInterface.h"
+#include "FastDelegate.h"
 
 class Poco::Thread;
-//class wt::framework::capturelibrary::CCaptureLibraryInterface;
 
 namespace wt {
 namespace framework {
@@ -46,7 +47,10 @@ public:
 	bool InitAdapter();
 
 	bool StartCapture();
+	
+	WtoHandle GetFirstPacket();
 
+	WtoHandle GetLastPacket();
 
 private:
 	CNetworkInterfaceAdapter(){};
@@ -60,6 +64,7 @@ private:
 	Poco::BasicEvent<WtoHandle> NewNetworkPacket;
 	CaptureState	_captureStatus;
 	wt::framework::capturelibrary::CCaptureLibraryInterface*	_capLibInt;
+	wt::framework::captureLibrary::NewPktDelegate	_dNewPkt;
 };
 
 }

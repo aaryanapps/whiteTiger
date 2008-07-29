@@ -44,18 +44,6 @@ void CNetworkInterfaceAdapter::OnNewPacket(u_char *param,
 	return;
 }
 
-bool CNetworkInterfaceAdapter::InitAdapter()
-{
-	if (_capLibInt->InitInterface())
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
 
 void CNetworkInterfaceAdapter::run()
 {
@@ -65,6 +53,7 @@ void CNetworkInterfaceAdapter::run()
     {
     	_captureStatus = CAPTURE_STOPPED;
     	//TODO: Log Error
+    	LOG_ERROR( devLogger() , "Error occured when Capture stopped on Adapter: " );
     	return;
     }
 }
@@ -96,6 +85,18 @@ bool CNetworkInterfaceAdapter::CreateThread()
     _pThread->setPriority(Poco::Thread::PRIO_NORMAL);
 
     return false;
+}
+
+bool CNetworkInterfaceAdapter::InitAdapter()
+{
+	if (_capLibInt->InitInterface())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void CNetworkInterfaceAdapter::NotifyNewPacket(WtoHandle pHnd)
