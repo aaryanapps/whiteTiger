@@ -3,17 +3,19 @@
 #include "IpHeader.h"
 #include "Globals.h"
 #include "net/HeaderTypes.h"
-#include "AppConsts.h"
+#include "CoreConsts.h"
+
+using namespace wt::core;
 
 CIpHeader::CIpHeader() :
 						m_typeId(CIpHeader_Class_Id)
 {
-	
+
 }
 
 CIpHeader::~CIpHeader()
 {
-	
+
 }
 
 bool CIpHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)

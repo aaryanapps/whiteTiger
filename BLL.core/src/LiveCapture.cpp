@@ -6,7 +6,9 @@
 #include "PacketDb.h"
 #include "Globals.h"
 #include "WtLogger.h"
-#include "AppConsts.h"
+#include "CoreConsts.h"
+
+using namespace wt::core;
 
 DEFINE_STATIC_LOGGER("wt.core.LiveCapture", devLogger)
 
@@ -30,7 +32,7 @@ CLiveCapture::~CLiveCapture()
 void CLiveCapture::run()
 {
 	Init();
-    /*TODO: Refactor Comment. Remove this as Runnable and invoke 
+    /*TODO: Refactor Comment. Remove this as Runnable and invoke
      * command to start capture on networkInterfaceAdapter.
     CPcapHandler& ph = CPcapHandler::Instance();
 
@@ -52,7 +54,7 @@ void CLiveCapture::Init()
 
 /* Callback function invoked by libpcap for every incoming packet */
 void CLiveCapture::OnNewPacket(u_char *param, const struct pcap_pkthdr *header, const u_char *pkt_data)
-{	
+{
 	CLiveCapture *self = (CLiveCapture *) (param);
 
     CPacketDb& pdb = CPacketDb::Instance();
@@ -65,12 +67,12 @@ void CLiveCapture::OnNewPacket(u_char *param, const struct pcap_pkthdr *header, 
     if (pkt)
     {
     	std::stringstream ss;
-    	ss << pkt->GetTimeStamp() 
+    	ss << pkt->GetTimeStamp()
     			  << ", Length: " <<
 					pkt->GetPacketLength();
-    	
+
     	LOG_ERROR( devLogger() , ss.str() );
-		
+
     }
     else
     {
@@ -78,7 +80,7 @@ void CLiveCapture::OnNewPacket(u_char *param, const struct pcap_pkthdr *header, 
     	 * Various Reasons: no memory, unsupported datalink, etc
     	 */
     }
-    
+
     self->AddPacketToMap(pktHnd);
     self->NotifyNewPacket(pktHnd);
 

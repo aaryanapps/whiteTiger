@@ -11,7 +11,7 @@
 #include "WtLogger.h"
 #include "pcap.h"
 
-using namespace wt::framework::capturelibrary;
+using namespace wt::core::capturelibrary;
 
 DEFINE_STATIC_LOGGER("framework.capturelibrary.CaptureLibraryInterface", devLogger)
 
@@ -35,9 +35,9 @@ void CCaptureLibraryInterface::OnNewPacket(u_char *param,
 						const struct pcap_pkthdr *header,
 						const u_char *pkt_data)
 {
-	//Received a new packet. Give it to either the 
-	
-	
+	//Received a new packet. Give it to either the
+
+
 }
 
 bool CCaptureLibraryInterface::InitInterface()
@@ -77,8 +77,8 @@ int32_t CCaptureLibraryInterface::Capture()
 }
 
 
-bool CCaptureLibraryInterface::RegisterNewPacketNotification()
+bool CCaptureLibraryInterface::RegisterNewPacketNotification(NewPktDelegate dl)
 {
-	
+
 	return false;
 }

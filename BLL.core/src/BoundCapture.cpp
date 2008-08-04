@@ -7,9 +7,11 @@
 #include "FastDelegate.h"
 #include <iostream>
 #include "WtLogger.h"
-#include "AppConsts.h"
+#include "CoreConsts.h"
 
 //using namespace wt::framework::networkintf;
+using namespace wt::core;
+
 
 CBoundCapture::CBoundCapture() :
 	m_name("Default Capture"), m_typeId(CBoundCapture_Class_Id)
@@ -19,7 +21,7 @@ CBoundCapture::CBoundCapture() :
 CBoundCapture::CBoundCapture(uint32_t id, uint32_t capHnd, std::string& name) :
     m_name(name), m_typeId(CBoundCapture_Class_Id)
 {
-    //m_pktCb = fastdelegate::MakeDelegate(this, &CBoundCapture::OnNewPacket);
+
 }
 
 
@@ -43,13 +45,13 @@ void CBoundCapture::run()
 void CBoundCapture::OnPacket(const void* pSender, WtoHandle& data)
 {
 	static uint32_t _pktIndex = 0;
-	
+
 	CBoundCapture *self = (CBoundCapture *) (pSender);
 	++_pktIndex ;
 	self->AddPacketToMap(data);
 	std::cout << "Received New Packet, PacketHandle " << data << std::endl;
 
-	
+
 
 }
 

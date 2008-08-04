@@ -7,20 +7,22 @@
 #include "net/MacAddress.h"
 #include "Globals.h"
 
+//using namespace wt::core;
+
 CArpHeaderIpImpl::CArpHeaderIpImpl() :
 							m_protoStr(""),
 							m_infoStr(""),
 							m_etArpHdr(NULL),
 							m_srcIp(""),
 							m_dstIp("")
-							
+
 {
-	
+
 }
 
 CArpHeaderIpImpl::~CArpHeaderIpImpl()
 {
-	
+
 }
 
 CArpHeaderIpImpl::CArpHeaderIpImpl(uint32_t hdrOffset,
@@ -34,12 +36,12 @@ CArpHeaderIpImpl::CArpHeaderIpImpl(uint32_t hdrOffset,
 	m_etArpHdr = NULL;
 	uint8_t* data = const_cast<uint8_t*> (pktData + hdrOffset);
 	m_etArpHdr = (ether_arp *)	data;
-	
+
 	if (!m_etArpHdr)
 		return;
 
 	ValidateHeader();
-	
+
 	ParseHeader();
 }
 
@@ -59,10 +61,10 @@ bool CArpHeaderIpImpl::ParseHeader()
 	std::string sIp = CCommonPacketUtils::GetIpFromNetU32(ip);
 	Poco::Net::IPAddress::tryParse(sIp, m_srcIp);
 
-	ip = CCommonPacketUtils::GetU32(&(m_etArpHdr->arp_tpa[0]));	
+	ip = CCommonPacketUtils::GetU32(&(m_etArpHdr->arp_tpa[0]));
 	std::string dIp = CCommonPacketUtils::GetIpFromNetU32(ip);
-	Poco::Net::IPAddress::tryParse(dIp, m_dstIp);	
-	
+	Poco::Net::IPAddress::tryParse(dIp, m_dstIp);
+
 	m_src.CopyFrom(&(m_etArpHdr->arp_sha[0]));
 	m_dst.CopyFrom(&(m_etArpHdr->arp_tha[0]));
 
@@ -98,7 +100,7 @@ std::string CArpHeaderIpImpl::GetProtoFromOpCode()
 		ss << "InARP";
 		break;
 	}
-	
+
 	return ss.str();
 }
 
@@ -132,6 +134,6 @@ std::string CArpHeaderIpImpl::GetInfoStr()
 	default:
 		break;
 	}
-	
+
 	return ss.str();
 }

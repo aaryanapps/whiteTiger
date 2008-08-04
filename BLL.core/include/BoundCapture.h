@@ -6,6 +6,10 @@
 #include "PcapDefs.h"
 
 class CPacket;
+
+namespace wt {
+namespace core {
+
 class CBoundCapture : public CCapture
 {
 public:
@@ -14,20 +18,21 @@ public:
     ~CBoundCapture();
 
     virtual uint32_t GetTypeId() {return m_typeId; }
-    
+
     virtual void run();
 
-    void OnPacket(const void* pSender, WtoHandle& data);  
+    void OnPacket(const void* pSender, WtoHandle& data);
 
 private:
-	
+
     std::string m_name;
     uint32_t 	m_typeId;
     newPktCallBack m_pktCb;
 
     /* void OnNewPacket(pkt p); */
     PacketIndexMap m_pkts;
-    
-};
 
+};
+}
+}
 #endif // _WT_BOUNDCAPTURE_H__

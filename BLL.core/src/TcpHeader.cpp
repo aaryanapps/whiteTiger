@@ -7,19 +7,21 @@
 #include "PcapDefs.h"
 #include "CommonPacketUtils.h"
 #include "WtLogger.h"
-#include "AppConsts.h"
+#include "CoreConsts.h"
+
+using namespace wt::core;
 
 //DEFINE_STATIC_LOGGER("bll.TcpHeader", devLogger);
 
 CTcpHeader::CTcpHeader() :
 						  m_typeId(CTcpHeader_Class_Id)
 {
-	
+
 }
 
 CTcpHeader::~CTcpHeader()
 {
-	
+
 }
 
 bool CTcpHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
@@ -27,32 +29,32 @@ bool CTcpHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
 	m_hdrType = WT_TCP_HDR;
 	m_hdrTypeInStr = WT_TCP_STR;
 	m_hdrLen = WT_TCP_HDRLEN ;
-	
+
 	if (!pktData)
 	{
 		/*No Data*/
 		return false;
 	}
-	
+
 	//TODO: Get the parent Packet instance and check the captured length to header length.
-	
+
 	uint8_t* data = const_cast<uint8_t*> (pktData + hdrOffset);
 	m_hdr = (tcp_hdr *)	data;
-	
+
 	if (!m_hdr)
 		return false;
-	
+
 	if (!ValidateHeader())
 		return false;
-	
+
 	if (!ParseHeader())
 		return false;
-	
+
 	return true;
 }
 
 bool CTcpHeader::IsStringCapable(uint16_t colId)
-{	
+{
 	switch (colId)
 	{
 	case Column_SrcAddr_String:
@@ -66,7 +68,7 @@ bool CTcpHeader::IsStringCapable(uint16_t colId)
 	default:
 		return false;
 	}
-	
+
 	return false;
 }
 
@@ -93,19 +95,19 @@ std::string CTcpHeader::GetProtocolString()
 std::string CTcpHeader::GetInfoString()
 {
 	std::stringstream ss;
-	
+
 	ss << m_sPort << " > ";
 	ss << m_dPort << " " ;
 	ss << GetTcpFlag() << " ";
 	ss << "Seq=" << m_seq << " ";
 	ss << "Ack=" << m_ack << " ";
 	ss << "Win=" << m_win << " ";
-	
+
 	return ss.str();
 }
 
 bool CTcpHeader::ValidateHeader()
-{	
+{
 	return true;
 }
 
@@ -119,7 +121,7 @@ bool CTcpHeader::ParseHeader()
 	m_win	= CCommonPacketUtils::GetNetworkToHostOrder(m_hdr->th_win);
 
 	//TODO: Create the appropriate Data class e.g Http, Https, Telnet, Ftp, etc.
-	
+
 	return true;
 }
 
@@ -138,12 +140,12 @@ uint32_t CTcpHeader::HeaderToCreateNext()
 std::string CTcpHeader::GetTcpFlag()
 {
 	std::stringstream flg;
-	
+
 	bool isAck = false;
 	bool isSyn = false;
-	
+
 	flg << "[" ;
-	
+
 	if (m_flag & TH_ACK)
 	{
 		isAck = true;
@@ -154,16 +156,16 @@ std::string CTcpHeader::GetTcpFlag()
 		isSyn = true;
 		flg << "SYN";
 	}
-	
+
 	if (isAck && isSyn)
 		flg << "," ;
-	
+
 	if (isAck)
 		flg << "ACK";
-	
+
 	if (isAck && !isSyn)
 	{
-			
+
 		if (m_flag & TH_CWR)
 		{
 			flg << "CWR";
@@ -173,12 +175,12 @@ std::string CTcpHeader::GetTcpFlag()
 		{
 			flg << "ECE";
 		}
-		
+
 		if (m_flag & TH_URG)
 		{
 			flg << "URG";
 		}
-	
+
 		if (m_flag & TH_PUSH)
 		{
 			flg << "PUSH";
@@ -195,7 +197,7 @@ std::string CTcpHeader::GetTcpFlag()
 		}
 
 	}
-	
+
 	flg << "]";
 
 	return flg.str();

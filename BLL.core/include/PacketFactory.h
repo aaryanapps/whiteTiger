@@ -2,26 +2,33 @@
 #include "PcapDefs.h"
 #include "EthernetPacket.h"
 
+namespace wt {
+namespace core {
+
 class CPacketFactory {
 
-public:	
+public:
 	CPacketFactory();
-	~CPacketFactory();	
+	~CPacketFactory();
 	CPacket* Create(uint32_t DataLink);
-	
+
 private:
-	
+
 };
 
+}
+}
+
+using namespace wt::core;
 
 CPacketFactory::CPacketFactory()
 {
-	
+
 }
 
 CPacketFactory::~CPacketFactory()
 {
-	
+
 }
 
 CPacket* CPacketFactory::Create(uint32_t dataLink)

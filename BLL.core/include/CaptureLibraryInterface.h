@@ -13,7 +13,7 @@
 #include "FastDelegate.h"
 
 namespace wt {
-namespace framework {
+namespace core {
 namespace capturelibrary {
 
 typedef fastdelegate::FastDelegate2<uint32_t, void*> NewPktDelegate;
@@ -31,8 +31,8 @@ public:
 
     bool 	InitInterface();
 
-    bool 	RegisterNewPacketNotification();
-    
+    bool 	RegisterNewPacketNotification(NewPktDelegate dl);
+
     int32_t Capture();
 
 private:

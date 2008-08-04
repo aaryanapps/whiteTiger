@@ -7,39 +7,41 @@
 #include "PacketHeader.h"
 #include "PacketDb.h"
 #include "RelationManager.h"
-#include "AppConsts.h"
+#include "CoreConsts.h"
 #include "WtObjectDb.h"
 #include "RelationInfo.h"
 #include "WtLogger.h"
 
-DEFINE_STATIC_LOGGER("bll.EthernetPacket", devLogger)
+using namespace wt::core;
+
+DEFINE_STATIC_LOGGER("bll.core.EthernetPacket", devLogger)
 
 
 CEthernetPacket::CEthernetPacket() :
 									m_typeId(CEthernetPacket_Class_Id)
 {
-	
+
 }
 
 CEthernetPacket::~CEthernetPacket()
 {
-	
+
 }
 
 bool CEthernetPacket::Init(uint32_t hnd,
-						   const pcapPktHdr *pkt, 
+						   const pcapPktHdr *pkt,
 						   const uint8_t* pktData)
 {
 	CPacket::Init(hnd, pkt, pktData);
-	
+
 	CreateHeaders();
-	
+
 	return true;
 }
 
 void CEthernetPacket::CreatePacketInfoText()
 {
-	
+
 }
 
 bool CEthernetPacket::ValidatePacket()
@@ -57,7 +59,7 @@ bool CEthernetPacket::CreateHeaders()
 {
 	wt::framework::CRelationManager *rm = wt::framework::CRelationManager::Instance();
 	CPacketHeaderDb& phd = CPacketHeaderDb::Instance();
-	
+
 	uint32_t hdrOffset = 0 ;
 	uint32_t hdr = WT_ETH ;
 	WtoHandle curHnd ;
@@ -78,9 +80,9 @@ bool CEthernetPacket::CreateHeaders()
 			status = false;
 			continue;
 		}
-		
+
 		WtoHandle wHnd = phd.GetHeader(curHnd)->GetWtoHandle();
-		
+
 		if (isFirstHdr)
 		{
 			rm->AddRelation(GetWtoHandle(), wHnd, RelationType(BottomMostHeader()));
@@ -90,12 +92,12 @@ bool CEthernetPacket::CreateHeaders()
 			rm->AddRelation(GetWtoHandle(), wHnd, RelationType(StackedOnHeader()));
 			dbg << " : " ;
 		}
-		
+
 		CPacketHeader *pktHdr = phd.GetHeader(curHnd);
 
 		OnNewPacketHeader(pktHdr);
-		
-		hdrOffset += pktHdr->GetHeaderLength();		
+
+		hdrOffset += pktHdr->GetHeaderLength();
 		hdr = pktHdr->HeaderToCreateNext();
 		isFirstHdr = false;
 		preHnd = curHnd;
@@ -108,9 +110,9 @@ bool CEthernetPacket::CreateHeaders()
 		//Add TopMostHeader Relation
 		rm->AddRelation(GetWtoHandle(), wHnd, RelationType(TopMostHeader()));
 	}
-	
+
 	LOG_INFO( devLogger(), dbg.str()) ;
-	
+
 	return status;
 }
 
@@ -132,7 +134,7 @@ void CEthernetPacket::OnNewPacketHeader(CPacketHeader* pktHdr)
 		std::string s = pktHdr->GetDstAddrString();
 		SetStringValues(Column_DstAddr_String, s) ;
 	}
-	
+
 	if (pktHdr->IsStringCapable(Column_Protocol_String))
 	{
 		std::string s = pktHdr->GetProtocolString();
@@ -144,5 +146,5 @@ void CEthernetPacket::OnNewPacketHeader(CPacketHeader* pktHdr)
 		std::string s = pktHdr->GetInfoString();
 		SetStringValues(Column_Info_String, s) ;
 	}
-	
+
 }

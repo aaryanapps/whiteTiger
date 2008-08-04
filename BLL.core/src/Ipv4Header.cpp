@@ -7,21 +7,23 @@
 #include "PcapDefs.h"
 #include "CommonPacketUtils.h"
 #include "WtLogger.h"
-#include "AppConsts.h"
+#include "CoreConsts.h"
+
+using namespace wt::core;
 
 //DEFINE_STATIC_LOGGER("bll.Ipv4Header", devLogger);
 
-CIpv4Header::CIpv4Header() : 
+CIpv4Header::CIpv4Header() :
 							m_typeId(CIpv4Header_Class_Id),
 							m_hdrLen(0),
 							m_hdr(0)
 {
-	
+
 }
 
 CIpv4Header::~CIpv4Header()
 {
-	
+
 }
 
 bool CIpv4Header::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
@@ -29,32 +31,32 @@ bool CIpv4Header::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
 	m_hdrType = WT_IP_HDR;
 	m_hdrTypeInStr = WT_IP_STR;
 	m_hdrHnd = hnd;
-	
+
 	if (!pktData)
 	{
 		/*No Data*/
 		return false;
 	}
-	
+
 	//TODO: Get the parent Packet instance and check the captured length to header length.
-	
+
 	m_hdrData = const_cast<uint8_t*> (pktData + hdrOffset);
 	m_hdr = (ip_hdr *)	  m_hdrData;
 
 	if (!m_hdr)
 		return false;
-	
+
 	if (!ValidateHeader())
 		return false;
-	
+
 	if (!ParseHeader())
 		return false;
-	
+
 	return true;
 }
 
 bool CIpv4Header::IsStringCapable(uint16_t colId)
-{	
+{
 	switch (colId)
 	{
 	case Column_SrcAddr_String:
@@ -68,7 +70,7 @@ bool CIpv4Header::IsStringCapable(uint16_t colId)
 	default:
 		return false;
 	}
-	
+
 	return false;
 }
 
@@ -96,7 +98,7 @@ std::string CIpv4Header::GetInfoString()
 }
 
 bool CIpv4Header::ValidateHeader()
-{	
+{
 	return true;
 }
 
@@ -109,7 +111,7 @@ bool CIpv4Header::ParseHeader()
 
 	std::string dIpStr = CCommonPacketUtils::GetIpFromNetU32(m_hdr->ip_dst) ;
 	Poco::Net::IPAddress::tryParse(dIpStr, m_dstAddr);
-	
+
 	return true;
 }
 

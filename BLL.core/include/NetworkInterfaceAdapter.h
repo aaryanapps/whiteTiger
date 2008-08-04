@@ -16,7 +16,7 @@
 class Poco::Thread;
 
 namespace wt {
-namespace framework {
+namespace core {
 namespace networkintf {
 
 typedef enum CaptureStateEnum {
@@ -47,10 +47,12 @@ public:
 	bool InitAdapter();
 
 	bool StartCapture();
-	
-	WtoHandle GetFirstPacket();
+
+	void OnNewPacket(uint32_t pktHnd, void* data);
 
 	WtoHandle GetLastPacket();
+	
+	WtoHandle GetFirstPacket();
 
 private:
 	CNetworkInterfaceAdapter(){};
@@ -61,10 +63,12 @@ private:
 
 	std::string  	_strAdapName;
 	Poco::Thread*	_pThread;
-	Poco::BasicEvent<WtoHandle> NewNetworkPacket;
+	Poco::BasicEvent<WtoHandle> NewPacket;
 	CaptureState	_captureStatus;
-	wt::framework::capturelibrary::CCaptureLibraryInterface*	_capLibInt;
-	wt::framework::captureLibrary::NewPktDelegate	_dNewPkt;
+
+	wt::core::capturelibrary::CCaptureLibraryInterface*	_capLibInt;
+	wt::core::capturelibrary::NewPktDelegate	_dNewPkt;
+
 };
 
 }

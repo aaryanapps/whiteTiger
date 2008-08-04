@@ -2,16 +2,19 @@
 
 #include "NetworkInterfaceAdapter.h"
 #include "NetworkInterfaceAdapterManager.h"
-#include "WtLogger.h"
 #include "CaptureLibraryInterface.h"
+
+#include "WtLogger.h"
+#include "FastDelegate.h"
+
 #include "Poco/BasicEvent.h"
 #include "Poco/Thread.h"
 
-using namespace wt::framework::networkintf;
-using namespace wt::framework::capturelibrary;
+using namespace wt::core::networkintf;
+using namespace wt::core::capturelibrary;
 
 
-DEFINE_STATIC_LOGGER("frmwrk.netintf.NetworkInterfaceAdapter", devLogger)
+DEFINE_STATIC_LOGGER("core.netintf.NetworkInterfaceAdapter", devLogger)
 
 CNetworkInterfaceAdapter::CNetworkInterfaceAdapter(std::string& adpName) :
 													_strAdapName(adpName),
@@ -20,6 +23,13 @@ CNetworkInterfaceAdapter::CNetworkInterfaceAdapter(std::string& adpName) :
 													_capLibInt(NULL)
 {
 	_capLibInt = new CCaptureLibraryInterface(adpName);
+	if (NULL == _capLibInt)
+	{
+		//TODO: Log Error
+		return;
+	}
+
+	_dNewPkt = fastdelegate::MakeDelegate(this, &CNetworkInterfaceAdapter::OnNewPacket);
 
 }
 
@@ -31,7 +41,7 @@ CNetworkInterfaceAdapter::~CNetworkInterfaceAdapter()
 bool CNetworkInterfaceAdapter::RegisterOnNewPacket(Poco::Delegate<CWtObject, WtoHandle>& dl)
 {
 
-	NewNetworkPacket += dl;
+	NewPacket += dl;
 
 	return true;
 }
@@ -101,7 +111,7 @@ bool CNetworkInterfaceAdapter::InitAdapter()
 
 void CNetworkInterfaceAdapter::NotifyNewPacket(WtoHandle pHnd)
 {
-	NewNetworkPacket.notifyAsync((CWtObject*)this, pHnd);
+	NewPacket.notifyAsync((CWtObject*)this, pHnd);
 
 	std::stringstream ss;
 	ss 	<< "Sent new Packet Notification on Adapter: "
@@ -111,3 +121,11 @@ void CNetworkInterfaceAdapter::NotifyNewPacket(WtoHandle pHnd)
 
 	return;
 }
+
+
+void CNetworkInterfaceAdapter::OnNewPacket(uint32_t pktHnd, void* data)
+{
+	LOG_DEBUG(devLogger(), "Received new packet notification");
+	return;
+}
+

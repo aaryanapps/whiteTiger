@@ -7,17 +7,18 @@
 #include "PcapDefs.h"
 #include "CommonPacketUtils.h"
 #include "ArpHeaderIpImpl.h"
-#include "AppConsts.h"
+#include "CoreConsts.h"
 
+using namespace wt::core;
 
-CArpHeader::CArpHeader() : 
+CArpHeader::CArpHeader() :
 						  m_hdrLen(0),
 						  m_Impl(0),
 						  m_typeId(CArpHeader_Class_Id)
 {
-	
+
 }
- 
+
 CArpHeader::~CArpHeader()
 {
 	delete m_Impl;
@@ -25,16 +26,16 @@ CArpHeader::~CArpHeader()
 
 bool CArpHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
 {
-	
+
 	if (!pktData)
 	{
 		/*No Data*/
 		return false;
 	}
-	
+
 	m_hdrLen = WT_ARP_HDRLEN;
 	//TODO: Get the parent Packet instance and check the captured length to header length.
-	
+
 	uint8_t* data = const_cast<uint8_t*> (pktData + hdrOffset);
 	m_hdr = (arp_hdr *)	data;
 
@@ -42,24 +43,24 @@ bool CArpHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
 		return false;
 
 	m_arHrd = CCommonPacketUtils::GetNetworkToHostOrder(m_hdr->ar_hrd);
-	m_arPro = CCommonPacketUtils::GetNetworkToHostOrder(m_hdr->ar_pro);	
-	
+	m_arPro = CCommonPacketUtils::GetNetworkToHostOrder(m_hdr->ar_pro);
+
 	CreateArpType(hdrOffset, pktData);
-	
+
 	if (!m_Impl)
 		return false;
-	
+
 	if (!ValidateHeader())
 		return false;
-	
+
 	if (!ParseHeader())
 		return false;
-	
+
 	return true;
 }
 
 bool CArpHeader::IsStringCapable(uint16_t colId)
-{	
+{
 	switch (colId)
 	{
 	case Column_SrcAddr_String:
@@ -73,7 +74,7 @@ bool CArpHeader::IsStringCapable(uint16_t colId)
 	default:
 		return false;
 	}
-	
+
 	return false;
 }
 
@@ -102,7 +103,7 @@ std::string CArpHeader::GetInfoString()
 }
 
 bool CArpHeader::ValidateHeader()
-{	
+{
 	//m_Impl->ValidateHeader();
 	return true;
 }

@@ -7,26 +7,33 @@
 #include "ArpHeader.h"
 #include "UdpHeader.h"
 
+namespace wt {
+namespace core {
+
+
 class CPacketHeaderFactory {
 
-public:	
+public:
 	CPacketHeaderFactory();
-	~CPacketHeaderFactory();	
+	~CPacketHeaderFactory();
 	CPacketHeader* Create(uint32_t hdrType);
-	
-private:
-	
-};
 
+private:
+
+};
+}
+}
+
+using namespace wt::core;
 
 CPacketHeaderFactory::CPacketHeaderFactory()
 {
-	
+
 }
 
 CPacketHeaderFactory::~CPacketHeaderFactory()
 {
-	
+
 }
 
 //TODO: Remove the switch statement and create a map

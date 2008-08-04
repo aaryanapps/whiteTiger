@@ -3,17 +3,19 @@
 #include "Ipv6Header.h"
 #include "Globals.h"
 #include "net/HeaderTypes.h"
-#include "AppConsts.h"
+#include "CoreConsts.h"
+
+using namespace wt::core;
 
 CIpv6Header::CIpv6Header() :
 							m_typeId(CIpv6Header_Class_Id)
 {
-	
+
 }
 
 CIpv6Header::~CIpv6Header()
 {
-	
+
 }
 
 bool CIpv6Header::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
@@ -23,7 +25,7 @@ bool CIpv6Header::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
 
 
 bool CIpv6Header::IsStringCapable(uint16_t colId)
-{	
+{
 	switch (colId)
 	{
 	case Column_SrcAddr_String:
@@ -37,7 +39,7 @@ bool CIpv6Header::IsStringCapable(uint16_t colId)
 	default:
 		return false;
 	}
-	
+
 	return false;
 }
 
@@ -65,12 +67,12 @@ std::string CIpv6Header::GetInfoString()
 }
 
 bool CIpv6Header::ValidateHeader()
-{	
+{
 	return true;
 }
 
 bool CIpv6Header::ParseHeader()
-{	
+{
 	return true;
 }
 

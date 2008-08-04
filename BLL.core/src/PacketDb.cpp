@@ -7,14 +7,16 @@
 #include "WtObjectDb.h"
 #include "RelationManager.h"
 
+using namespace wt::core;
+
 CPacketDb::CPacketDb()
 {
-	
+
 }
 
 CPacketDb::~CPacketDb()
 {
-	
+
 }
 
 CPacketDb& CPacketDb::Instance()
@@ -25,7 +27,7 @@ CPacketDb& CPacketDb::Instance()
 
 WtoHandle CPacketDb::AddNewPacket(WtoHandle parentCap,
 								  uint32_t DataLink,
-								  const pcapPktHdr *pkt, 
+								  const pcapPktHdr *pkt,
 								  const uint8_t* pktData)
 {
 	CPacketFactory pf;
@@ -35,7 +37,7 @@ WtoHandle CPacketDb::AddNewPacket(WtoHandle parentCap,
 	{
 		/*TODO: Log Error. May be out of memeory ?, Unsupported LinkType*/
 		return PACKETHND_NULL;
-	}	
+	}
 
 	WtoHandle wHnd = CWtObjectDb::Instance().AddObject((CWtObject *)newPkt);
 	if (wHnd == WTOBJECT_HND_NULL)
@@ -50,22 +52,22 @@ WtoHandle CPacketDb::AddNewPacket(WtoHandle parentCap,
 	newPkt->SetWtoHandle(wHnd);
 	wt::framework::CRelationManager *rm = wt::framework::CRelationManager::Instance();
 	rm->AddRelation(parentCap, wHnd, RelationType(ParentChild()));
-	
+
 	newPkt->Init(wHnd, pkt, pktData);
 	m_pktDb.insert(std::make_pair(wHnd, newPkt));
-	
+
 	return wHnd;
 }
 
 CPacket* CPacketDb::GetPacket(PcapHandle pHnd)
 {
 	PacketDb::iterator pit = m_pktDb.find(pHnd);
-	
+
 	if (pit == m_pktDb.end())
 	{
 		return NULL;
 	}
-	
+
 	return pit->second;
 }
 
