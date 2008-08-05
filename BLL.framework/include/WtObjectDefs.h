@@ -3,11 +3,15 @@
 
 #include "Globals.h"
 
-class CWtObject;
+namespace wt {
+namespace framework {
+	class CWtObject;
+}
+}
 
 typedef uint32_t WtoHandle;
-typedef std::map<WtoHandle, CWtObject*> WtObjectsMap;
-typedef std::vector<CWtObject*> WtoVec;
+typedef std::map<WtoHandle, wt::framework::CWtObject*> WtObjectsMap;
+typedef std::vector<wt::framework::CWtObject*> WtoVec;
 #define WTOBJECT_HND_NULL 0
 
 

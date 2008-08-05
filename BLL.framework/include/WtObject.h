@@ -6,6 +6,9 @@
 #include "WtObjectDefs.h"
 #include "RelationInfo.h"
 
+namespace wt {
+namespace framework {
+
 typedef uint32_t WtoType;
 
 class FRAMEWORK_EXPORT CWtObject {
@@ -17,23 +20,26 @@ public:
 	void SetWtoHandle(WtoHandle hnd) {m_wtoHnd = hnd;}
 
 	WtoHandle GetWtoType() {return m_wtoType;}
-	void SetWtoType(WtoType type) {m_wtoType = type;}	
-	
+	void SetWtoType(WtoType type) {m_wtoType = type;}
+
 	void SetWtoName(std::string& name) {m_wtoName = name;}
 	std::string GetWtoName() {return m_wtoName;}
-	
+
 	//virtual void InitWto() = 0;
 	virtual uint32_t GetTypeId() = 0;
-	
+
 	CWtObject* 	GetParent();
-	void 		GetObjects(WtoVec& wtv, WtoType type, 
+	void 		GetObjects(WtoVec& wtv, WtoType type,
 										RelationType rel = ParentChild());
 	CWtObject*	GetObject(WtoType type, RelationType rel = ParentChild());
-	
+
 private:
 	WtoHandle m_wtoHnd;
 	WtoType   m_wtoType;
 	std::string m_wtoName;
 };
+
+}
+}
 
 #endif /*WT_CWTOBJECT_H__*/

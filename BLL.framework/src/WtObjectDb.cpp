@@ -2,6 +2,8 @@
 
 #include "WtObjectDb.h"
 
+using namespace wt::framework;
+
 CWtObjectDb::CWtObjectDb()
 {
 }
@@ -13,7 +15,7 @@ CWtObjectDb::~CWtObjectDb()
 CWtObjectDb& CWtObjectDb::Instance()
 {
 	static CWtObjectDb _wtoDb;
-	
+
 	return _wtoDb;
 }
 
@@ -23,7 +25,7 @@ WtoHandle CWtObjectDb::AddObject(CWtObject* obj)
 	{
 		return WTOBJECT_HND_NULL;
 	}
-	
+
 	WtoHandle hnd = GetNextObjHandle();
 	if ( !m_wtObjs.insert(std::make_pair(hnd, obj)).second)
 	{
@@ -60,11 +62,11 @@ WtoHandle CWtObjectDb::GetNextObjHandle()
 {
 	static WtoHandle _objHnd = 100;
 	++_objHnd;
-	
+
 	if (_objHnd == 0)
 		_objHnd = 101;
-	
-	do 
+
+	do
 	{
 		if (m_wtObjs.find(_objHnd) == m_wtObjs.end())
 		{
