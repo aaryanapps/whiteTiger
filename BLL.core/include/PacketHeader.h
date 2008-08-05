@@ -7,7 +7,7 @@
 namespace wt {
 namespace core {
 
-class CPacketHeader : public CWtObject {
+class CPacketHeader : public wt::framework::CWtObject {
 
 public:
 	CPacketHeader();

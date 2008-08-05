@@ -17,7 +17,7 @@ namespace core {
 
 class CPacket;
 
-class CCapture: public Poco::Runnable, public CWtObject
+class CCapture: public Poco::Runnable, public wt::framework::CWtObject
 {
 public:
 	CCapture();

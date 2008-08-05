@@ -1,5 +1,5 @@
 /*
- * CaptureLibraryInterface.cpp
+ * CaptureLibraryAdapter.cpp
  *
  *  Created on: Jul 26, 2008
  *      Author: saumil
@@ -13,34 +13,37 @@
 
 using namespace wt::core::capturelibrary;
 
-DEFINE_STATIC_LOGGER("framework.capturelibrary.CaptureLibraryInterface", devLogger)
+DEFINE_STATIC_LOGGER("framework.capturelibrary.CaptureLibraryAdapter", devLogger)
 
-CCaptureLibraryInterface::CCaptureLibraryInterface(std::string &adpName):
+CCaptureLibraryAdapter::CCaptureLibraryAdapter(std::string &adpName):
 												_strAdapter(adpName),
 												_pPcapDesc(NULL)
 {
 	//Query Pcap and check the adapter name.
 
 
+
 }
 
-CCaptureLibraryInterface::~CCaptureLibraryInterface()
+CCaptureLibraryAdapter::~CCaptureLibraryAdapter()
 {
 	//Close pcap_desc if open
 }
 
 
 /* prototype of the packet handler */
-void CCaptureLibraryInterface::OnNewPacket(u_char *param,
+void CCaptureLibraryAdapter::OnNewPacket(u_char *param,
 						const struct pcap_pkthdr *header,
 						const u_char *pkt_data)
 {
-	//Received a new packet. Give it to either the
+	/*Received a new packet. Give it to those subscribed for
+	 * notification
+	 * */
 
 
 }
 
-bool CCaptureLibraryInterface::InitInterface()
+bool CCaptureLibraryAdapter::InitInterface()
 {
     char Errbuf[PCAP_ERRBUF_SIZE];
 
@@ -59,7 +62,7 @@ bool CCaptureLibraryInterface::InitInterface()
     return true;
 }
 
-int32_t CCaptureLibraryInterface::Capture()
+int32_t CCaptureLibraryAdapter::Capture()
 {
 	if(_pPcapDesc == NULL)
 	{
@@ -71,14 +74,14 @@ int32_t CCaptureLibraryInterface::Capture()
 	LOG_DEBUG( devLogger() , ss.str() );
 
 	uint8_t *uData = (uint8_t *) (this);
-	int32_t ret = pcap_loop(_pPcapDesc,-1, &CCaptureLibraryInterface::OnNewPacket,
+	int32_t ret = pcap_loop(_pPcapDesc,-1, &CCaptureLibraryAdapter::OnNewPacket,
 							 uData);
 	return ret;
 }
 
 
-bool CCaptureLibraryInterface::RegisterNewPacketNotification(NewPktDelegate dl)
+bool CCaptureLibraryAdapter::RegisterNewPacketNotification(NewPktDelegate dl)
 {
-
+	/*Add the Delegate in the List*/
 	return false;
 }

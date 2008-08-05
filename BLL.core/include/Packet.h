@@ -13,7 +13,7 @@ namespace core {
 typedef uint32_t PacketHeaderHnd;
 typedef std::vector<PacketHeaderHnd> PktHeadersVec;
 
-class CPacket : public CWtObject {
+class CPacket : public wt::framework::CWtObject {
 
 public:
     CPacket();

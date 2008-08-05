@@ -3,28 +3,28 @@
 #include "NetworkInterfaceAdapterManager.h"
 #include "pcap.h"
 
-using namespace wt::framework::networkintf;
+using namespace wt::framework::capturelibrary;
 
 
-CNetworkInterfaceAdapterManager::CNetworkInterfaceAdapterManager()
+CCaptureLibraryInterface::CCaptureLibraryInterface()
 {
 
 }
 
-CNetworkInterfaceAdapterManager::~CNetworkInterfaceAdapterManager()
+CCaptureLibraryInterface::~CCaptureLibraryInterface()
 {
 
 }
 
-CNetworkInterfaceAdapterManager&
-CNetworkInterfaceAdapterManager::Instance()
+CCaptureLibraryInterface&
+CCaptureLibraryInterface::Instance()
 {
-	static CNetworkInterfaceAdapterManager _am;
+	static CCaptureLibraryInterface _am;
 	return _am;
 }
 
 void
-CNetworkInterfaceAdapterManager::GetAdaptersList(adapterVec& adVec)
+CCaptureLibraryInterface::GetAdaptersList(adapterVec& adVec)
 {
 
 	adVec.clear();
@@ -60,13 +60,13 @@ CNetworkInterfaceAdapterManager::GetAdaptersList(adapterVec& adVec)
 
 
 bool
-CNetworkInterfaceAdapterManager::IsAdapterCapturing(std::string& adpName)
+CCaptureLibraryInterface::IsAdapterCapturing(std::string& adpName)
 {
 	return false;
 }
 
 bool
-CNetworkInterfaceAdapterManager::RegisterNewPacketNotification(std::string& adpName,
+CCaptureLibraryInterface::RegisterNewPacketNotification(std::string& adpName,
 												Poco::Delegate<CWtObject, WtoHandle>& dl)
 {
 	return false;
@@ -74,7 +74,7 @@ CNetworkInterfaceAdapterManager::RegisterNewPacketNotification(std::string& adpN
 
 
 bool
-CNetworkInterfaceAdapterManager::StartCapture(std::string& adpName,
+CCaptureLibraryInterface::StartCapture(std::string& adpName,
 											  Poco::Delegate<CWtObject, WtoHandle>& dl)
 {
 	return false;

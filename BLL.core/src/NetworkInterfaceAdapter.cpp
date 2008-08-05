@@ -12,7 +12,7 @@
 
 using namespace wt::core::networkintf;
 using namespace wt::core::capturelibrary;
-
+using namespace wt::framework;
 
 DEFINE_STATIC_LOGGER("core.netintf.NetworkInterfaceAdapter", devLogger)
 

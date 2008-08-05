@@ -8,6 +8,7 @@
 #include "RelationManager.h"
 
 using namespace wt::core;
+using namespace wt::framework;
 
 CPacketDb::CPacketDb()
 {

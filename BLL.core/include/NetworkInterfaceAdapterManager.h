@@ -1,5 +1,5 @@
-#ifndef _WT_NETWORKINTERFACEADAPTERMANAGER_H__
-#define _WT_NETWORKINTERFACEADAPTERMANAGER_H__
+#ifndef _WT_CAPTURELIBRARYINTERFACE_H__
+#define _WT_CAPTURELIBRARYINTERFACE_H__
 
 #include "BllFrameworkExport.h"
 
@@ -9,7 +9,7 @@
 
 namespace wt {
 namespace framework {
-namespace networkintf {
+namespace capturelibrary {
 
 class CNetworkInterfaceAdapter;
 
@@ -17,26 +17,26 @@ typedef std::map<std::string , CNetworkInterfaceAdapter*> activeAdapters;
 typedef std::vector<std::string> adapterVec;
 
 
-class FRAMEWORK_EXPORT CNetworkInterfaceAdapterManager {
+class FRAMEWORK_EXPORT CCaptureLibraryInterface {
 public:
-	static 	CNetworkInterfaceAdapterManager& Instance();
-	
+	static 	CCaptureLibraryInterface& Instance();
+
 	void 	GetAdaptersList(adapterVec& adVec) ;
-	
-	bool 	StartCapture(std::string& adpName, 
+
+	bool 	StartCapture(std::string& adpName,
 			Poco::Delegate<CWtObject, WtoHandle>&);
-	
+
 	bool 	IsAdapterCapturing(std::string& adpName);
-	
-	bool	RegisterNewPacketNotification(std::string& adpName, 
+
+	bool	RegisterNewPacketNotification(std::string& adpName,
 			Poco::Delegate<CWtObject, WtoHandle>&);
-	
+
 private:
-	CNetworkInterfaceAdapterManager();
-	~CNetworkInterfaceAdapterManager();
+	CCaptureLibraryInterface();
+	~CCaptureLibraryInterface();
 
 	activeAdapters 			_mActAdapters;
-	
+
 };
 
 }
@@ -44,4 +44,4 @@ private:
 }
 
 
-#endif /*NETWORKINTERFACEADAPTERMANAGER_H_*/
+#endif /*CAPTURELIBRARYINTERFACE_H_*/

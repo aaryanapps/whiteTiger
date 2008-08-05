@@ -35,7 +35,7 @@ public:
 	CNetworkInterfaceAdapter(std::string& adpName);
 	~CNetworkInterfaceAdapter();
 
-    bool RegisterOnNewPacket(Poco::Delegate<CWtObject, WtoHandle>& dl);
+    bool RegisterOnNewPacket(Poco::Delegate<wt::framework::CWtObject, WtoHandle>& dl);
 
     /* prototype of the packet handler */
     static void OnNewPacket(u_char *param,
@@ -51,7 +51,7 @@ public:
 	void OnNewPacket(uint32_t pktHnd, void* data);
 
 	WtoHandle GetLastPacket();
-	
+
 	WtoHandle GetFirstPacket();
 
 private:
