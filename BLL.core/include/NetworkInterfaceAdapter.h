@@ -3,15 +3,16 @@
 
 #include "BllFrameworkExport.h"
 
-#include "Poco/Runnable.h"
-#include "Poco/BasicEvent.h"
-#include "Poco/Delegate.h"
-//#include "Poco/Thread.h"
-
 #include "WtObjectDefs.h"
 #include "WtObject.h"
 #include "CaptureLibraryInterface.h"
 #include "FastDelegate.h"
+
+//Poco
+#include "Poco/BasicEvent.h"
+#include "Poco/Delegate.h"
+
+
 
 class Poco::Thread;
 
@@ -28,7 +29,7 @@ typedef enum CaptureStateEnum {
 	CAPTURE_STOPPED
 } CaptureState;
 
-class FRAMEWORK_EXPORT CNetworkInterfaceAdapter : public Poco::Runnable {
+class FRAMEWORK_EXPORT CNetworkInterfaceAdapter : public wt::framework::CWtObject {
 
 public:
 
@@ -42,31 +43,33 @@ public:
     						const struct pcap_pkthdr *header,
     						const u_char *pkt_data);
 
-    virtual void run();
-
-	bool InitAdapter();
-
 	bool StartCapture();
 
-	void OnNewPacket(uint32_t pktHnd, void* data);
+	void OnNewPacket(WtoHandle pktHnd, void* data);
 
 	WtoHandle GetLastPacket();
 
 	WtoHandle GetFirstPacket();
 
+	void 		SetCaptureStatus(CaptureState status) {_captureStatus = status;}
+	CaptureState GetCaptureStatus() { return _captureStatus;}
+
 private:
+	/*Default ctor*/
 	CNetworkInterfaceAdapter(){};
 
 	void NotifyNewPacket(WtoHandle pHnd);
 
+	/*Initialize the Adaptor for Capture*/
+	bool InitAdapter();
+
+
 	bool CreateThread();
 
-	std::string  	_strAdapName;
-	Poco::Thread*	_pThread;
+	std::string  	_strAdapName;			/*Adapter Name*/
 	Poco::BasicEvent<WtoHandle> NewPacket;
-	CaptureState	_captureStatus;
+	CaptureState	_captureStatus;			/*Capture Status*/
 
-	wt::core::capturelibrary::CCaptureLibraryInterface*	_capLibInt;
 	wt::core::capturelibrary::NewPktDelegate	_dNewPkt;
 
 };

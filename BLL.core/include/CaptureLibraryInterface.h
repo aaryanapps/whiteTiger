@@ -4,38 +4,56 @@
 #include "BllFrameworkExport.h"
 
 #include "DataTypes.h"
-#include "Poco/Delegate.h"
 #include "WtObjectDefs.h"
+#include "FastDelegate.h"
+
+#include "CaptureLibraryDefs.h"
+
+#include "Poco/Delegate.h"
 
 namespace wt {
-namespace framework {
+namespace core {
 namespace capturelibrary {
-
-class CNetworkInterfaceAdapter;
-
-typedef std::map<std::string , CNetworkInterfaceAdapter*> activeAdapters;
-typedef std::vector<std::string> adapterVec;
-
 
 class FRAMEWORK_EXPORT CCaptureLibraryInterface {
 public:
-	static 	CCaptureLibraryInterface& Instance();
+	static 		CCaptureLibraryInterface& Instance();
 
-	void 	GetAdaptersList(adapterVec& adVec) ;
+	/*Get the List of Adapters*/
+	void 		GetAdaptersList(adapterVec& adVec) ;
 
-	bool 	StartCapture(std::string& adpName,
-			Poco::Delegate<CWtObject, WtoHandle>&);
+	/*Start Capture on the Adapter*/
+	bool 		StartCapture(std::string& adpName);
 
-	bool 	IsAdapterCapturing(std::string& adpName);
+	/*Return true is adapter is Capturing Packets*/
+	bool 		IsAdapterCapturing(std::string& adpName);
 
-	bool	RegisterNewPacketNotification(std::string& adpName,
-			Poco::Delegate<CWtObject, WtoHandle>&);
+	/*Register for notification when new packet is captured
+	 * Returns a registrationId. This id is used in future to
+	 * unregister the notification
+	 * */
+	uint32_t	RegisterNewPacketNotification(std::string& adpName,
+				NewPktDelegateInfo* pktDelInfo);
+
+
 
 private:
 	CCaptureLibraryInterface();
 	~CCaptureLibraryInterface();
 
-	activeAdapters 			_mActAdapters;
+	bool AdapterExists(std::string& adpName);
+
+	bool CreateCaptureLibraryAdapter(std::string& adpName);
+
+	CCaptureLibraryAdapter*	GetCaptureLibraryAdp(std::string& adpName);
+
+	Poco::Thread* CreateThreadForAdp(std::string& adpName);
+
+	Poco::Thread* GetThreadForAdp(std::string& adpName);
+
+	bool StartCaptureInThread(std::string& adpName);
+
+	ActiveAdapters 			_mActAdapters;
 
 };
 

@@ -12,13 +12,13 @@ class FRAMEWORK_EXPORT CWtLoggerFactory : public Poco::Logger {
 public:
 	CWtLoggerFactory(std::string& name, Poco::Channel* pCha, int level);
 	~CWtLoggerFactory();
-	
+
 	static CWtLoggerFactory& Instance();
-	
+
 	bool IsLevelSet(uint32_t level);
-	
+
 	void LogMessage(std::string& logMsg, std::string& src, Poco::Message::Priority level);
-	
+
 	void LogMessage(Poco::Message& msg);
 
 	Poco::Logger& GetLogger(std::string& logger);
@@ -26,7 +26,7 @@ private:
 	CWtLoggerFactory();
 	bool m_init;
 	void Init();
-	
+
 };
 
 // Create a static logger function (fnName) for the specified logger/category name (loggerName)
@@ -51,11 +51,11 @@ if (logger.error()) \
 
 // Log at WARN level for the specified logger object
 #define LOG_WARN(logger, logEvent) \
-if (logger.warn()) \
+if (logger.warning()) \
 { \
 	std::ostringstream str; \
 	str << logEvent; \
-	logger.warn(str.str()); \
+	logger.warning(str.str()); \
 }
 
 // Log at DEBUG level for the specified logger object

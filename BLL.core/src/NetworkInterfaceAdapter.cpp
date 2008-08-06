@@ -1,7 +1,6 @@
 #include "StdAfx.h"
 
 #include "NetworkInterfaceAdapter.h"
-#include "NetworkInterfaceAdapterManager.h"
 #include "CaptureLibraryInterface.h"
 
 #include "WtLogger.h"
@@ -18,16 +17,8 @@ DEFINE_STATIC_LOGGER("core.netintf.NetworkInterfaceAdapter", devLogger)
 
 CNetworkInterfaceAdapter::CNetworkInterfaceAdapter(std::string& adpName) :
 													_strAdapName(adpName),
-													_pThread(NULL),
-													_captureStatus(CAPTURE_IDLE),
-													_capLibInt(NULL)
+													_captureStatus(CAPTURE_IDLE)
 {
-	_capLibInt = new CCaptureLibraryInterface(adpName);
-	if (NULL == _capLibInt)
-	{
-		//TODO: Log Error
-		return;
-	}
 
 	_dNewPkt = fastdelegate::MakeDelegate(this, &CNetworkInterfaceAdapter::OnNewPacket);
 
@@ -57,45 +48,39 @@ void CNetworkInterfaceAdapter::OnNewPacket(u_char *param,
 
 void CNetworkInterfaceAdapter::run()
 {
-	_captureStatus = CAPTURE_RUNNING;
-	int32_t ret = _capLibInt->Capture();
-    if (ret == -1)
-    {
-    	_captureStatus = CAPTURE_STOPPED;
-    	//TODO: Log Error
-    	LOG_ERROR( devLogger() , "Error occured when Capture stopped on Adapter: " );
-    	return;
-    }
 }
 
 bool CNetworkInterfaceAdapter::StartCapture()
 {
-	_captureStatus = CAPTURE_BEING_STARTED;
+	SetCaptureStatus (CAPTURE_BEING_STARTED);
 
-	//Start the Thread. i.e capture
-	_pThread->start(*this);
+	bool ret = false;
 
-	return true;
+	/* Get CaptureLibraryInterface Instance
+	 * Register for new packet notification
+	 * StartCapture
+	 */
 
+	CCaptureLibraryInterface& cli = CCaptureLibraryInterface::Instance();
+
+	ret = cli.StartCapture();
+
+	if ( !ret )
+    {
+    	SetCaptureStatus (CAPTURE_STOPPED);
+    	LOG_ERROR( devLogger() , "Error occured when starting Capture on Adapter: " );
+    	return false;
+    }
+	else
+	{
+		return true;
+	}
+
+	return false;
 }
 
 // Private
 
-bool CNetworkInterfaceAdapter::CreateThread()
-{
-	std::stringstream thName;
-    thName << "Capture on Network Adapter :" << _strAdapName ;
-
-    _pThread = new Poco::Thread(thName.str());
-    if (!_pThread)
-    {
-        return false;
-    }
-
-    _pThread->setPriority(Poco::Thread::PRIO_NORMAL);
-
-    return false;
-}
 
 bool CNetworkInterfaceAdapter::InitAdapter()
 {
@@ -123,7 +108,7 @@ void CNetworkInterfaceAdapter::NotifyNewPacket(WtoHandle pHnd)
 }
 
 
-void CNetworkInterfaceAdapter::OnNewPacket(uint32_t pktHnd, void* data)
+void CNetworkInterfaceAdapter::OnNewPacket(WtoHandle pktHnd, void* data)
 {
 	LOG_DEBUG(devLogger(), "Received new packet notification");
 	return;

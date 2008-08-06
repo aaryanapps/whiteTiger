@@ -7,8 +7,10 @@
 
 #include "StdAfx.h"
 
+#include "CaptureLibraryAdapter.h"
 #include "CaptureLibraryInterface.h"
 #include "WtLogger.h"
+
 #include "pcap.h"
 
 using namespace wt::core::capturelibrary;
@@ -16,18 +18,17 @@ using namespace wt::core::capturelibrary;
 DEFINE_STATIC_LOGGER("framework.capturelibrary.CaptureLibraryAdapter", devLogger)
 
 CCaptureLibraryAdapter::CCaptureLibraryAdapter(std::string &adpName):
-												_strAdapter(adpName),
-												_pPcapDesc(NULL)
+												_strAdapter(adpName)
 {
-	//Query Pcap and check the adapter name.
-
 
 
 }
 
 CCaptureLibraryAdapter::~CCaptureLibraryAdapter()
 {
-	//Close pcap_desc if open
+	// Close all pcap_desc if open, This can never happen as
+	// the class is singleton.
+
 }
 
 
@@ -62,26 +63,50 @@ bool CCaptureLibraryAdapter::InitInterface()
     return true;
 }
 
-int32_t CCaptureLibraryAdapter::Capture()
+bool CCaptureLibraryAdapter::IsCaptureRunning()
+{
+	return false;
+}
+
+void CCaptureLibraryAdapter::StartCapture()
+{
+	//Initialize Adapter if required.
+	return;
+}
+
+void CCaptureLibraryAdapter::run()
 {
 	if(_pPcapDesc == NULL)
 	{
-		return -1;
+		//TODO: Log Error
+		return;
 	}
+
 	std::stringstream ss;
 	ss 	<< "Starting Capture on Adapter: "
 		<< this->_strAdapter ;
+
 	LOG_DEBUG( devLogger() , ss.str() );
 
 	uint8_t *uData = (uint8_t *) (this);
 	int32_t ret = pcap_loop(_pPcapDesc,-1, &CCaptureLibraryAdapter::OnNewPacket,
 							 uData);
-	return ret;
+
+	if ( -1 == ret)
+	{
+		//TODO: Log Error
+	}
 }
 
-
-bool CCaptureLibraryAdapter::RegisterNewPacketNotification(NewPktDelegate dl)
+bool CCaptureLibraryAdapter::RegisterNewPacketNotification(uint32_t regId,
+												NewPktDelegateInfo* pktDelInfo)
 {
-	/*Add the Delegate in the List*/
+	//TODO: Create a map and save the info. The regid is used to unregister.
 	return false;
 }
+
+bool CCaptureLibraryAdapter::UnRegisterNewPacketNotification(uint32_t regId)
+{
+	return false;
+}
+
