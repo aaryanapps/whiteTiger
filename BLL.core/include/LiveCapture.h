@@ -1,48 +1,41 @@
 #ifndef _WT_LIVECAPTURE_H__
 #define _WT_LIVECAPTURE_H__
 
-#include "Poco/Runnable.h"
 #include "Globals.h"
-#include "PcapDefs.h"
 #include "Capture.h"
-#include "PacketDb.h"
-
-class CPacket;
+#include "BllCoreExport.h"
 
 namespace wt {
 namespace core {
 
-class CLiveCapture : public CCapture
+class CORE_EXPORT CLiveCapture : public CCapture
 {
 public:
     CLiveCapture();
     CLiveCapture(std::string& name);
     ~CLiveCapture();
 
-	void SetPcapHandle(PcapHandle pHnd) {m_pcapHnd = pHnd;}
-	PcapHandle GetPcapHandle() {return m_pcapHnd;}
+	virtual uint32_t 	GetClassId() {return m_classId; }
 
-	virtual void run();
+	virtual uint32_t 	GetDataLinkType();
 
-	virtual uint32_t GetTypeId() {return m_typeId; }
 
-    /* prototype of the packet handler */
-    static void OnNewPacket(u_char *param,
-    						   const struct pcap_pkthdr *header,
-    						   const u_char *pkt_data);
+	bool 				RegisterNewPacketNotification();
 
-	virtual uint32_t GetDataLinkType(){return m_dataLink;}
+	void 				OnNewPacket(WtoHandle pkt, void *data);
 
 
 protected:
     virtual void Init();
 
-private:
-    uint32_t 	m_typeId;
-	uint32_t m_dataLink;
-    PcapHandle m_pcapHnd;
 
-    void NotifyNewPacket(WtoHandle pHnd);
+private:
+
+	static uint32_t m_classId; /*Unique class Id in the system*/
+
+	uint32_t 		m_dataLink; /*Data link of the capture*/
+
+    void 			NotifyNewPacket(WtoHandle pHnd);
 
 };
 }

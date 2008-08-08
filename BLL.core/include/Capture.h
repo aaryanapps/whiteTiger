@@ -26,7 +26,6 @@ public:
 
 	virtual void run() = 0;
 
-	virtual uint32_t GetTypeId() {return m_typeId; }
     //Events
     Poco::BasicEvent<PcapHandle> NewNetworkPacket;
 
@@ -46,8 +45,9 @@ protected:
     void AddPacketToMap(WtoHandle pHnd);
 
 private:
+	static uint32_t 	m_classId;
+
     std::string 		m_name;
-    uint32_t 			m_typeId;
     Poco::Timestamp 	m_startTime;
 
     PacketIndexMap m_pkts;

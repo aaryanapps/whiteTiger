@@ -10,7 +10,7 @@
 
 using namespace wt::core::capturelibrary;
 
-DEFINE_STATIC_LOGGER("bll.core.CaptureLibraryInterface", devLogger)
+DEFINE_STATIC_LOGGER("core.CaptureLibraryInterface", devLogger)
 
 CCaptureLibraryInterface::CCaptureLibraryInterface()
 {
@@ -87,11 +87,11 @@ CCaptureLibraryInterface::IsAdapterCapturing(std::string& adpName)
 
 uint32_t
 CCaptureLibraryInterface::RegisterNewPacketNotification(std::string& adpName,
-												NewPktDelegateInfo* pktDelInfo)
+												NewPktDelegateInfo& pktDelInfo)
 {
 	static uint32_t _regId = 0;
 
-	if (AdapterExists(adpName))
+	if (IsAdapterOpen(adpName))
 	{
 		_regId++;
 		bool ret = GetCaptureLibraryAdp(adpName)->RegisterNewPacketNotification(_regId,
@@ -114,10 +114,21 @@ CCaptureLibraryInterface::RegisterNewPacketNotification(std::string& adpName,
 }
 
 
+bool CCaptureLibraryInterface::UnRegisterNewPacketNotification(std::string& adpName,
+															uint32_t regId)
+{
+	if (IsAdapterOpen(adpName))
+	{
+		return GetCaptureLibraryAdp(adpName)->UnRegisterNewPacketNotification(regId);
+	}
+
+	return false;
+}
+
 bool
 CCaptureLibraryInterface::StartCapture(std::string& adpName)
 {
-	if (AdapterExists(adpName))
+	if (IsAdapterOpen(adpName))
 	{
 		if (GetCaptureLibraryAdp(adpName)->IsCaptureRunning())
 		{
@@ -140,10 +151,44 @@ CCaptureLibraryInterface::StartCapture(std::string& adpName)
 }
 
 
+bool
+CCaptureLibraryInterface::StopCapture(std::string& adpName, uint32_t regId)
+{
+	bool status = false;
+	if (IsAdapterOpen(adpName))
+	{
+		CCaptureLibraryAdapter *cla = GetCaptureLibraryAdp(adpName);
+		if (cla->IsCaptureRunning())
+		{
+			//Stop Capture
+			cla->StopCapture();
+		}
+
+		//TODO: Change 0 to #define
+		if (regId != 0)
+		{
+			//Unregister for notification
+			cla->UnRegisterNewPacketNotification(regId);
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
+
+
+WtoHandle CCaptureLibraryInterface::ParseFile(std::string& fname)
+{
+	return WTOBJECT_HND_NULL;
+}
+
+
 
 // Private
 
-bool CCaptureLibraryInterface::CreateCaptureLibraryAdapter(std::string& adpName)
+bool CCaptureLibraryInterface::OpenCaptureLibraryAdapter(std::string& adpName)
 {
 
 	ActiveAdapters::const_iterator ait = _mActAdapters.find(adpName);
@@ -242,7 +287,7 @@ bool CCaptureLibraryInterface::StartCaptureInThread(std::string& adpName)
 }
 
 
-bool CCaptureLibraryInterface::AdapterExists(std::string& adpName)
+bool CCaptureLibraryInterface::IsAdapterOpen(std::string& adpName)
 {
 	ActiveAdapters::const_iterator ait = _mActAdapters.find(adpName);
 

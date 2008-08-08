@@ -19,6 +19,8 @@ namespace wt {
 namespace core {
 namespace capturelibrary {
 
+typedef std::map<uint32_t, NewPktDelegateInfo> NewPktDelegateMap;
+
 
 class CCaptureLibraryAdapter: public Poco::Runnable {
 public:
@@ -31,28 +33,38 @@ public:
     						const u_char *pkt_data);
 
     /*Main Entry point in the Runnable. */
-	void 	run();
+	void 		run();
 
 	/*Initialize the Interface (pcap_open_live)*/
-    bool 	InitInterface();
+    bool 		InitInterface();
 
     /*Allow Others to register for receive notification
      * When there is new packet captured */
-    bool 	RegisterNewPacketNotification(uint32_t regId,
-										  NewPktDelegateInfo* pktDelInfo);
+    bool 		RegisterNewPacketNotification(uint32_t regId,
+										  NewPktDelegateInfo& pktDelInfo);
 
-    bool	UnRegisterNewPacketNotification(uint32_t regId);
+    bool		UnRegisterNewPacketNotification(uint32_t regId);
 
     /*Return true if packets are captured*/
-    bool 	IsCaptureRunning();
+    bool 		IsCaptureRunning();
 
     /*Start capture on the interface*/
-    void 	StartCapture();
+    void 		StartCapture();
+
+    /*Stop capture on the interface*/
+    void 		StopCapture();
+
+    /*Returns the interface Datalink*/
+    uint32_t 	GetDataLinkType();
 
 private:
 
-	std::string _strAdapter; 		/* Name of Adapter*/
-	pcap_t*		_pPcapDesc; 		/*Pcap descriptor*/
+	/*Send New Packet Notifications*/
+	void SendNotifications(CapturedPkt& pkt);
+
+	std::string _strAdapter; 			/* Name of Adapter*/
+	pcap_t*		_pPcapDesc; 			/*Pcap descriptor*/
+	NewPktDelegateMap	_mNewPktDels;	/*Vector which holds all the */
 
 };
 

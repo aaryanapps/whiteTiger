@@ -10,15 +10,17 @@
 
 using namespace wt::core;
 
-DEFINE_STATIC_LOGGER("wt.core.LiveCapture", devLogger)
+DEFINE_STATIC_LOGGER("core.LiveCapture", devLogger)
 
-CLiveCapture::CLiveCapture() :
-							  m_typeId(CLiveCapture_Class_Id)
+uint32_t CLiveCapture::m_classId = 0x00000232 ;
+
+CLiveCapture::CLiveCapture()
 {
+
 }
 
 CLiveCapture::CLiveCapture(std::string& name) :
-	CCapture(name), m_typeId(CLiveCapture_Class_Id), m_pcapHnd(0)
+	CCapture(name)
 {
 
 }
@@ -29,22 +31,6 @@ CLiveCapture::~CLiveCapture()
 
 }
 
-void CLiveCapture::run()
-{
-	Init();
-    /*TODO: Refactor Comment. Remove this as Runnable and invoke
-     * command to start capture on networkInterfaceAdapter.
-    CPcapHandler& ph = CPcapHandler::Instance();
-
-    pcap_t *cDesc = ph.GetPcapDesc(m_pcapHnd);
-    uint8_t *uData = (uint8_t *) (this);
-
-    pcap_loop(cDesc,-1, &CLiveCapture::OnNewPacket, uData);
-    */
-
-
-}
-
 void CLiveCapture::Init()
 {
 	//TODO: Change this to dynamic. Currently, setting it to Ethernet = 1
@@ -52,10 +38,15 @@ void CLiveCapture::Init()
 }
 
 
-/* Callback function invoked by libpcap for every incoming packet */
-void CLiveCapture::OnNewPacket(u_char *param, const struct pcap_pkthdr *header, const u_char *pkt_data)
+/* Callback function invoked for every incoming packet */
+void CLiveCapture::OnNewPacket(WtoHandle pkt, void *data)
 {
-	CLiveCapture *self = (CLiveCapture *) (param);
+
+
+	//TODO: Fix this. Here the packet handle is received and already populated.
+	//
+/*
+	CLiveCapture *self = (CLiveCapture *) (data);
 
     CPacketDb& pdb = CPacketDb::Instance();
     WtoHandle pktHnd = pdb.AddNewPacket(self->GetWtoHandle(),
@@ -76,14 +67,14 @@ void CLiveCapture::OnNewPacket(u_char *param, const struct pcap_pkthdr *header, 
     }
     else
     {
-    	/* Could not create the Packet
-    	 * Various Reasons: no memory, unsupported datalink, etc
-    	 */
+    	// Could not create the Packet
+    	// Various Reasons: no memory, unsupported datalink, etc
+    	//
     }
 
     self->AddPacketToMap(pktHnd);
     self->NotifyNewPacket(pktHnd);
-
+*/
 }
 
 void CLiveCapture::NotifyNewPacket(WtoHandle pHnd)

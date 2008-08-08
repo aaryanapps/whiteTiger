@@ -29,7 +29,9 @@ public:
     uint32_t GetPacketHandle() { return m_pktHnd; }
 
     std::string GetTimeStamp(){return m_pktTimeStamp;}
+
     std::string GetTimeStampRelToFirst(){return m_relToFirst;}
+
     std::string GetTimeStampRelToPrevious(){return m_relToPrevious;}
 
     std::string GetSrcAddr() {return m_srcStr;}

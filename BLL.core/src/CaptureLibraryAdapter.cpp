@@ -9,13 +9,16 @@
 
 #include "CaptureLibraryAdapter.h"
 #include "CaptureLibraryInterface.h"
+#include "CaptureLibraryDefs.h"
+
+#include "PacketDb.h"
 #include "WtLogger.h"
 
 #include "pcap.h"
 
 using namespace wt::core::capturelibrary;
 
-DEFINE_STATIC_LOGGER("framework.capturelibrary.CaptureLibraryAdapter", devLogger)
+DEFINE_STATIC_LOGGER("core.capturelibrary.CaptureLibraryAdapter", devLogger)
 
 CCaptureLibraryAdapter::CCaptureLibraryAdapter(std::string &adpName):
 												_strAdapter(adpName)
@@ -37,10 +40,35 @@ void CCaptureLibraryAdapter::OnNewPacket(u_char *param,
 						const struct pcap_pkthdr *header,
 						const u_char *pkt_data)
 {
-	/*Received a new packet. Give it to those subscribed for
-	 * notification
-	 * */
+	/* Received a new packet.
+	 * Generate the struct
+	 * Give it to those subscribed for notification
+	 */
 
+	CCaptureLibraryAdapter *capAdp = (CCaptureLibraryAdapter*) (*param);
+
+	CapturedPkt cp;
+	cp._ts._sec = header->ts.tv_sec;
+	cp._ts._usec = header->ts.tv_usec;
+	cp._capLen 	= header->caplen;
+	cp._len		= header->len;
+	cp._pktData.assign(pkt_data, pkt_data + header->caplen);
+
+	capAdp->SendNotifications(cp);
+
+}
+
+void CCaptureLibraryAdapter::SendNotifications(CapturedPkt& pkt)
+{
+	LOG_ERROR(devLogger(), "Sending New Pkt Notification")
+
+	NewPktDelegateMap::const_iterator it = _mNewPktDels.begin();
+
+	while(it != _mNewPktDels.end())
+	{
+		(it->second._newpktDel)(&pkt,it->second._data);
+		++it;
+	}
 
 }
 
@@ -71,14 +99,27 @@ bool CCaptureLibraryAdapter::IsCaptureRunning()
 void CCaptureLibraryAdapter::StartCapture()
 {
 	//Initialize Adapter if required.
+    if (_pPcapDesc == NULL)
+    {
+    	InitInterface();
+    }
 	return;
 }
+
+void CCaptureLibraryAdapter::StopCapture()
+{
+	if (IsCaptureRunning())
+	{
+		pcap_breakloop(_pPcapDesc);
+	}
+}
+
 
 void CCaptureLibraryAdapter::run()
 {
 	if(_pPcapDesc == NULL)
 	{
-		//TODO: Log Error
+		LOG_ERROR(devLogger(), "Null desc. Should not happen!")
 		return;
 	}
 
@@ -94,19 +135,52 @@ void CCaptureLibraryAdapter::run()
 
 	if ( -1 == ret)
 	{
-		//TODO: Log Error
+		LOG_ERROR(devLogger(), "Error occured after capture stopped!")
 	}
 }
 
 bool CCaptureLibraryAdapter::RegisterNewPacketNotification(uint32_t regId,
-												NewPktDelegateInfo* pktDelInfo)
+												NewPktDelegateInfo& pktDelInfo)
 {
-	//TODO: Create a map and save the info. The regid is used to unregister.
-	return false;
+	//Save the info in map. The regId is used to unregister.
+
+	NewPktDelegateMap::const_iterator it = _mNewPktDels.find(regId);
+
+	if (it != _mNewPktDels.end())
+	{
+		_mNewPktDels.insert(std::make_pair(regId, pktDelInfo));
+		return true;
+	}
+	else
+	{
+		LOG_ERROR(devLogger(), "Registration Id already registered")
+		return false;
+	}
+
 }
 
 bool CCaptureLibraryAdapter::UnRegisterNewPacketNotification(uint32_t regId)
 {
+	//Delete the info from map. The regId is used to unregister.
+
+	NewPktDelegateMap::const_iterator it = _mNewPktDels.find(regId);
+
+	if (it != _mNewPktDels.end())
+	{
+		LOG_DEBUG(devLogger(), "Registration Id found, deleting it")
+		_mNewPktDels.erase(regId);
+		return true;
+	}
+	else
+	{
+		LOG_DEBUG(devLogger(), "Registration Id not found")
+		return false;
+	}
+
 	return false;
 }
 
+uint32_t CCaptureLibraryAdapter::GetDataLinkType()
+{
+	return pcap_datalink(_pPcapDesc);
+}

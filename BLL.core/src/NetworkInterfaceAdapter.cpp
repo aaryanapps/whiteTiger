@@ -3,13 +3,14 @@
 #include "NetworkInterfaceAdapter.h"
 #include "CaptureLibraryInterface.h"
 
+#include "PacketDb.h"
 #include "WtLogger.h"
 #include "FastDelegate.h"
 
 #include "Poco/BasicEvent.h"
 #include "Poco/Thread.h"
 
-using namespace wt::core::networkintf;
+using namespace wt::core;
 using namespace wt::core::capturelibrary;
 using namespace wt::framework;
 
@@ -21,6 +22,8 @@ CNetworkInterfaceAdapter::CNetworkInterfaceAdapter(std::string& adpName) :
 {
 
 	_dNewPkt = fastdelegate::MakeDelegate(this, &CNetworkInterfaceAdapter::OnNewPacket);
+
+
 
 }
 
@@ -37,19 +40,6 @@ bool CNetworkInterfaceAdapter::RegisterOnNewPacket(Poco::Delegate<CWtObject, Wto
 	return true;
 }
 
-/* prototype of the packet handler */
-void CNetworkInterfaceAdapter::OnNewPacket(u_char *param,
-						const struct pcap_pkthdr *header,
-						const u_char *pkt_data)
-{
-	return;
-}
-
-
-void CNetworkInterfaceAdapter::run()
-{
-}
-
 bool CNetworkInterfaceAdapter::StartCapture()
 {
 	SetCaptureStatus (CAPTURE_BEING_STARTED);
@@ -63,7 +53,7 @@ bool CNetworkInterfaceAdapter::StartCapture()
 
 	CCaptureLibraryInterface& cli = CCaptureLibraryInterface::Instance();
 
-	ret = cli.StartCapture();
+	ret = cli.StartCapture(_strAdapName);
 
 	if ( !ret )
     {
@@ -81,19 +71,6 @@ bool CNetworkInterfaceAdapter::StartCapture()
 
 // Private
 
-
-bool CNetworkInterfaceAdapter::InitAdapter()
-{
-	if (_capLibInt->InitInterface())
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
 void CNetworkInterfaceAdapter::NotifyNewPacket(WtoHandle pHnd)
 {
 	NewPacket.notifyAsync((CWtObject*)this, pHnd);
@@ -108,9 +85,38 @@ void CNetworkInterfaceAdapter::NotifyNewPacket(WtoHandle pHnd)
 }
 
 
-void CNetworkInterfaceAdapter::OnNewPacket(WtoHandle pktHnd, void* data)
+void CNetworkInterfaceAdapter::OnNewPacket(CapturedPkt* pkt, void* data)
 {
 	LOG_DEBUG(devLogger(), "Received new packet notification");
+
+	//TODO: Addlogic to process new packet notification
+	/*
+    CPacketDb& pdb = CPacketDb::Instance();
+    WtoHandle pktHnd = pdb.AddNewPacket(this->GetWtoHandle(),
+    									this->GetDataLinkType(),
+										header, pkt_data);
+
+
+    CPacket* pkt = pdb.GetPacket(pktHnd);
+    if (pkt)
+    {
+    	std::stringstream ss;
+    	ss << pkt->GetTimeStamp()
+    			  << ", Length: " <<
+					pkt->GetPacketLength();
+
+    	LOG_ERROR( devLogger() , ss.str() );
+
+    }
+    else
+    {
+    	// Could not create the Packet
+    	// Various Reasons: no memory, unsupported datalink, etc
+    	//
+    }
+
+	 */
+
 	return;
 }
 

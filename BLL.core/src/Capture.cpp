@@ -8,11 +8,11 @@
 using Poco::Timestamp;
 using namespace wt::core;
 
+uint32_t CCapture::m_classId = 0x00000200 ;
 
-DEFINE_STATIC_LOGGER("bll.Capture", devLogger)
+DEFINE_STATIC_LOGGER("core.Capture", devLogger)
 
-CCapture::CCapture() :
-					  m_typeId(CCapture_Class_Id)
+CCapture::CCapture()
 {
 	Init();
 }
@@ -22,8 +22,7 @@ CCapture::~CCapture()
 }
 
 CCapture::CCapture(std::string& name) :
-					m_name(name),
-					m_typeId(CCapture_Class_Id)
+					m_name(name)
 {
 	Init();
 }
