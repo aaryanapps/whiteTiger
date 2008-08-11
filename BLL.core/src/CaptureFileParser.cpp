@@ -9,7 +9,6 @@
 #include "CaptureFileParser.h"
 #include "Globals.h"
 
-#include "CaptureLibraryInterface.h"
 #include "WtLogger.h"
 
 //DEFINE_STATIC_LOGGER("core.CaptureFileParser", devLogger)

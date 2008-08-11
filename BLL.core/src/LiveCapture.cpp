@@ -12,7 +12,7 @@ using namespace wt::core;
 
 DEFINE_STATIC_LOGGER("core.LiveCapture", devLogger)
 
-uint32_t CLiveCapture::m_classId = 0x00000232 ;
+uint32_t CLiveCapture::m_classId = 0x00000264 ;
 
 CLiveCapture::CLiveCapture()
 {
