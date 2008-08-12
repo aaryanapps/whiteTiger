@@ -13,8 +13,12 @@
 #include "WtLogger.h"
 
 using namespace wt::core;
+using namespace wt::framework;
 
-DEFINE_STATIC_LOGGER("bll.core.EthernetPacket", devLogger)
+uint32_t CEthernetPacket::m_classId = CEthernetPacket_Class_Id ;
+
+
+DEFINE_STATIC_LOGGER("core.EthernetPacket", devLogger)
 
 
 CEthernetPacket::CEthernetPacket() :
@@ -54,6 +58,13 @@ bool CEthernetPacket::ParsePacket()
 	return true;
 }
 
+void CEthernetPacket::GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
+{
+	CPacket::GetInheritedTypes(typeIdVec);
+	typeIdVec.push_back(CEthernetPacket::m_classId);
+
+	return;
+}
 
 bool CEthernetPacket::CreateHeaders()
 {

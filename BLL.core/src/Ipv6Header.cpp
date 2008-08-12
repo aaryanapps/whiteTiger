@@ -7,6 +7,8 @@
 
 using namespace wt::core;
 
+uint32_t CIpv6Header::m_classId = CIpv6Header_Class_Id ;
+
 CIpv6Header::CIpv6Header() :
 							m_typeId(CIpv6Header_Class_Id)
 {

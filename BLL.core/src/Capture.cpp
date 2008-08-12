@@ -7,6 +7,7 @@
 
 using Poco::Timestamp;
 using namespace wt::core;
+using namespace wt::framework;
 
 uint32_t CCapture::m_classId = 0x00000200 ;
 
@@ -32,46 +33,6 @@ void CCapture::Init()
 	//Set the Start of this capture
 	m_startTime.update();
 }
-/*
-Timestamp& CCapture::GetStartTimeStamp()
-{
-	return m_startTime;
-}
-*/
-
-CPacket* CCapture::GetLastPacket()
-{
-	uint32_t sz = (uint32_t) m_pkts.size();
-	CPacket* pkt = GetPacketAt(sz - 1);
-	return pkt ;
-}
-
-CPacket* CCapture::GetFirstPacket()
-{
-	uint32_t sz = (uint32_t) m_pkts.size();
-	if (sz != 0)
-	{
-		CPacket* pkt = GetPacketAt(1);
-		return pkt ;
-	}
-
-	return NULL;
-}
-
-
-CPacket* CCapture::GetPacketAt(uint32_t index)
-{
-	PacketIndexMap::iterator pit = m_pkts.find(index);
-	if (pit == m_pkts.end())
-	{
-		/*
-		 * Return the default handle which returns null values to display
-		 */
-		return NULL;
-	}
-
-	return CPacketDb::Instance().GetPacket(pit->second);
-}
 
 void CCapture::AddPacketToMap(WtoHandle pHnd)
 {
@@ -87,3 +48,8 @@ void CCapture::AddPacketToMap(WtoHandle pHnd)
 
 }
 
+void CCapture::GetInheritedTypes(WtoTypeIdsVec& typeIdVec)
+{
+	typeIdVec.push_back(CCapture::m_classId);
+	return;
+}

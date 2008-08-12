@@ -19,7 +19,12 @@ public:
 
 	virtual uint32_t GetTypeId() {return m_typeId; }
 
+    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec);
+
+
 protected :
+	static uint32_t m_classId;
+
 	virtual bool ValidatePacket();
 	virtual bool ParsePacket();
 

@@ -14,14 +14,16 @@
 #include "Poco/DateTimeFormatter.h"
 
 #include "Capture.h"
+#include "CaptureType.h"
 #include "CommonPacketUtils.h"
 #include "CoreConsts.h"
 
 using namespace wt::core;
+using namespace wt::framework;
 
 uint32_t CPacket::m_classId = 0x00000100 ;
 
-DEFINE_STATIC_LOGGER("bll.core.Packet", devLogger)
+DEFINE_STATIC_LOGGER("core.Packet", devLogger)
 
 CPacket::CPacket()
 {
@@ -85,6 +87,11 @@ bool CPacket::Init(uint32_t hnd,
 	return true;
 }
 
+void CPacket::GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
+{
+	typeIdVec.push_back(CPacket::m_classId);
+	return;
+}
 
 //////// Private helpers
 
@@ -95,7 +102,7 @@ void CPacket::CreateReadableTimeStamp()
     time_t local_tv_sec;
 
     Poco::Timestamp cts(m_ts);
-    int64_t diff(0L);
+    //int64_t diff(0L);
 
     CCapture * pCap = dynamic_cast<CCapture*>(GetParent());
 
@@ -107,8 +114,10 @@ void CPacket::CreateReadableTimeStamp()
     {
     	Poco::Timestamp fts(0L);
     	std::stringstream ss;
-
+/* TODO:Uncomment this logic
+		CCaptureType* cCaptype = dynamic_cast<CPacket *> (pCap->GetObject());
     	CPacket* fPkt = dynamic_cast<CPacket *> (pCap->GetFirstPacket());
+
     	if (fPkt)
     	{
     		if (this == fPkt)
@@ -131,6 +140,7 @@ void CPacket::CreateReadableTimeStamp()
 
     	ss << "Microsecond diff: " << m_relToFirst;
     	LOG_DEBUG(devLogger() , ss.str())
+*/
     }
 
     /* convert the timestamp to readable format */

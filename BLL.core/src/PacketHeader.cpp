@@ -5,6 +5,8 @@
 
 using namespace wt::core;
 
+uint32_t CPacketHeader::m_classId = CPacketHeader_Class_Id ;
+
 CPacketHeader::CPacketHeader() :
 								m_typeId(CPacketHeader_Class_Id)
 {

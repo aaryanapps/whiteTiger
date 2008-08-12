@@ -9,8 +9,6 @@
 namespace wt {
 namespace framework {
 
-typedef uint32_t WtoType;
-
 class FRAMEWORK_EXPORT CWtObject {
 public:
 	CWtObject();
@@ -26,11 +24,17 @@ public:
 	std::string GetWtoName() {return m_wtoName;}
 
 	//virtual void InitWto() = 0;
+
+	/*Calls the base class GetInheritedClassIds and get the classId*/
+	virtual void GetInheritedTypes(WtoTypeIdsVec& typeIdVec) = 0;
+
 	virtual uint32_t GetTypeId() = 0;
 
 	CWtObject* 	GetParent();
+
 	void 		GetObjects(WtoVec& wtv, WtoType type,
 										RelationType rel = ParentChild());
+
 	CWtObject*	GetObject(WtoType type, RelationType rel = ParentChild());
 
 private:

@@ -9,6 +9,7 @@
 #include "Poco/Thread.h"
 
 using namespace wt::core::capturelibrary;
+using namespace wt::framework;
 
 DEFINE_STATIC_LOGGER("core.CaptureLibraryInterface", devLogger)
 
@@ -154,7 +155,7 @@ CCaptureLibraryInterface::StartCapture(std::string& adpName)
 bool
 CCaptureLibraryInterface::StopCapture(std::string& adpName, uint32_t regId)
 {
-	bool status = false;
+
 	if (IsAdapterOpen(adpName))
 	{
 		CCaptureLibraryAdapter *cla = GetCaptureLibraryAdp(adpName);

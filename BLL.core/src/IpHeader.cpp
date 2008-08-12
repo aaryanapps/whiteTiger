@@ -7,6 +7,9 @@
 
 using namespace wt::core;
 
+uint32_t CIpHeader::m_classId = CIpHeader_Class_Id ;
+
+
 CIpHeader::CIpHeader() :
 						m_typeId(CIpHeader_Class_Id)
 {

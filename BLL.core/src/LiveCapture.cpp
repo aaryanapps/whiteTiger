@@ -1,16 +1,15 @@
 #include "StdAfx.h"
 
 #include "LiveCapture.h"
-#include "pcap.h"
 #include "Packet.h"
 #include "PacketDb.h"
 #include "Globals.h"
 #include "WtLogger.h"
-#include "CoreConsts.h"
 
 using namespace wt::core;
+using namespace wt::framework;
 
-DEFINE_STATIC_LOGGER("core.LiveCapture", devLogger)
+//DEFINE_STATIC_LOGGER("core.LiveCapture", devLogger)
 
 uint32_t CLiveCapture::m_classId = 0x00000264 ;
 
@@ -19,8 +18,7 @@ CLiveCapture::CLiveCapture()
 
 }
 
-CLiveCapture::CLiveCapture(std::string& name) :
-	CCapture(name)
+CLiveCapture::CLiveCapture(std::string& name)
 {
 
 }
@@ -33,8 +31,7 @@ CLiveCapture::~CLiveCapture()
 
 void CLiveCapture::Init()
 {
-	//TODO: Change this to dynamic. Currently, setting it to Ethernet = 1
-	m_dataLink = 1;
+
 }
 
 
@@ -79,5 +76,12 @@ void CLiveCapture::OnNewPacket(WtoHandle pkt, void *data)
 
 void CLiveCapture::NotifyNewPacket(WtoHandle pHnd)
 {
-    NewNetworkPacket.notifyAsync((CWtObject*)this, pHnd);
+    //NewNetworkPacket.notifyAsync((CWtObject*)this, pHnd);
 }
+
+
+bool CLiveCapture::RegisterNewPacketNotification()
+{
+	return false;
+}
+

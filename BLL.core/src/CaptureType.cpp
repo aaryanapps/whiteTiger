@@ -7,8 +7,10 @@
 
 #include "StdAfx.h"
 #include "CaptureType.h"
+#include "WtObject.h"
 
 using namespace wt::core;
+using namespace wt::framework;
 
 uint32_t CCaptureType::m_classId = 0x00000232 ;
 
@@ -27,11 +29,14 @@ CCaptureType::~CCaptureType()
 /*Returns the packet at requested index*/
 CWtObject* CCaptureType::GetPacketAt(uint32_t index)
 {
-	return NULL;
+	CWtObject* wo = NULL;
+	return wo;
 }
 
 /*Get range of packets*/
-void CCaptureType::GetPackets(uint32_t startIdx, uint32_t endIdx)
+void CCaptureType::GetPackets(uint32_t startIdx,
+							  uint32_t endIdx,
+							  WtoVec& wtv)
 {
 	return;
 }

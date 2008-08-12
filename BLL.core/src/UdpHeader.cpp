@@ -10,6 +10,8 @@
 
 using namespace wt::core;
 
+uint32_t CUdpHeader::m_classId = CUdpHeader_Class_Id ;
+
 CUdpHeader::CUdpHeader() :
 						  m_typeId(CUdpHeader_Class_Id)
 {

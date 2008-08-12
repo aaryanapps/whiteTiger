@@ -8,7 +8,7 @@
 #include "Poco/Timestamp.h"
 
 
-typedef std::map<uint32_t, WtoHandle> PacketIndexMap;
+typedef std::map<uint32_t, wt::framework::WtoHandle> PacketIndexMap;
 
 
 namespace wt {
@@ -22,12 +22,14 @@ public:
 
     std::string GetCaptureName() {return m_name;}
 
+    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec);
+
 protected:
     virtual void Init();
 
     virtual uint32_t GetDataLinkType() {return 0;}
 
-	void AddPacketToMap(WtoHandle pHnd);
+	void AddPacketToMap(wt::framework::WtoHandle pHnd);
 
 private:
 

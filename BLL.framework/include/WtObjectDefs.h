@@ -6,12 +6,22 @@
 namespace wt {
 namespace framework {
 	class CWtObject;
+
+	typedef uint32_t WtoClassId;
+
+	typedef uint32_t WtoType;
+
+	typedef std::vector<WtoType> WtoTypeIdsVec;
+
+	typedef uint32_t WtoHandle;
+
+	typedef std::map<WtoHandle, wt::framework::CWtObject*> WtObjectsMap;
+
+	typedef std::vector<wt::framework::CWtObject*> WtoVec;
+
 }
 }
 
-typedef uint32_t WtoHandle;
-typedef std::map<WtoHandle, wt::framework::CWtObject*> WtObjectsMap;
-typedef std::vector<wt::framework::CWtObject*> WtoVec;
 #define WTOBJECT_HND_NULL 0
 
 

@@ -1,10 +1,10 @@
-#ifndef _WT_APPCONSTS_H__
-#define _WT_APPCONSTS_H__
+#ifndef _WT_CORECONSTS_H__
+#define _WT_CORECONSTS_H__
 
-#define CCapture_Class_Id						0x00000500
-#define CBoundCapture_Class_Id					0x00000600
-#define CLiveCapture_Class_Id					0x00000700
-#define COfflineCapture_Class_Id				0x00000800
+#define CCapture_Class_Id						0x00000200
+#define CCaptureType_Class_Id					0x00000232
+#define CLiveCapture_Class_Id					0x00000264
+#define CCaptureFile_Class_Id					0x00000296
 
 #define CPacket_Class_Id						0x00000A00
 #define CEthernetPacket_Class_Id				0x00000B00
@@ -18,5 +18,5 @@
 #define CArpHeader_Class_Id						0x00001800
 
 
-#endif /*_WT_APPCONSTS_H__*/
+#endif /*_WT_CORECONSTS_H__*/
 

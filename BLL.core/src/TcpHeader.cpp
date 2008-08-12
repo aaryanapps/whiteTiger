@@ -11,6 +11,8 @@
 
 using namespace wt::core;
 
+uint32_t CTcpHeader::m_classId = CTcpHeader_Class_Id ;
+
 //DEFINE_STATIC_LOGGER("bll.TcpHeader", devLogger);
 
 CTcpHeader::CTcpHeader() :

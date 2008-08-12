@@ -4,14 +4,13 @@
 #include "Globals.h"
 #include "WtObjectDb.h"
 
-
 #define PACKETHDRHND_NULL 0
 
 namespace wt {
 namespace core {
 
 class CPacketHeader;
-typedef std::map<WtoHandle, CPacketHeader *> PacketHdrDb;
+typedef std::map<wt::framework::WtoHandle, CPacketHeader *> PacketHdrDb;
 
 
 class CPacketHeaderDb {
@@ -22,12 +21,12 @@ public:
 
 	static CPacketHeaderDb& Instance();
 
-	WtoHandle AddNewHeader(WtoHandle parentPkt,
+	wt::framework::WtoHandle AddNewHeader(wt::framework::WtoHandle parentPkt,
 						   uint32_t hdrType,
 						   const uint32_t hdrOffset,
 						   const uint8_t* pktData);
 
-	CPacketHeader* GetHeader(WtoHandle pHnd);
+	CPacketHeader* GetHeader(wt::framework::WtoHandle pHnd);
 
 private:
 	//TODO: Remove this as this is not needed and is duplicate with WtObjectDb

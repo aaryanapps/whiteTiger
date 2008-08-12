@@ -31,7 +31,17 @@ public:
 
     virtual bool IsStringCapable(uint16_t colId);
 
+    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
+    {
+    	CPacketHeader::GetInheritedTypes(typeIdVec);
+    	typeIdVec.push_back(CArpHeader::m_classId);
+    	return;
+    }
+
+
 protected:
+	static uint32_t m_classId;
+
 	virtual bool ValidateHeader();
 	virtual bool ParseHeader();
 

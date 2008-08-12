@@ -11,6 +11,8 @@
 
 using namespace wt::core;
 
+uint32_t CIpv4Header::m_classId = CIpv4Header_Class_Id ;
+
 //DEFINE_STATIC_LOGGER("bll.Ipv4Header", devLogger);
 
 CIpv4Header::CIpv4Header() :

@@ -11,7 +11,7 @@
 #include "Poco/BasicEvent.h"
 #include "Poco/Delegate.h"
 
-
+using namespace wt::framework;
 
 class Poco::Thread;
 

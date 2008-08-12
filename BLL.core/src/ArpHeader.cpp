@@ -11,6 +11,8 @@
 
 using namespace wt::core;
 
+uint32_t CArpHeader::m_classId = CArpHeader_Class_Id;
+
 CArpHeader::CArpHeader() :
 						  m_hdrLen(0),
 						  m_Impl(0),

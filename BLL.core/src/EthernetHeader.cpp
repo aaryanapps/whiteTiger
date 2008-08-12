@@ -14,6 +14,8 @@
 
 using namespace wt::core;
 
+uint32_t CEthernetHeader::m_classId = CEthernetHeader_Class_Id ;
+
 CEthernetHeader::CEthernetHeader() :
 									m_typeId(CEthernetHeader_Class_Id),
 									m_hdrLen(0)

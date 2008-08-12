@@ -2,13 +2,13 @@
 #define _WT_LIVECAPTURE_H__
 
 #include "Globals.h"
-#include "Capture.h"
+#include "CaptureType.h"
 #include "BllCoreExport.h"
 
 namespace wt {
 namespace core {
 
-class CORE_EXPORT CLiveCapture : public CCapture
+class CORE_EXPORT CLiveCapture : public CCaptureType
 {
 public:
     CLiveCapture();
@@ -19,10 +19,8 @@ public:
 
 	virtual uint32_t 	GetDataLinkType();
 
-
-	bool 				RegisterNewPacketNotification();
-
-	void 				OnNewPacket(WtoHandle pkt, void *data);
+	/*Call back function to be called when there is a new packet*/
+	void 				OnNewPacket(wt::framework::WtoHandle pkt, void *data);
 
 
 protected:
@@ -33,10 +31,10 @@ private:
 
 	static uint32_t m_classId; /*Unique class Id in the system*/
 
-	uint32_t 		m_dataLink; /*Data link of the capture*/
+    void 			NotifyNewPacket(wt::framework::WtoHandle pHnd);
 
-    void 			NotifyNewPacket(WtoHandle pHnd);
-
+    /*Register for new packet notification*/
+	bool			RegisterNewPacketNotification();
 };
 }
 }

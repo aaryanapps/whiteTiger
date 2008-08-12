@@ -22,6 +22,8 @@ public:
 
     static uint32_t GetClassId() {return m_classId; }
 
+    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec);
+
     uint32_t GetPacketLength() {return m_pktLen;}
 
     uint32_t GetCapturedDataLength() {return m_capLen;}
@@ -55,12 +57,13 @@ public:
 	std::vector<uint8_t> m_pktData;
 
 protected:
+	static uint32_t m_classId;
+
 	virtual bool ValidatePacket() = 0;
 	virtual bool ParsePacket() = 0;
 
 	//virtual void SetStringValues(uint16_t colId, std::string& val);
 private:
-	static uint32_t m_classId;
 
 	uint32_t m_pktHnd;
 	uint32_t m_pktLen;
