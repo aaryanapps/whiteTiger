@@ -30,6 +30,13 @@ CWtDataStore::~CWtDataStore()
 
 }
 
+CWtDataStore& CWtDataStore::Instance()
+{
+	static CWtDataStore _ds;
+	return _ds;
+}
+
+
 /*Add New Object to the DataStore*/
 WtoHandle CWtDataStore::AddObject(uint32_t dstClassId,
 							 CWtObject* src,

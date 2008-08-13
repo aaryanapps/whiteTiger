@@ -183,6 +183,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\CommandManager.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\CommandNotificationManager.cpp"
 				>
 			</File>
@@ -192,14 +196,6 @@
 			</File>
 			<File
 				RelativePath=".\src\MacAddress.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\NetworkInterfaceAdapter.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\NetworkInterfaceAdapterManager.cpp"
 				>
 			</File>
 			<File
@@ -227,7 +223,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\src\TaskManager.cpp"
+				RelativePath=".\src\WtDataStore.cpp"
 				>
 			</File>
 			<File
@@ -242,6 +238,10 @@
 				RelativePath=".\src\WtObjectDb.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\WtObjectRegistrar.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -254,6 +254,10 @@
 			</File>
 			<File
 				RelativePath=".\include\Command.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\CommandManager.h"
 				>
 			</File>
 			<File
@@ -289,18 +293,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\NetworkInterfaceAdapter.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\NetworkInterfaceAdapterManager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\PcapDefs.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\RelationInfo.h"
 				>
 			</File>
@@ -313,7 +305,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\TaskManager.h"
+				RelativePath=".\include\WtDataStore.h"
 				>
 			</File>
 			<File
@@ -330,6 +322,10 @@
 			</File>
 			<File
 				RelativePath=".\include\WtObjectDefs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\WtObjectRegistrar.h"
 				>
 			</File>
 		</Filter>

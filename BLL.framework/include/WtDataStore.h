@@ -17,8 +17,6 @@
 namespace wt {
 namespace framework {
 
-class CWtObject;
-
 class FRAMEWORK_EXPORT CWtDataStore {
 
 public:

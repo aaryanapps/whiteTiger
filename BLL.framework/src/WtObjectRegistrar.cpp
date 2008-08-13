@@ -11,6 +11,15 @@
 using namespace wt::framework;
 
 //DEFINE_STATIC_LOGGER("framework.WtObjectRegistrar", devLogger)
+CWtObjectRegistrar::CWtObjectRegistrar()
+{
+
+}
+
+CWtObjectRegistrar::~CWtObjectRegistrar()
+{
+
+}
 
 CWtObjectRegistrar& CWtObjectRegistrar::Instance()
 {
