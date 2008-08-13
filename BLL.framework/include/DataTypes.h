@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
 
 #if defined(__CYGWIN__) || defined (__sun__)
     typedef char int8_t;

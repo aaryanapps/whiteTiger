@@ -9,21 +9,24 @@
 namespace wt {
 namespace framework {
 
-
 class CWtObject;
 
 class FRAMEWORK_EXPORT CWtObjectDb
 {
 public:
-	CWtObjectDb();
-	~CWtObjectDb();
 
 	static CWtObjectDb& Instance();
+
 	WtoHandle AddObject(CWtObject* obj);
+
 	void RemoveObject(WtoHandle hnd);
+
 	CWtObject* GetObject(WtoHandle hnd);
 
 private:
+	CWtObjectDb();
+	~CWtObjectDb();
+
 	WtObjectsMap m_wtObjs;
 
 	WtoHandle GetNextObjHandle();

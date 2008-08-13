@@ -8,17 +8,24 @@
 #include "CommonPacketUtils.h"
 #include "WtLogger.h"
 #include "CoreConsts.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 
-uint32_t CTcpHeader::m_classId = CTcpHeader_Class_Id ;
+//uint32_t CTcpHeader::m_classId = CTcpHeader_Class_Id ;
+uint32_t CTcpHeader::m_classId = REGISTER_CREATOR(CTcpHeader_Class_Id, CTcpHeader::Create);
 
-//DEFINE_STATIC_LOGGER("bll.TcpHeader", devLogger);
+//DEFINE_STATIC_LOGGER("core.TcpHeader", devLogger);
 
-CTcpHeader::CTcpHeader() :
-						  m_typeId(CTcpHeader_Class_Id)
+CTcpHeader::CTcpHeader()
 {
 
+}
+
+wt::framework::CWtObject* CTcpHeader::Create()
+{
+	return new CTcpHeader();
 }
 
 CTcpHeader::~CTcpHeader()

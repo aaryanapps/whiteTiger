@@ -4,14 +4,18 @@
 #include "Packet.h"
 #include "PacketDb.h"
 #include "Globals.h"
+#include "CoreConsts.h"
 #include "WtLogger.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 using namespace wt::framework;
 
 //DEFINE_STATIC_LOGGER("core.LiveCapture", devLogger)
 
-uint32_t CLiveCapture::m_classId = 0x00000264 ;
+//uint32_t CLiveCapture::m_classId = 0x00000264 ;
+uint32_t CLiveCapture::m_classId = REGISTER_CREATOR(CLiveCapture_Class_Id, CLiveCapture::Create);
 
 CLiveCapture::CLiveCapture()
 {
@@ -23,6 +27,10 @@ CLiveCapture::CLiveCapture(std::string& name)
 
 }
 
+CWtObject* CLiveCapture::Create()
+{
+	return new CLiveCapture();
+}
 
 CLiveCapture::~CLiveCapture()
 {

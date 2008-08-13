@@ -14,9 +14,12 @@ public:
     CPacketHeader(uint32_t hnd,  uint32_t len, const uint8_t* hdrData);
     virtual ~CPacketHeader();
 
-    virtual uint32_t GetTypeId() {return m_typeId; }
+    /*Returns the Class Id*/
+	virtual uint32_t 	GetClassId() {return m_classId; }
 
-    virtual std::string GetHeaderAbbrName() = 0;
+	static wt::framework::CWtObject* Create();
+
+	virtual std::string GetHeaderAbbrName() = 0;
     virtual uint32_t GetHeaderLength() = 0;
     virtual bool Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData);
 
@@ -43,7 +46,6 @@ protected:
 
 private:
 	uint32_t 	m_hdrHnd;
-    uint32_t 	m_typeId;
 
 	uint32_t m_hdrLen;
 	std::string m_hdrTypeInStr;

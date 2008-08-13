@@ -11,13 +11,16 @@
 #include "PacketHeaderDb.h"
 #include "net/HeaderTypes.h"
 #include "CommonPacketUtils.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 
-uint32_t CEthernetHeader::m_classId = CEthernetHeader_Class_Id ;
+//uint32_t CEthernetHeader::m_classId = CEthernetHeader_Class_Id ;
+uint32_t CEthernetHeader::m_classId = REGISTER_CREATOR(CEthernetHeader_Class_Id, CEthernetHeader::Create);
+
 
 CEthernetHeader::CEthernetHeader() :
-									m_typeId(CEthernetHeader_Class_Id),
 									m_hdrLen(0)
 {
 
@@ -28,10 +31,14 @@ CEthernetHeader::~CEthernetHeader()
 
 }
 
-CEthernetHeader::CEthernetHeader(uint32_t hnd,  uint32_t hdrOffset, const uint8_t* pktData) :
-	m_typeId(CEthernetHeader_Class_Id)
+CEthernetHeader::CEthernetHeader(uint32_t hnd,  uint32_t hdrOffset, const uint8_t* pktData)
 {
 	Init(hnd, hdrOffset, pktData);
+}
+
+wt::framework::CWtObject* CEthernetHeader::Create()
+{
+	return new CEthernetHeader();
 }
 
 bool CEthernetHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)

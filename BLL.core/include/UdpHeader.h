@@ -21,7 +21,11 @@ public:
     	std::string s("Udp");
     	return s;
     }
-    virtual uint32_t GetTypeId() {return m_typeId; }
+
+    /*Returns the Class Id*/
+	virtual uint32_t 	GetClassId() {return m_classId; }
+
+	static wt::framework::CWtObject* Create();
 
     uint32_t GetHeaderLength() {return m_hdrLen;}
     virtual bool Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData);
@@ -48,7 +52,6 @@ protected:
 	virtual bool ParseHeader();
 
 private:
-	uint32_t 	m_typeId;
 
 	uint32_t m_hdrLen;
 	std::string m_hdrTypeInStr;

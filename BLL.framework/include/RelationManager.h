@@ -5,7 +5,7 @@
 
 //#include "WtObject.h"
 #include "Globals.h"
-#include "WtObjectDb.h"
+#include "WtObjectDefs.h"
 #include "RelationInfo.h"
 #include "Poco/Data/Session.h"
 
@@ -17,27 +17,26 @@ class FRAMEWORK_EXPORT CRelationManager {
 public:
 	CRelationManager();
 	~CRelationManager();
-	
-	static CRelationManager* Instance();
-	
-	bool AddRelation(WtoHandle from, WtoHandle to,
-			   		 RelationType relId = ParentChild());
-	
-	bool RemoveRelation(WtoHandle from, WtoHandle to, RelationType relId = ParentChild());
-	
-	CWtObject* GetParent(WtoHandle to);
 
-	void GetObjects(WtoVec& wtv, WtoHandle from, uint32_t toType, RelationType relId = ParentChild());
-	
-	CWtObject* GetObject( WtoHandle from, 
-						  uint32_t  to, 
+	static CRelationManager& Instance();
+
+	bool AddRelation(CWtObject* from, CWtObject* to,
+			   		 RelationType relId = ParentChild());
+
+	bool RemoveRelation(CWtObject* from, CWtObject* to, RelationType relId = ParentChild());
+	WtoHandle GetParent(WtoHandle to);
+
+	void GetObjects(WtoHndVec& wtv, WtoHandle from, uint32_t toClassType, RelationType relId = ParentChild());
+
+	WtoHandle GetObject( WtoHandle from,
+						  uint32_t  to,
 						  RelationType relId = ParentChild());
 private:
 	void Init();
-	
+
 	bool 					m_init;
 	Poco::Data::Session* 	_mdbSession;
-	
+
 };
 
 }

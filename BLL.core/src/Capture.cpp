@@ -4,12 +4,14 @@
 #include "PacketDb.h"
 #include "WtLogger.h"
 #include "CoreConsts.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using Poco::Timestamp;
 using namespace wt::core;
 using namespace wt::framework;
 
-uint32_t CCapture::m_classId = 0x00000200 ;
+uint32_t CCapture::m_classId = REGISTER_CREATOR(CCapture_Class_Id, CCapture::Create);
 
 DEFINE_STATIC_LOGGER("core.Capture", devLogger)
 
@@ -26,6 +28,11 @@ CCapture::CCapture(std::string& name) :
 					m_name(name)
 {
 	Init();
+}
+
+CWtObject* CCapture::Create()
+{
+	return new CCapture();
 }
 
 void CCapture::Init()

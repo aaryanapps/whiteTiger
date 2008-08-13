@@ -14,6 +14,25 @@ public:
 	CWtObject();
 	virtual ~CWtObject();
 
+	//virtual void InitWto() = 0;
+
+	/*Calls the base class GetInheritedClassIds and get the classId*/
+	virtual void GetInheritedTypes(WtoTypeIdsVec& typeIdVec) = 0;
+
+	virtual uint32_t GetClassId() = 0;
+
+	//virtual CWtObject*	Create() = 0;
+
+	CWtObject* 	GetParent();
+
+	void 		GetObjects(WtoVec& wtv, WtoType type,
+										RelationType rel = ParentChild());
+
+	CWtObject*	GetObject(WtoType type, RelationType rel = ParentChild());
+
+
+	//Getters-Setters
+
 	WtoHandle GetWtoHandle() {return m_wtoHnd;}
 	void SetWtoHandle(WtoHandle hnd) {m_wtoHnd = hnd;}
 
@@ -23,19 +42,6 @@ public:
 	void SetWtoName(std::string& name) {m_wtoName = name;}
 	std::string GetWtoName() {return m_wtoName;}
 
-	//virtual void InitWto() = 0;
-
-	/*Calls the base class GetInheritedClassIds and get the classId*/
-	virtual void GetInheritedTypes(WtoTypeIdsVec& typeIdVec) = 0;
-
-	virtual uint32_t GetTypeId() = 0;
-
-	CWtObject* 	GetParent();
-
-	void 		GetObjects(WtoVec& wtv, WtoType type,
-										RelationType rel = ParentChild());
-
-	CWtObject*	GetObject(WtoType type, RelationType rel = ParentChild());
 
 private:
 	WtoHandle m_wtoHnd;

@@ -4,14 +4,16 @@
 #include "Globals.h"
 #include "net/HeaderTypes.h"
 #include "CoreConsts.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 
-uint32_t CIpHeader::m_classId = CIpHeader_Class_Id ;
+//uint32_t CIpHeader::m_classId = CIpHeader_Class_Id ;
+uint32_t CIpHeader::m_classId = REGISTER_CREATOR(CIpHeader_Class_Id, CIpHeader::Create);
 
 
-CIpHeader::CIpHeader() :
-						m_typeId(CIpHeader_Class_Id)
+CIpHeader::CIpHeader()
 {
 
 }
@@ -19,6 +21,11 @@ CIpHeader::CIpHeader() :
 CIpHeader::~CIpHeader()
 {
 
+}
+
+wt::framework::CWtObject* CIpHeader::Create()
+{
+	return NULL;
 }
 
 bool CIpHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)

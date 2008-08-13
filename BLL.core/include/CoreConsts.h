@@ -6,6 +6,8 @@
 #define CLiveCapture_Class_Id					0x00000264
 #define CCaptureFile_Class_Id					0x00000296
 
+#define CNetworkInterfaceAdapter_Class_Id		0x000002C8
+
 #define CPacket_Class_Id						0x00000A00
 #define CEthernetPacket_Class_Id				0x00000B00
 #define CPacketHeader_Class_Id					0x00001100

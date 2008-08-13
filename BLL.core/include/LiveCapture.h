@@ -17,11 +17,19 @@ public:
 
 	virtual uint32_t 	GetClassId() {return m_classId; }
 
+	static wt::framework::CWtObject* Create();
+
 	virtual uint32_t 	GetDataLinkType();
 
 	/*Call back function to be called when there is a new packet*/
 	void 				OnNewPacket(wt::framework::WtoHandle pkt, void *data);
 
+    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
+    {
+    	CCaptureType::GetInheritedTypes(typeIdVec);
+    	typeIdVec.push_back(CLiveCapture::m_classId);
+    	return;
+    }
 
 protected:
     virtual void Init();

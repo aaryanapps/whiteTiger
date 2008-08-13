@@ -11,12 +11,15 @@
 #include "Globals.h"
 #include "WtLogger.h"
 #include "CoreConsts.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 
-//DEFINE_STATIC_LOGGER("core.CaptureFile", devLogger)
+//uint32_t CCaptureFile::m_classId = 0x00000264 ;
+uint32_t CCaptureFile::m_classId = REGISTER_CREATOR(CArpHeader_Class_Id, CCaptureFile::Create);
 
-uint32_t CCaptureFile::m_classId = 0x00000264 ;
+//DEFINE_STATIC_LOGGER("core.CaptureFile", devLogger)
 
 std::string CCaptureFile::m_defFile = "Untitled1" ;
 
@@ -26,10 +29,17 @@ CCaptureFile::CCaptureFile(std::string& fname) :
 
 }
 
-CCaptureFile::CCaptureFile()
+CCaptureFile::CCaptureFile() :
+				m_fileName(CCaptureFile::m_defFile)
 {
 
 }
+
+wt::framework::CWtObject* CCaptureFile::Create()
+{
+	return new CCaptureFile();
+}
+
 
 CCaptureFile::~CCaptureFile()
 {

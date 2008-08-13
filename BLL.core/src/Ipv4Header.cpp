@@ -8,15 +8,17 @@
 #include "CommonPacketUtils.h"
 #include "WtLogger.h"
 #include "CoreConsts.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 
-uint32_t CIpv4Header::m_classId = CIpv4Header_Class_Id ;
+//uint32_t CIpv4Header::m_classId = CIpv4Header_Class_Id ;
+uint32_t CIpv4Header::m_classId = REGISTER_CREATOR(CIpv4Header_Class_Id, CIpv4Header::Create);
 
 //DEFINE_STATIC_LOGGER("bll.Ipv4Header", devLogger);
 
 CIpv4Header::CIpv4Header() :
-							m_typeId(CIpv4Header_Class_Id),
 							m_hdrLen(0),
 							m_hdr(0)
 {
@@ -26,6 +28,11 @@ CIpv4Header::CIpv4Header() :
 CIpv4Header::~CIpv4Header()
 {
 
+}
+
+wt::framework::CWtObject* CIpv4Header::Create()
+{
+	return new CIpv4Header();
 }
 
 bool CIpv4Header::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)

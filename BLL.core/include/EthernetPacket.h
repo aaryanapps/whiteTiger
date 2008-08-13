@@ -17,10 +17,12 @@ public:
 	virtual ~CEthernetPacket();
 	virtual bool Init(uint32_t hnd, const pcapPktHdr *pkt, const uint8_t* pktData);
 
-	virtual uint32_t GetTypeId() {return m_typeId; }
-
     virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec);
 
+    /*Returns the Class Id*/
+	virtual uint32_t 	GetClassId() {return m_classId; }
+
+	static wt::framework::CWtObject* Create();
 
 protected :
 	static uint32_t m_classId;
@@ -29,7 +31,7 @@ protected :
 	virtual bool ParsePacket();
 
 private:
-	uint32_t 	m_typeId;
+
 	virtual void CreatePacketInfoText();
 	virtual bool CreateHeaders();
 	void OnNewPacketHeader(CPacketHeader* pktHdr);

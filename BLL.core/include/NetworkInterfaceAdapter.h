@@ -34,6 +34,17 @@ public:
 	CNetworkInterfaceAdapter(std::string& adpName);
 	~CNetworkInterfaceAdapter();
 
+    /*Returns the Class Id*/
+	virtual uint32_t 	GetClassId() {return m_classId; }
+
+	static wt::framework::CWtObject* Create();
+
+    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
+    {
+    	typeIdVec.push_back(CNetworkInterfaceAdapter::m_classId);
+    	return;
+    }
+
     bool RegisterOnNewPacket(Poco::Delegate<wt::framework::CWtObject, WtoHandle>& dl);
 
 	bool StartCapture();
@@ -51,6 +62,8 @@ public:
 	CaptureState GetCaptureStatus() { return _captureStatus;}
 
 private:
+	static uint32_t m_classId;
+
 	/*Default ctor*/
 	CNetworkInterfaceAdapter(){};
 

@@ -2,6 +2,7 @@
 #define _WTOBJECTDEFS_H__
 
 #include "Globals.h"
+#include "FastDelegate.h"
 
 namespace wt {
 namespace framework {
@@ -15,9 +16,13 @@ namespace framework {
 
 	typedef uint32_t WtoHandle;
 
-	typedef std::map<WtoHandle, wt::framework::CWtObject*> WtObjectsMap;
+	typedef std::map<WtoHandle, CWtObject*> WtObjectsMap;
 
-	typedef std::vector<wt::framework::CWtObject*> WtoVec;
+	typedef std::vector<CWtObject*> WtoVec;
+
+	typedef std::vector<WtoHandle> WtoHndVec;
+
+	typedef fastdelegate::FastDelegate0<CWtObject*> WtObjCreator;
 
 }
 }

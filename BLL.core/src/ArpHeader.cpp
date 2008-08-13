@@ -8,15 +8,16 @@
 #include "CommonPacketUtils.h"
 #include "ArpHeaderIpImpl.h"
 #include "CoreConsts.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 
-uint32_t CArpHeader::m_classId = CArpHeader_Class_Id;
+uint32_t CArpHeader::m_classId = REGISTER_CREATOR(CArpHeader_Class_Id, CArpHeader::Create);
 
 CArpHeader::CArpHeader() :
 						  m_hdrLen(0),
-						  m_Impl(0),
-						  m_typeId(CArpHeader_Class_Id)
+						  m_Impl(0)
 {
 
 }
@@ -24,6 +25,11 @@ CArpHeader::CArpHeader() :
 CArpHeader::~CArpHeader()
 {
 	delete m_Impl;
+}
+
+wt::framework::CWtObject* CArpHeader::Create()
+{
+	return new CArpHeader();
 }
 
 bool CArpHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)

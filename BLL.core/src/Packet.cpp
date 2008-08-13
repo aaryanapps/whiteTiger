@@ -17,11 +17,15 @@
 #include "CaptureType.h"
 #include "CommonPacketUtils.h"
 #include "CoreConsts.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 using namespace wt::framework;
 
-uint32_t CPacket::m_classId = 0x00000100 ;
+//uint32_t CPacket::m_classId = 0x00000100 ;
+uint32_t CPacket::m_classId = REGISTER_CREATOR(CPacket_Class_Id, CPacket::Create);
+
 
 DEFINE_STATIC_LOGGER("core.Packet", devLogger)
 
@@ -30,6 +34,10 @@ CPacket::CPacket()
 	//m_newPktHdr = fastdelegate::MakeDelegate(this, &CPacket::OnNewPacketHeader);
 }
 
+CWtObject* CPacket::Create()
+{
+	return NULL;
+}
 
 CPacket::~CPacket()
 {

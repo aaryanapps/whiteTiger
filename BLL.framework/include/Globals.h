@@ -5,7 +5,9 @@
 #include <iostream>
 #include <sstream>
 #include <cctype>
+
 //#include <algorithm>
+
 // A utility functor to compare any two values. Will work for any
 // type that support "==" operator
 
@@ -24,5 +26,10 @@ struct ValueCompareFunctor : public std::unary_function<T, bool>
   }
   T m_val ;
 } ;
+
+
+#define REGISTER_CREATOR(id,fname) \
+	wt::framework::CWtObjectRegistrar::Instance().RegisterCreator(id , fname)
+
 
 #endif //_WT_GLOBALS_H__

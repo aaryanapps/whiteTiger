@@ -2,10 +2,12 @@
 
 #include "NetworkInterfaceAdapter.h"
 #include "CaptureLibraryInterface.h"
-
+#include "CoreConsts.h"
 #include "PacketDb.h"
 #include "WtLogger.h"
 #include "FastDelegate.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 #include "Poco/BasicEvent.h"
 #include "Poco/Thread.h"
@@ -13,6 +15,8 @@
 using namespace wt::core;
 using namespace wt::core::capturelibrary;
 using namespace wt::framework;
+
+uint32_t CNetworkInterfaceAdapter::m_classId = REGISTER_CREATOR(CNetworkInterfaceAdapter_Class_Id, CNetworkInterfaceAdapter::Create);
 
 DEFINE_STATIC_LOGGER("core.netintf.NetworkInterfaceAdapter", devLogger)
 
@@ -30,6 +34,12 @@ CNetworkInterfaceAdapter::CNetworkInterfaceAdapter(std::string& adpName) :
 CNetworkInterfaceAdapter::~CNetworkInterfaceAdapter()
 {
 
+}
+
+CWtObject* CNetworkInterfaceAdapter::Create()
+{
+	std::string s("Default");
+	return new CNetworkInterfaceAdapter(s);
 }
 
 bool CNetworkInterfaceAdapter::RegisterOnNewPacket(Poco::Delegate<CWtObject, WtoHandle>& dl)

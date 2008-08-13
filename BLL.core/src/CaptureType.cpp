@@ -7,12 +7,14 @@
 
 #include "StdAfx.h"
 #include "CaptureType.h"
+#include "CoreConsts.h"
 #include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 using namespace wt::framework;
 
-uint32_t CCaptureType::m_classId = 0x00000232 ;
+uint32_t CCaptureType::m_classId = REGISTER_CREATOR(CCaptureType_Class_Id, CCaptureType::Create);
 
 //DEFINE_STATIC_LOGGER("core.CaptureType", devLogger)
 
@@ -24,6 +26,11 @@ CCaptureType::CCaptureType()
 CCaptureType::~CCaptureType()
 {
 
+}
+
+CWtObject* CCaptureType::Create()
+{
+	return new CCaptureType();
 }
 
 /*Returns the packet at requested index*/

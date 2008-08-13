@@ -24,6 +24,11 @@ public:
 
     virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec);
 
+    /*Returns the Class Id*/
+	virtual uint32_t 	GetClassId() {return m_classId; }
+
+	static wt::framework::CWtObject* Create();
+
 protected:
     virtual void Init();
 

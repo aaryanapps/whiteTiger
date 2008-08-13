@@ -20,7 +20,9 @@ public:
     CPacket(uint32_t hnd, const pcapPktHdr *pkt, const char* pktData);
     virtual ~CPacket();
 
-    static uint32_t GetClassId() {return m_classId; }
+    virtual uint32_t GetClassId() {return m_classId; }
+
+    static wt::framework::CWtObject* Create();
 
     virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec);
 

@@ -11,18 +11,20 @@
 #include "WtObjectDb.h"
 #include "RelationInfo.h"
 #include "WtLogger.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 using namespace wt::framework;
 
-uint32_t CEthernetPacket::m_classId = CEthernetPacket_Class_Id ;
+//uint32_t CEthernetPacket::m_classId = CEthernetPacket_Class_Id ;
+uint32_t CEthernetPacket::m_classId = REGISTER_CREATOR(CEthernetPacket_Class_Id, CEthernetPacket::Create);
 
 
 DEFINE_STATIC_LOGGER("core.EthernetPacket", devLogger)
 
 
-CEthernetPacket::CEthernetPacket() :
-									m_typeId(CEthernetPacket_Class_Id)
+CEthernetPacket::CEthernetPacket()
 {
 
 }
@@ -30,6 +32,11 @@ CEthernetPacket::CEthernetPacket() :
 CEthernetPacket::~CEthernetPacket()
 {
 
+}
+
+CWtObject* CEthernetPacket::Create()
+{
+	return new CEthernetPacket();
 }
 
 bool CEthernetPacket::Init(uint32_t hnd,

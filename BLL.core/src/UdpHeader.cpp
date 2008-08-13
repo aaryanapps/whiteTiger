@@ -7,15 +7,23 @@
 #include "PcapDefs.h"
 #include "CommonPacketUtils.h"
 #include "CoreConsts.h"
+#include "WtObject.h"
+#include "WtObjectRegistrar.h"
 
 using namespace wt::core;
 
-uint32_t CUdpHeader::m_classId = CUdpHeader_Class_Id ;
+//uint32_t CUdpHeader::m_classId = CUdpHeader_Class_Id ;
+uint32_t CUdpHeader::m_classId = REGISTER_CREATOR(CUdpHeader_Class_Id, CUdpHeader::Create);
 
-CUdpHeader::CUdpHeader() :
-						  m_typeId(CUdpHeader_Class_Id)
+
+CUdpHeader::CUdpHeader()
 {
 
+}
+
+wt::framework::CWtObject* CUdpHeader::Create()
+{
+	return new CUdpHeader();
 }
 
 CUdpHeader::~CUdpHeader()

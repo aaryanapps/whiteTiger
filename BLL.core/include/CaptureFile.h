@@ -24,6 +24,7 @@ public:
     /*Parse the File if it exists*/
     void 				ParseFile();
 
+    /*Returns the Class Id*/
 	virtual uint32_t 	GetClassId() {return m_classId; }
 
 	/*Get the filename*/
@@ -44,6 +45,7 @@ public:
 
 	void 		GetDataLinkType(uint32_t dtType){ m_dataLink = dtType; }
 
+	static wt::framework::CWtObject* Create();
 
 protected:
     virtual void Init();

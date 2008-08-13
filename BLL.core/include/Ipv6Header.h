@@ -23,9 +23,13 @@ public:
     	std::string s("Ipv6");
     	return s;
 	}
-    virtual uint32_t GetTypeId() {return m_typeId; }
 
-    uint32_t GetHeaderLength() {return m_hdrLen;}
+    /*Returns the Class Id*/
+	virtual uint32_t 	GetClassId() {return m_classId; }
+
+	static wt::framework::CWtObject* Create();
+
+	uint32_t GetHeaderLength() {return m_hdrLen;}
 
     std::string GetSrcAddrString();
     std::string GetDstAddrString();
@@ -48,6 +52,7 @@ public:
 
 protected:
 	static uint32_t m_classId;
+
 	virtual bool ValidateHeader();
 	virtual bool ParseHeader();
 

@@ -21,7 +21,6 @@ public:
     	std::string s("EthII");
     	return s;
     }
-    virtual uint32_t GetTypeId() {return m_typeId; }
 
     uint32_t GetHeaderLength() {return m_hdrLen;}
     const char* GetSrcAddr(){return NULL;}
@@ -45,6 +44,10 @@ public:
     	return;
     }
 
+    /*Returns the Class Id*/
+	virtual uint32_t 	GetClassId() {return m_classId; }
+
+	static wt::framework::CWtObject* Create();
 
 protected:
 	static uint32_t m_classId;
@@ -53,7 +56,6 @@ protected:
 	virtual bool ParseHeader();
 
 private:
-	uint32_t 	m_typeId;
 
 	uint32_t m_hdrHnd;
 	uint32_t m_hdrLen;

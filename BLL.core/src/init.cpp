@@ -5,8 +5,8 @@
 
 #include <windows.h>
 
-BOOL APIENTRY DllMain( HANDLE hModule, 
-                       DWORD  ul_reason_for_call, 
+BOOL APIENTRY DllMain( HANDLE hModule,
+                       DWORD  ul_reason_for_call,
                        LPVOID lpReserved
 					 )
 {
@@ -19,6 +19,21 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 			break;
     }
     return TRUE;
-}     
+}
 
 #endif
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+void CORE_EXPORT InitCore()
+{
+
+}
+
+#ifdef __cplusplus
+}
+#endif
+

@@ -14,8 +14,6 @@ public:
 	CIpHeader(uint32_t hnd,  uint32_t len, const uint8_t* hdrData);
     virtual ~CIpHeader();
 
-    virtual uint32_t GetTypeId() {return m_typeId; }
-
     virtual std::string GetHeaderAbbrName() = 0;
     virtual uint32_t GetHeaderLength() = 0;
     const char* GetSrcAddr(){return NULL;}
@@ -39,6 +37,10 @@ public:
     	return;
     }
 
+    /*Returns the Class Id*/
+	virtual uint32_t 	GetClassId() {return m_classId; }
+
+	static wt::framework::CWtObject* Create();
 
 protected:
 	static uint32_t m_classId;
@@ -47,7 +49,7 @@ protected:
 	virtual bool ParseHeader() = 0;
 
 private:
-	uint32_t 	m_typeId;
+
 	uint32_t m_hdrHnd;
 	uint32_t m_hdrLen;
 	std::string m_hdrTypeInStr;
