@@ -60,7 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../BLL.framework/$(ConfigurationName)/BLL.frameworkd.lib ../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib ../lib/Win32/$(ConfigurationName)/PocoNetd.lib ../lib/Win32/$(ConfigurationName)/PocoDatad.lib"
+				AdditionalDependencies="../BLL.framework/$(ConfigurationName)/BLL.frameworkd.lib ../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib ../lib/Win32/$(ConfigurationName)/PocoNetd.lib ../lib/Win32/$(ConfigurationName)/PocoDatad.lib ../lib/Win32/common/wpcap.lib"
 				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName)d.dll"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
@@ -136,7 +136,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../BLL.framework/$(ConfigurationName)/BLL.framework.lib ../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib ../lib/Win32/$(ConfigurationName)/PocoNetd.lib ../lib/Win32/$(ConfigurationName)/PocoDatad.lib"
+				AdditionalDependencies="../BLL.framework/$(ConfigurationName)/BLL.frameworkd.lib ../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib ../lib/Win32/$(ConfigurationName)/PocoNetd.lib ../lib/Win32/$(ConfigurationName)/PocoDatad.lib ../lib/Win32/common/wpcap.lib"
 				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName).dll"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
@@ -186,11 +186,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\BoundCapture.cpp"
+				RelativePath=".\src\Capture.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\Capture.cpp"
+				RelativePath=".\src\CaptureFile.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\CaptureFileParser.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\CaptureLibraryAdapter.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\CaptureLibraryInterface.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\CaptureType.cpp"
 				>
 			</File>
 			<File
@@ -226,11 +242,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\Packet.cpp"
+				RelativePath=".\src\NetworkInterfaceAdapter.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\src\PacketDb.cpp"
+				RelativePath=".\src\Packet.cpp"
 				>
 			</File>
 			<File
@@ -238,7 +254,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\PacketHeaderDb.cpp"
+				RelativePath=".\src\PacketHeaderFactory.cpp"
 				>
 			</File>
 			<File
@@ -276,10 +292,6 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\include\AppConsts.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\ArpHeader.h"
 				>
 			</File>
@@ -296,15 +308,39 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\BoundCapture.h"
-				>
-			</File>
-			<File
 				RelativePath=".\include\Capture.h"
 				>
 			</File>
 			<File
+				RelativePath=".\include\CaptureFile.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\CaptureFileParser.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\CaptureLibraryAdapter.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\CaptureLibraryDefs.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\CaptureLibraryInterface.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\CaptureType.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\CommonPacketUtils.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\CoreConsts.h"
 				>
 			</File>
 			<File
@@ -332,7 +368,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\include\OfflineCapture.h"
+				RelativePath=".\include\NetworkInterfaceAdapter.h"
 				>
 			</File>
 			<File
