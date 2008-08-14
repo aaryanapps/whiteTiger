@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     29/01/98
-// RCS-ID:      $Id: utils.h,v 1.139 2006/11/12 15:39:06 JS Exp $
+// RCS-ID:      $Id: utils.h 49804 2007-11-10 01:09:42Z VZ $
 // Copyright:   (c) 1998 Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -23,8 +23,8 @@
     #include "wx/gdicmn.h"
 #endif
 
-class WXDLLIMPEXP_BASE wxArrayString;
-class WXDLLIMPEXP_BASE wxArrayInt;
+class WXDLLIMPEXP_FWD_BASE wxArrayString;
+class WXDLLIMPEXP_FWD_BASE wxArrayInt;
 
 // need this for wxGetDiskSpace() as we can't, unfortunately, forward declare
 // wxLongLong
@@ -565,7 +565,7 @@ wxDEPRECATED(
 );
 
 #if wxUSE_ACCEL
-class WXDLLEXPORT wxAcceleratorEntry;
+class WXDLLIMPEXP_FWD_CORE wxAcceleratorEntry;
 
 // use wxAcceleratorEntry::Create() or FromString() methods instead
 wxDEPRECATED(

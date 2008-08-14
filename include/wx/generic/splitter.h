@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     01/02/97
-// RCS-ID:      $Id: splitter.h,v 1.55.2.1 2007/04/16 13:01:38 VZ Exp $
+// RCS-ID:      $Id: splitter.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -367,7 +367,7 @@ public:
     }
 
 private:
-    friend class WXDLLEXPORT wxSplitterWindow;
+    friend class WXDLLIMPEXP_FWD_CORE wxSplitterWindow;
 
     // data for the different types of event
     union

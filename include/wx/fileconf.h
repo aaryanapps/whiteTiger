@@ -4,7 +4,7 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     07.04.98 (adapted from appconf.cpp)
-// RCS-ID:      $Id: fileconf.h,v 1.60 2006/04/05 16:53:13 VZ Exp $
+// RCS-ID:      $Id: fileconf.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) 1997 Karsten Ballüder   &  Vadim Zeitlin
 //                       Ballueder@usa.net     <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
@@ -89,13 +89,13 @@
   (it's on by default, the current status can be retrieved with
    IsExpandingEnvVars function).
 */
-class WXDLLIMPEXP_BASE wxFileConfigGroup;
-class WXDLLIMPEXP_BASE wxFileConfigEntry;
-class WXDLLIMPEXP_BASE wxFileConfigLineList;
+class WXDLLIMPEXP_FWD_BASE wxFileConfigGroup;
+class WXDLLIMPEXP_FWD_BASE wxFileConfigEntry;
+class WXDLLIMPEXP_FWD_BASE wxFileConfigLineList;
 
 #if wxUSE_STREAMS
-class WXDLLIMPEXP_BASE wxInputStream;
-class WXDLLIMPEXP_BASE wxOutputStream;
+class WXDLLIMPEXP_FWD_BASE wxInputStream;
+class WXDLLIMPEXP_FWD_BASE wxOutputStream;
 #endif // wxUSE_STREAMS
 
 class WXDLLIMPEXP_BASE wxFileConfig : public wxConfigBase

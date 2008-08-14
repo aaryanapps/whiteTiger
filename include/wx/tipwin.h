@@ -5,7 +5,7 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     10.09.00
-// RCS-ID:      $Id: tipwin.h,v 1.15 2005/09/23 12:48:48 MR Exp $
+// RCS-ID:      $Id: tipwin.h 35650 2005-09-23 12:56:45Z MR $
 // Copyright:   (c) 2000 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
 // Author:      Julian Smart, Robert Roebling, Vadim Zeitlin
 // Modified by:
 // Created:     31.05.01 (extracted from other files)
-// RCS-ID:      $Id: accel.h,v 1.20 2006/09/04 23:56:37 VZ Exp $
+// RCS-ID:      $Id: accel.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) wxWidgets team
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -18,9 +18,9 @@
 
 #include "wx/object.h"
 
-class WXDLLEXPORT wxAcceleratorTable;
-class WXDLLEXPORT wxMenuItem;
-class WXDLLEXPORT wxKeyEvent;
+class WXDLLIMPEXP_FWD_CORE wxAcceleratorTable;
+class WXDLLIMPEXP_FWD_CORE wxMenuItem;
+class WXDLLIMPEXP_FWD_CORE wxKeyEvent;
 
 // ----------------------------------------------------------------------------
 // constants

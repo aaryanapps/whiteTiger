@@ -5,7 +5,7 @@
 // Modified by: Vadim Zeitlin (modifications partly inspired by omnithreads
 //              package from Olivetti & Oracle Research Laboratory)
 // Created:     04/13/98
-// RCS-ID:      $Id: thread.h,v 1.77 2006/04/14 16:52:56 ABX Exp $
+// RCS-ID:      $Id: thread.h 38717 2006-04-14 17:01:16Z ABX $
 // Copyright:   (c) Guilhem Lavaux
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

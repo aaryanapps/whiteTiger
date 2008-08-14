@@ -4,7 +4,7 @@
  * (C) 1998 by Karsten Ballüder (Ballueder@usa.net)                 *
  * License: wxWindows licence                                       *
  *                                                                  *
- * $Id: helpext.h,v 1.24 2006/09/05 20:45:23 VZ Exp $
+ * $Id: helpext.h 41020 2006-09-05 20:47:48Z VZ $
  *******************************************************************/
 
 #ifndef __WX_HELPEXT_H_

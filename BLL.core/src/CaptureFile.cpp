@@ -56,6 +56,10 @@ std::string& CCaptureFile::GetDefaultFileName()
 	return m_defFile;
 }
 
+void CCaptureFile::Init()
+{
+
+}
 
 void CCaptureFile::ParseFile()
 {

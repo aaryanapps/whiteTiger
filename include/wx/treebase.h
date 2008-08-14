@@ -4,7 +4,7 @@
 // Author:      Julian Smart et al
 // Modified by:
 // Created:     01/02/97
-// RCS-ID:      $Id: treebase.h,v 1.59 2006/06/27 21:21:36 RD Exp $
+// RCS-ID:      $Id: treebase.h 39857 2006-06-27 21:21:36Z RD $
 // Copyright:   (c) 1997,1998 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

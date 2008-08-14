@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     10/5/2006 12:05:31 PM
-// RCS-ID:      $Id: richtextstyledlg.h,v 1.4 2006/10/29 22:01:06 JS Exp $
+// RCS-ID:      $Id: richtextstyledlg.h 49398 2007-10-24 14:20:43Z JS $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -210,6 +210,7 @@ public:
     enum {
         ID_RICHTEXTSTYLEORGANISERDIALOG = 10500,
         ID_RICHTEXTSTYLEORGANISERDIALOG_STYLES = 10501,
+        ID_RICHTEXTSTYLEORGANISERDIALOG_CURRENT_STYLE = 10510,
         ID_RICHTEXTSTYLEORGANISERDIALOG_PREVIEW = 10509,
         ID_RICHTEXTSTYLEORGANISERDIALOG_NEW_CHAR = 10504,
         ID_RICHTEXTSTYLEORGANISERDIALOG_NEW_PARA = 10505,

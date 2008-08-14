@@ -16,7 +16,7 @@ namespace core {
 
 typedef enum {
 
-	FILE_UNKNOWN = 1,
+	FILE_UNKNWN = 1,
 	FILE_PCAP
 
 } CaptureFileFormat;

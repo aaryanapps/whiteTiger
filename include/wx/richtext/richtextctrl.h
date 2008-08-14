@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     2005-09-30
-// RCS-ID:      $Id: richtextctrl.h,v 1.40 2006/12/29 19:36:58 JS Exp $
+// RCS-ID:      $Id: richtextctrl.h 49804 2007-11-10 01:09:42Z VZ $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -27,7 +27,7 @@
 #define wxRICHTEXT_BUFFERED_PAINTING 0
 #endif
 
-class WXDLLIMPEXP_RICHTEXT wxRichTextStyleDefinition;
+class WXDLLIMPEXP_FWD_RICHTEXT wxRichTextStyleDefinition;
 
 /*!
  * Styles and flags

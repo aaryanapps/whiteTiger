@@ -5,7 +5,7 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     10.02.99
-// RCS-ID:      $Id: datetime.h,v 1.79 2007/01/18 14:06:33 VZ Exp $
+// RCS-ID:      $Id: datetime.h 48283 2007-08-21 12:14:26Z JS $
 // Copyright:   (c) 1998 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -1087,8 +1087,13 @@ public:
     // another one to get the current time broken down
     static struct tm *GetTmNow()
     {
+#ifdef __WXWINCE__
+        static struct tm l_CurrentTime;
+        return GetTmNow(&l_CurrentTime);
+#else
         time_t t = GetTimeNow();
         return localtime(&t);
+#endif
     }
 
     // get current time using thread-safe function
@@ -1678,7 +1683,7 @@ inline time_t wxDateTime::GetTicks() const
         return (time_t)-1;
     }
 
-    return (time_t)((m_time / (long)TIME_T_FACTOR).GetLo())+WX_TIME_BASE_OFFSET ;
+    return (time_t)((m_time / (long)TIME_T_FACTOR).ToLong()) + WX_TIME_BASE_OFFSET;
 }
 
 inline bool wxDateTime::SetToLastWeekDay(WeekDay weekday,

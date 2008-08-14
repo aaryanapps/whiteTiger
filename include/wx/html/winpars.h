@@ -2,7 +2,7 @@
 // Name:        winpars.h
 // Purpose:     wxHtmlWinParser class (parser to be used with wxHtmlWindow)
 // Author:      Vaclav Slavik
-// RCS-ID:      $Id: winpars.h,v 1.36.4.1 2007/04/16 13:01:47 VZ Exp $
+// RCS-ID:      $Id: winpars.h 45498 2007-04-16 13:03:05Z VZ $
 // Copyright:   (c) 1999 Vaclav Slavik
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

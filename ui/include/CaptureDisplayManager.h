@@ -1,7 +1,7 @@
 #ifndef _WT_CAPTUREDISPLAYMANAGER_H__
 #define _WT_CAPTUREDISPLAYMANAGER_H__
 
-#include "Globals.h"
+//#include "Globals.h"
 #include <wx/wx.h>
 #include <wx/menu.h>
 #include <wx/defs.h>

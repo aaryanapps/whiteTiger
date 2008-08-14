@@ -4,7 +4,7 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     20.07.2003
-// RCS-ID:      $Id: renderer.h,v 1.28.4.3 2007/02/09 14:05:06 JS Exp $
+// RCS-ID:      $Id: renderer.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) 2003 Vadim Zeitlin <vadim@wxwidgets.org>
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -25,8 +25,8 @@
 #ifndef _WX_RENDERER_H_
 #define _WX_RENDERER_H_
 
-class WXDLLEXPORT wxDC;
-class WXDLLEXPORT wxWindow;
+class WXDLLIMPEXP_FWD_CORE wxDC;
+class WXDLLIMPEXP_FWD_CORE wxWindow;
 
 #include "wx/gdicmn.h" // for wxPoint
 #include "wx/colour.h"

@@ -6,7 +6,7 @@
 //
 // Author:      Robin Dunn
 // Created:     03-Nov-2003
-// RCS-ID:      $Id: gbsizer.h,v 1.11 2005/09/23 12:48:40 MR Exp $
+// RCS-ID:      $Id: gbsizer.h 35650 2005-09-23 12:56:45Z MR $
 // Copyright:   (c) Robin Dunn
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

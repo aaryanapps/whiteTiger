@@ -4,7 +4,7 @@
 // Notes:       Based on htmlhelp.cpp, implementing a monolithic
 //              HTML Help controller class,  by Vaclav Slavik
 // Author:      Harm van der Heijden and Vaclav Slavik
-// RCS-ID:      $Id: helpdata.h,v 1.37 2006/09/05 20:45:44 VZ Exp $
+// RCS-ID:      $Id: helpdata.h 41020 2006-09-05 20:47:48Z VZ $
 // Copyright:   (c) Harm van der Heijden and Vaclav Slavik
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

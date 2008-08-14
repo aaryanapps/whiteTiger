@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2005-05-17
-// RCS-ID:      $Id: framemanager.h,v 1.44 2006/11/23 18:24:15 BIW Exp $
+// RCS-ID:      $Id: framemanager.h 49465 2007-10-26 19:06:57Z RD $
 // Copyright:   (C) Copyright 2005, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -298,6 +298,9 @@ public:
     wxAuiPaneInfo& RightDockable(bool b = true) { return SetFlag(optionRightDockable, b); }
     wxAuiPaneInfo& Floatable(bool b = true) { return SetFlag(optionFloatable, b); }
     wxAuiPaneInfo& Movable(bool b = true) { return SetFlag(optionMovable, b); }
+#if wxABI_VERSION >= 20807
+    wxAuiPaneInfo& DockFixed(bool b = true) { return SetFlag(optionDockFixed, b); }
+#endif
 
     wxAuiPaneInfo& Dockable(bool b = true)
     {
@@ -375,6 +378,7 @@ public:
         optionActive          = 1 << 14,
         optionGripperTop      = 1 << 15,
         optionMaximized       = 1 << 16,
+        optionDockFixed       = 1 << 17,
 
         buttonClose           = 1 << 21,
         buttonMaximize        = 1 << 22,
@@ -438,9 +442,6 @@ public:
 
     static wxAuiManager* GetManager(wxWindow* window);
 
-#ifdef SWIG
-    %disownarg( wxAuiDockArt* art_provider );
-#endif
     void SetArtProvider(wxAuiDockArt* art_provider);
     wxAuiDockArt* GetArtProvider() const;
 

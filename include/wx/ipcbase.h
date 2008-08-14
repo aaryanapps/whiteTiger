@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     4/1/98
-// RCS-ID:      $Id: ipcbase.h,v 1.28.4.1 2007/04/16 13:01:04 VZ Exp $
+// RCS-ID:      $Id: ipcbase.h 45498 2007-04-16 13:03:05Z VZ $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
 // Modified by:
 // Created:
 // Copyright:   (c) Julian Smart
-// RCS-ID:      $Id: taskbar.h,v 1.27 2007/01/07 19:44:12 VZ Exp $
+// RCS-ID:      $Id: taskbar.h 44138 2007-01-07 19:44:14Z VZ $
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 

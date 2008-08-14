@@ -3,7 +3,7 @@
 // Purpose:     wxXmlDocument - XML parser & data holder class
 // Author:      Vaclav Slavik
 // Created:     2000/03/05
-// RCS-ID:      $Id: xml.h,v 1.9 2006/09/11 11:08:45 VS Exp $
+// RCS-ID:      $Id: xml.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) 2000 Vaclav Slavik
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -28,12 +28,12 @@
     #define WXDLLIMPEXP_XML
 #endif
 
-class WXDLLIMPEXP_XML wxXmlNode;
-class WXDLLIMPEXP_XML wxXmlProperty;
-class WXDLLIMPEXP_XML wxXmlDocument;
-class WXDLLIMPEXP_XML wxXmlIOHandler;
-class WXDLLIMPEXP_BASE wxInputStream;
-class WXDLLIMPEXP_BASE wxOutputStream;
+class WXDLLIMPEXP_FWD_XML wxXmlNode;
+class WXDLLIMPEXP_FWD_XML wxXmlProperty;
+class WXDLLIMPEXP_FWD_XML wxXmlDocument;
+class WXDLLIMPEXP_FWD_XML wxXmlIOHandler;
+class WXDLLIMPEXP_FWD_BASE wxInputStream;
+class WXDLLIMPEXP_FWD_BASE wxOutputStream;
 
 
 // Represents XML node type.

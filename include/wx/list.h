@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by: VZ at 16/11/98: WX_DECLARE_LIST() and typesafe lists added
 // Created:     29/01/98
-// RCS-ID:      $Id: list.h,v 1.111 2006/12/15 01:47:26 VZ Exp $
+// RCS-ID:      $Id: list.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) 1998 Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -503,7 +503,7 @@ class WXDLLIMPEXP_BASE wxList;
 
 class WXDLLIMPEXP_BASE wxListBase : public wxObject
 {
-friend class WXDLLIMPEXP_BASE wxNodeBase; // should be able to call DetachNode()
+friend class WXDLLIMPEXP_FWD_BASE wxNodeBase; // should be able to call DetachNode()
 friend class wxHashTableBase;   // should be able to call untyped Find()
 
 public:

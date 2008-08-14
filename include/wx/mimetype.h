@@ -5,7 +5,7 @@
 // Modified by:
 //  Chris Elliott (biol75@york.ac.uk) 5 Dec 00: write support for Win32
 // Created:     23.09.98
-// RCS-ID:      $Id: mimetype.h,v 1.43 2006/11/23 13:51:44 VZ Exp $
+// RCS-ID:      $Id: mimetype.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) 1998 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence (part of wxExtra library)
 /////////////////////////////////////////////////////////////////////////////
@@ -27,9 +27,9 @@
 #include "wx/arrstr.h"
 
 // fwd decls
-class WXDLLIMPEXP_BASE wxIconLocation;
-class WXDLLIMPEXP_BASE wxFileTypeImpl;
-class WXDLLIMPEXP_BASE wxMimeTypesManagerImpl;
+class WXDLLIMPEXP_FWD_BASE wxIconLocation;
+class WXDLLIMPEXP_FWD_BASE wxFileTypeImpl;
+class WXDLLIMPEXP_FWD_BASE wxMimeTypesManagerImpl;
 
 // these constants define the MIME informations source under UNIX and are used
 // by wxMimeTypesManager::Initialize()

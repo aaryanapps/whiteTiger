@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     2005-09-30
-// RCS-ID:      $Id: richtextxml.h,v 1.8 2006/10/26 06:32:44 JS Exp $
+// RCS-ID:      $Id: richtextxml.h 42431 2006-10-26 06:32:47Z JS $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

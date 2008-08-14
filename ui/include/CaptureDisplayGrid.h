@@ -1,6 +1,8 @@
 #ifndef _WT_CAPTUREDISPLAYGRID_H__
 #define _WT_CAPTUREDISPLAYGRID_H__
 
+#include "DataTypes.h"
+
 #include <wx/wx.h>
 #include <wx/menu.h>
 #include <wx/listctrl.h>

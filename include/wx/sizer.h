@@ -4,7 +4,7 @@
 // Author:      Robert Roebling and Robin Dunn
 // Modified by: Ron Lee, Vadim Zeitlin (wxSizerFlags)
 // Created:
-// RCS-ID:      $Id: sizer.h,v 1.96.2.1 2007/01/31 03:33:59 VZ Exp $
+// RCS-ID:      $Id: sizer.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) Robin Dunn, Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -20,10 +20,10 @@
 // classes
 //---------------------------------------------------------------------------
 
-class WXDLLEXPORT wxButton;
-class WXDLLEXPORT wxBoxSizer;
-class WXDLLEXPORT wxSizerItem;
-class WXDLLEXPORT wxSizer;
+class WXDLLIMPEXP_FWD_CORE wxButton;
+class WXDLLIMPEXP_FWD_CORE wxBoxSizer;
+class WXDLLIMPEXP_FWD_CORE wxSizerItem;
+class WXDLLIMPEXP_FWD_CORE wxSizer;
 
 #ifndef wxUSE_BORDER_BY_DEFAULT
     #ifdef __SMARTPHONE__
@@ -766,7 +766,7 @@ private:
 
 #if wxUSE_STATBOX
 
-class WXDLLEXPORT wxStaticBox;
+class WXDLLIMPEXP_FWD_CORE wxStaticBox;
 
 class WXDLLEXPORT wxStaticBoxSizer: public wxBoxSizer
 {

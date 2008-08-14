@@ -21,6 +21,12 @@ CPacketHeaderFactory::~CPacketHeaderFactory()
 
 }
 
+CPacketHeaderFactory& CPacketHeaderFactory::Instance()
+{
+    static CPacketHeaderFactory _phf;
+	return _phf;
+}
+
 uint32_t CPacketHeaderFactory::RegisterHeader(uint32_t hdrType, uint32_t hdrClassId)
 {
 	HdrType2IdMap* hMap = GetHeaderMap();

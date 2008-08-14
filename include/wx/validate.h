@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     29/01/98
-// RCS-ID:      $Id: validate.h,v 1.21.8.1 2007/04/16 13:01:05 VZ Exp $
+// RCS-ID:      $Id: validate.h 45498 2007-04-16 13:03:05Z VZ $
 // Copyright:   (c) 1998 Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

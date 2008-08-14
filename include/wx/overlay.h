@@ -4,7 +4,7 @@
 // Author:      Stefan Csomor
 // Modified by:
 // Created:     2006-10-20
-// RCS-ID:      $Id: overlay.h,v 1.2 2006/10/25 12:10:54 VS Exp $
+// RCS-ID:      $Id: overlay.h 49804 2007-11-10 01:09:42Z VZ $
 // Copyright:   (c) wxWidgets team
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -28,8 +28,8 @@
 // internal code
 // ----------------------------------------------------------------------------
 
-class WXDLLEXPORT wxOverlayImpl;
-class WXDLLEXPORT wxWindowDC;
+class WXDLLIMPEXP_FWD_CORE wxOverlayImpl;
+class WXDLLIMPEXP_FWD_CORE wxWindowDC;
 
 class WXDLLEXPORT wxOverlay
 {

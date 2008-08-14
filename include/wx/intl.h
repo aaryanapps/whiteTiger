@@ -5,7 +5,7 @@
 // Modified by: Michael N. Filippov <michael@idisys.iae.nsk.su>
 //              (2003/09/30 - plural forms support)
 // Created:     29/01/98
-// RCS-ID:      $Id: intl.h,v 1.63.4.2 2007/05/01 21:10:46 VS Exp $
+// RCS-ID:      $Id: intl.h 45738 2007-05-01 21:10:46Z VS $
 // Copyright:   (c) 1998 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

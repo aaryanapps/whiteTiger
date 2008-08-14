@@ -4,7 +4,7 @@
 // Author:      Wolfram Gloger/adapted by Guilhem Lavaux
 // Modified by:
 // Created:     04/11/98
-// RCS-ID:      $Id: module.h,v 1.17 2006/08/31 19:30:06 ABX Exp $
+// RCS-ID:      $Id: module.h 40943 2006-08-31 19:31:43Z ABX $
 // Copyright:   (c) Wolfram Gloger and Guilhem Lavaux
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

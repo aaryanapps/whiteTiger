@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     01/02/97
-// RCS-ID:      $Id: docview.h,v 1.75.2.1 2007/04/16 13:00:59 VZ Exp $
+// RCS-ID:      $Id: docview.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -24,15 +24,15 @@
     #include "wx/print.h"
 #endif
 
-class WXDLLEXPORT wxWindow;
-class WXDLLEXPORT wxDocument;
-class WXDLLEXPORT wxView;
-class WXDLLEXPORT wxDocTemplate;
-class WXDLLEXPORT wxDocManager;
-class WXDLLEXPORT wxPrintInfo;
-class WXDLLEXPORT wxCommandProcessor;
-class WXDLLEXPORT wxFileHistory;
-class WXDLLEXPORT wxConfigBase;
+class WXDLLIMPEXP_FWD_CORE wxWindow;
+class WXDLLIMPEXP_FWD_CORE wxDocument;
+class WXDLLIMPEXP_FWD_CORE wxView;
+class WXDLLIMPEXP_FWD_CORE wxDocTemplate;
+class WXDLLIMPEXP_FWD_CORE wxDocManager;
+class WXDLLIMPEXP_FWD_CORE wxPrintInfo;
+class WXDLLIMPEXP_FWD_CORE wxCommandProcessor;
+class WXDLLIMPEXP_FWD_CORE wxFileHistory;
+class WXDLLIMPEXP_FWD_CORE wxConfigBase;
 
 #if wxUSE_STD_IOSTREAM
   #include "wx/iosfwrap.h"
@@ -141,7 +141,21 @@ public:
     virtual void SetDocumentTemplate(wxDocTemplate *temp) { m_documentTemplate = temp; }
 
     // Get title, or filename if no title, else [unnamed]
+    //
+    // NB: this method will be deprecated in wxWidgets 3.0, you still need to
+    //     override it if you need to modify the existing behaviour in this
+    //     version but use GetUserReadableName() below if you just need to call
+    //     it
     virtual bool GetPrintableName(wxString& buf) const;
+
+#if wxABI_VERSION >= 20805
+    wxString GetUserReadableName() const
+    {
+        wxString s;
+        GetPrintableName(s);
+        return s;
+    }
+#endif // wxABI 2.8.5+
 
     // Returns a window that can be used as a parent for document-related
     // dialogs. Override if necessary.

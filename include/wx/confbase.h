@@ -5,7 +5,7 @@
 // Author:      Karsten Ballüder & Vadim Zeitlin
 // Modified by:
 // Created:     07.04.98 (adapted from appconf.h)
-// RCS-ID:      $Id: confbase.h,v 1.57 2007/01/18 22:38:18 VZ Exp $
+// RCS-ID:      $Id: confbase.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) 1997 Karsten Ballüder   Ballueder@usa.net
 //                       Vadim Zeitlin      <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
@@ -17,7 +17,7 @@
 #include "wx/defs.h"
 #include "wx/string.h"
 
-class WXDLLIMPEXP_BASE wxArrayString;
+class WXDLLIMPEXP_FWD_BASE wxArrayString;
 
 // ----------------------------------------------------------------------------
 // constants

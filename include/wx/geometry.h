@@ -4,7 +4,7 @@
 // Author:      Stefan Csomor
 // Modified by:
 // Created:     08/05/99
-// RCS-ID:      $Id: geometry.h,v 1.41 2006/09/30 13:30:56 SC Exp $
+// RCS-ID:      $Id: geometry.h 49294 2007-10-21 17:59:09Z SC $
 // Copyright:   (c) 1999 Stefan Csomor
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -157,7 +157,7 @@ inline wxDouble wxPoint2DInt::GetDistance( const wxPoint2DInt &pt ) const
 
 inline wxDouble wxPoint2DInt::GetDistanceSquare( const wxPoint2DInt &pt ) const
 {
-    return ( (pt.m_x-m_x)*(pt.m_x-m_x) + (pt.m_y-m_y)*(pt.m_y-m_y) );
+    return ( (wxDouble)(pt.m_x-m_x)*(pt.m_x-m_x) + (wxDouble)(pt.m_y-m_y)*(pt.m_y-m_y) );
 }
 
 inline wxInt32 wxPoint2DInt::GetDotProduct( const wxPoint2DInt &vec ) const

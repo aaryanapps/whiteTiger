@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     10/5/2006 3:11:58 PM
-// RCS-ID:      $Id: richtextsymboldlg.h,v 1.10 2006/12/24 01:32:50 VS Exp $
+// RCS-ID:      $Id: richtextsymboldlg.h 49960 2007-11-15 08:03:59Z JS $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -20,6 +20,7 @@
 #include "wx/vscroll.h"
 #include "wx/combobox.h"
 #include "wx/stattext.h"
+#include "wx/textctrl.h"
 
 /*!
  * Forward declarations
@@ -116,10 +117,16 @@ public:
     void OnFromUnicodeSelected( wxCommandEvent& event );
 
 #endif
-
+#if defined(__WXMSW__) || defined(__WXGTK__) || defined(__WXPM__) || defined(__WXMGL__) || defined(__WXMOTIF__) || defined(__WXCOCOA__) || defined(__WXX11__) || defined(__WXPALMOS__)
     /// wxEVT_UPDATE_UI event handler for wxID_OK
     void OnOkUpdate( wxUpdateUIEvent& event );
 
+#endif
+#if defined(__WXMAC__)
+    /// wxEVT_UPDATE_UI event handler for wxID_OK
+    void OnOkUpdate( wxUpdateUIEvent& event );
+
+#endif
 ////@end wxSymbolPickerDialog event handler declarations
 
 ////@begin wxSymbolPickerDialog member function declarations

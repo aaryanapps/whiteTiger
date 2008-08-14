@@ -4,7 +4,7 @@
 *  Author:      Vadim Zeitlin
 *  Modified by: Ryan Norton (Converted to C)
 *  Created:     29/01/98
-*  RCS-ID:      $Id: debug.h,v 1.57 2006/07/02 21:40:27 SN Exp $
+*  RCS-ID:      $Id: debug.h 39943 2006-07-02 21:40:38Z SN $
 *  Copyright:   (c) 1998 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 *  Licence:     wxWindows licence
 */

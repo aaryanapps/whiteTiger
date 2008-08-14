@@ -5,7 +5,7 @@
 // Modified by:
 // Created:     14/4/2006
 // Copyright:   (c) Francesco Montorsi
-// RCS-ID:      $Id: fontpicker.h,v 1.7 2006/11/03 21:54:02 VZ Exp $
+// RCS-ID:      $Id: fontpicker.h 42999 2006-11-03 21:54:13Z VZ $
 // Licence:     wxWindows Licence
 /////////////////////////////////////////////////////////////////////////////
 

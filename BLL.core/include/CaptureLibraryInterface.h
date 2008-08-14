@@ -1,7 +1,7 @@
 #ifndef _WT_CAPTURELIBRARYINTERFACE_H__
 #define _WT_CAPTURELIBRARYINTERFACE_H__
 
-#include "BllFrameworkExport.h"
+#include "BllCoreExport.h"
 
 #include "DataTypes.h"
 #include "WtObjectDefs.h"
@@ -15,7 +15,7 @@ namespace wt {
 namespace core {
 namespace capturelibrary {
 
-class FRAMEWORK_EXPORT CCaptureLibraryInterface {
+class CORE_EXPORT CCaptureLibraryInterface {
 public:
 	static 		CCaptureLibraryInterface& Instance();
 

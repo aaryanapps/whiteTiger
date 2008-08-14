@@ -4,7 +4,7 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     01.06.01
-// RCS-ID:      $Id: evtloop.h,v 1.24 2006/08/27 09:41:26 VS Exp $
+// RCS-ID:      $Id: evtloop.h 40865 2006-08-27 09:42:42Z VS $
 // Copyright:   (c) 2001 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

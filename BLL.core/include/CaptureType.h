@@ -9,6 +9,7 @@
 #define _WT_CAPTURETYPE_H_
 
 #include "Globals.h"
+#include "BllCoreExport.h"
 #include "WtObject.h"
 #include "WtObjectDefs.h"
 
@@ -18,7 +19,7 @@ typedef std::map<uint32_t, wt::framework::WtoHandle> PacketIndexMap;
 namespace wt {
 namespace core {
 
-class CCaptureType: public wt::framework::CWtObject
+class  CORE_EXPORT  CCaptureType: public wt::framework::CWtObject
 {
 public:
 	CCaptureType();

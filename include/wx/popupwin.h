@@ -4,7 +4,7 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     06.01.01
-// RCS-ID:      $Id: popupwin.h,v 1.39 2006/05/16 22:56:59 VZ Exp $
+// RCS-ID:      $Id: popupwin.h 49642 2007-11-05 16:54:48Z SC $
 // Copyright:   (c) 2001 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // License:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -66,6 +66,8 @@ public:
     #include "wx/motif/popupwin.h"
 #elif defined(__WXMGL__)
     #include "wx/mgl/popupwin.h"
+#elif defined(__WXMAC__)
+    #include "wx/mac/popupwin.h"
 #else
     #error "wxPopupWindow is not supported under this platform."
 #endif
@@ -125,7 +127,7 @@ protected:
     // get alerted when child gets deleted from under us
     void OnDestroy(wxWindowDestroyEvent& event);
 
-#ifdef __WXMSW__
+#if defined( __WXMSW__ ) || defined( __WXMAC__ )
     // check if the mouse needs captured or released
     void OnIdle(wxIdleEvent& event);
 #endif

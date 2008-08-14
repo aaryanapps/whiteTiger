@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     29/01/98
-// RCS-ID:      $Id: filefn.h,v 1.158 2006/12/13 12:32:08 MW Exp $
+// RCS-ID:      $Id: filefn.h 49998 2007-11-16 17:19:37Z CE $
 // Copyright:   (c) 1998 Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -155,7 +155,7 @@ enum wxFileKind
     #define   wxRmDir      _wrmdir
     #define   wxStat       _wstat
     #define   wxStructStat struct _stat
-#elif defined(__WXMSW__) && !defined(__WXPALMOS__) && \
+#elif (defined(__WXMSW__) || defined(__OS2__)) && !defined(__WXPALMOS__) && \
       ( \
         defined(__VISUALC__) || \
         (defined(__MINGW32__) && !defined(__WINE__) && \
@@ -322,7 +322,16 @@ enum wxFileKind
         #ifdef wxHAS_HUGE_FILES
             #define   wxStat       wxPOSIX_IDENT(stati64)
         #else
-            #define   wxStat       wxPOSIX_IDENT(stat)
+            // Unfortunately Watcom is not consistent, so:-
+            #if defined(__OS2__) && defined(__WATCOMC__)
+                #define   wxStat       _stat
+            #else
+                #if defined (__BORLANDC__)
+                    #define   wxStat       _stat //wxPOSIX_IDENT(stat)
+                #else
+                    #define   wxStat       wxPOSIX_IDENT(stat)
+                #endif // !borland
+            #endif // !watcom
         #endif
     #endif // wxUSE_UNICODE/!wxUSE_UNICODE
 

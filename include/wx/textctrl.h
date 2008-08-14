@@ -4,7 +4,7 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     13.07.99
-// RCS-ID:      $Id: textctrl.h,v 1.90 2006/10/08 22:39:25 VZ Exp $
+// RCS-ID:      $Id: textctrl.h 41754 2006-10-08 22:40:14Z VZ $
 // Copyright:   (c) Vadim Zeitlin
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

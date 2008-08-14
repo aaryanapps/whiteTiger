@@ -5,7 +5,7 @@
 // Author:      Vadim Zeitlin, Vaclav Slavik
 // Modified by:
 // Created:     06.08.01
-// RCS-ID:      $Id: toplevel.h,v 1.84 2006/12/07 05:44:37 PC Exp $
+// RCS-ID:      $Id: toplevel.h 43843 2006-12-07 05:44:44Z PC $
 // Copyright:   (c) 2001 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 //                       Vaclav Slavik <vaclav@wxwidgets.org>
 // Licence:     wxWindows licence

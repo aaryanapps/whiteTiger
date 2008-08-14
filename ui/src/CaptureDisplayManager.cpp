@@ -2,9 +2,9 @@
 #include "CaptureDisplayManager.h"
 #include "CaptureDisplayGrid.h"
 #include "SelectAdapterDialog.h"
-#include "CentralCaptureManager.h"
-#include "WtObjectDb.h"
-#include "Globals.h"
+//#include "CentralCaptureManager.h"
+//#include "WtObjectDb.h"
+//#include "Globals.h"
 
 CCaptureDisplayManager::CCaptureDisplayManager(wxWindow *parent) :
     wxNotebook (parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBK_DEFAULT )

@@ -4,7 +4,7 @@
 // Author:      Guilhem Lavaux
 // Modified by: Mike Wetherell
 // Created:     11/07/98
-// RCS-ID:      $Id: zstream.h,v 1.34 2006/10/30 11:56:12 ABX Exp $
+// RCS-ID:      $Id: zstream.h 42713 2006-10-30 11:56:12Z ABX $
 // Copyright:   (c) Guilhem Lavaux
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
 // Author:      Vadim Zeitlin
 // Modified by: Ron Lee
 // Created:     01/02/97
-// RCS-ID:      $Id: window.h,v 1.234.4.1 2007/04/16 13:01:06 VZ Exp $
+// RCS-ID:      $Id: window.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) Vadim Zeitlin
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////
@@ -53,22 +53,22 @@
 // forward declarations
 // ----------------------------------------------------------------------------
 
-class WXDLLEXPORT wxCaret;
-class WXDLLEXPORT wxControl;
-class WXDLLEXPORT wxCursor;
-class WXDLLEXPORT wxDC;
-class WXDLLEXPORT wxDropTarget;
-class WXDLLEXPORT wxItemResource;
-class WXDLLEXPORT wxLayoutConstraints;
-class WXDLLEXPORT wxResourceTable;
-class WXDLLEXPORT wxSizer;
-class WXDLLEXPORT wxToolTip;
-class WXDLLEXPORT wxWindowBase;
-class WXDLLEXPORT wxWindow;
-class WXDLLEXPORT wxScrollHelper;
+class WXDLLIMPEXP_FWD_CORE wxCaret;
+class WXDLLIMPEXP_FWD_CORE wxControl;
+class WXDLLIMPEXP_FWD_CORE wxCursor;
+class WXDLLIMPEXP_FWD_CORE wxDC;
+class WXDLLIMPEXP_FWD_CORE wxDropTarget;
+class WXDLLIMPEXP_FWD_CORE wxItemResource;
+class WXDLLIMPEXP_FWD_CORE wxLayoutConstraints;
+class WXDLLIMPEXP_FWD_CORE wxResourceTable;
+class WXDLLIMPEXP_FWD_CORE wxSizer;
+class WXDLLIMPEXP_FWD_CORE wxToolTip;
+class WXDLLIMPEXP_FWD_CORE wxWindowBase;
+class WXDLLIMPEXP_FWD_CORE wxWindow;
+class WXDLLIMPEXP_FWD_CORE wxScrollHelper;
 
 #if wxUSE_ACCESSIBILITY
-class WXDLLEXPORT wxAccessible;
+class WXDLLIMPEXP_FWD_CORE wxAccessible;
 #endif
 
 // ----------------------------------------------------------------------------
@@ -1387,7 +1387,7 @@ private:
     static int ms_lastControlId;
 
     // the stack of windows which have captured the mouse
-    static struct WXDLLEXPORT wxWindowNext *ms_winCaptureNext;
+    static struct WXDLLIMPEXP_FWD_CORE wxWindowNext *ms_winCaptureNext;
     // the window that currently has mouse capture
     static wxWindow *ms_winCaptureCurrent;
     // indicates if execution is inside CaptureMouse/ReleaseMouse

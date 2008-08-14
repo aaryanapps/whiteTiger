@@ -4,7 +4,7 @@
 // Author:      Vaclav Slavik
 // Modified by:
 // Created:     04/04/2003
-// RCS-ID:      $Id: taskbarx11.h,v 1.6 2005/09/23 12:50:53 MR Exp $
+// RCS-ID:      $Id: taskbarx11.h 35650 2005-09-23 12:56:45Z MR $
 // Copyright:   (c) Vaclav Slavik, 2003
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////

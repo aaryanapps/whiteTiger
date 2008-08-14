@@ -2,7 +2,7 @@
 // Name:        htmlwin.h
 // Purpose:     wxHtmlWindow class for parsing & displaying HTML
 // Author:      Vaclav Slavik
-// RCS-ID:      $Id: htmlwin.h,v 1.83 2006/12/07 08:56:54 PC Exp $
+// RCS-ID:      $Id: htmlwin.h 43854 2006-12-07 08:56:57Z PC $
 // Copyright:   (c) 1999 Vaclav Slavik
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

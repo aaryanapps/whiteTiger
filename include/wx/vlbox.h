@@ -4,7 +4,7 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     31.05.03
-// RCS-ID:      $Id: vlbox.h,v 1.18 2006/10/09 16:38:38 VZ Exp $
+// RCS-ID:      $Id: vlbox.h 41810 2006-10-09 16:39:34Z VZ $
 // Copyright:   (c) 2003 Vadim Zeitlin <vadim@wxwidgets.org>
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

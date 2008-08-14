@@ -4,7 +4,7 @@
 // Author:      Hans Van Leemputten
 // Modified by: Benjamin I. Williams / Kirix Corporation
 // Created:     29/07/2002
-// RCS-ID:      $Id: tabmdi.h,v 1.16.2.1 2007/04/16 13:01:26 VZ Exp $
+// RCS-ID:      $Id: tabmdi.h 45498 2007-04-16 13:03:05Z VZ $
 // Copyright:   (c) Hans Van Leemputten
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

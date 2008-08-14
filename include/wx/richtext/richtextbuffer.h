@@ -4,7 +4,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     2005-09-30
-// RCS-ID:      $Id: richtextbuffer.h,v 1.46.4.2 2007/02/07 12:23:41 JS Exp $
+// RCS-ID:      $Id: richtextbuffer.h 44399 2007-02-07 12:24:17Z JS $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

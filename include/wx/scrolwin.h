@@ -4,7 +4,7 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     30.08.00
-// RCS-ID:      $Id: scrolwin.h,v 1.36 2006/09/13 10:01:19 RR Exp $
+// RCS-ID:      $Id: scrolwin.h 49563 2007-10-31 20:46:21Z VZ $
 // Copyright:   (c) 2000 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -14,8 +14,8 @@
 
 #include "wx/panel.h"
 
-class WXDLLEXPORT wxScrollHelperEvtHandler;
-class WXDLLEXPORT wxTimer;
+class WXDLLIMPEXP_FWD_CORE wxScrollHelperEvtHandler;
+class WXDLLIMPEXP_FWD_CORE wxTimer;
 
 // default scrolled window style: scroll in both directions
 #define wxScrolledWindowStyle (wxHSCROLL | wxVSCROLL)

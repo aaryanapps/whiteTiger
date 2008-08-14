@@ -4,7 +4,7 @@
 // Author:      Guilhem Lavaux, Vadim Zeitlin, Vaclav Slavik
 // Modified by:
 // Created:     20/07/98
-// RCS-ID:      $Id: dynlib.h,v 1.60 2005/11/20 21:23:53 VZ Exp $
+// RCS-ID:      $Id: dynlib.h 36214 2005-11-20 21:23:53Z VZ $
 // Copyright:   (c) 1998 Guilhem Lavaux
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

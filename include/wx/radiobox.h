@@ -4,7 +4,7 @@
 // Author:      Vadim Zeitlin
 // Modified by:
 // Created:     10.09.00
-// RCS-ID:      $Id: radiobox.h,v 1.41 2006/10/31 16:39:07 VZ Exp $
+// RCS-ID:      $Id: radiobox.h 42862 2006-10-31 16:39:07Z VZ $
 // Copyright:   (c) Vadim Zeitlin
 // Licence:     wxWindows licence
 ///////////////////////////////////////////////////////////////////////////////

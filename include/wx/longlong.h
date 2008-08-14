@@ -5,7 +5,7 @@
 // Author:      Jeffrey C. Ollie <jeff@ollie.clive.ia.us>, Vadim Zeitlin
 // Modified by:
 // Created:     10.02.99
-// RCS-ID:      $Id: longlong.h,v 1.74 2006/08/18 15:27:30 JS Exp $
+// RCS-ID:      $Id: longlong.h 40658 2006-08-18 15:27:30Z JS $
 // Copyright:   (c) 1998 Vadim Zeitlin <zeitlin@dptmaths.ens-cachan.fr>
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////

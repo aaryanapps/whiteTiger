@@ -5,7 +5,7 @@
 // Author:      Julian Smart
 // Modified by:
 // Created:     01/02/97
-// RCS-ID:      $Id: app.h,v 1.143 2006/11/17 09:29:35 RR Exp $
+// RCS-ID:      $Id: app.h 49804 2007-11-10 01:09:42Z VZ $
 // Copyright:   (c) Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -22,15 +22,15 @@
 #include "wx/init.h"        // we must declare wxEntry()
 #include "wx/intl.h"        // for wxLayoutDirection
 
-class WXDLLIMPEXP_BASE wxAppConsole;
-class WXDLLIMPEXP_BASE wxAppTraits;
-class WXDLLIMPEXP_BASE wxCmdLineParser;
-class WXDLLIMPEXP_BASE wxLog;
-class WXDLLIMPEXP_BASE wxMessageOutput;
+class WXDLLIMPEXP_FWD_BASE wxAppConsole;
+class WXDLLIMPEXP_FWD_BASE wxAppTraits;
+class WXDLLIMPEXP_FWD_BASE wxCmdLineParser;
+class WXDLLIMPEXP_FWD_BASE wxLog;
+class WXDLLIMPEXP_FWD_BASE wxMessageOutput;
 
 #if wxUSE_GUI
-    class WXDLLEXPORT wxEventLoop;
-    struct WXDLLIMPEXP_CORE wxVideoMode;
+    class WXDLLIMPEXP_FWD_BASE wxEventLoop;
+    struct WXDLLIMPEXP_FWD_CORE wxVideoMode;
 #endif
 
 // ----------------------------------------------------------------------------
