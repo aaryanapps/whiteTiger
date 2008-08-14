@@ -3,7 +3,6 @@
 #include "NetworkInterfaceAdapter.h"
 #include "CaptureLibraryInterface.h"
 #include "CoreConsts.h"
-#include "PacketDb.h"
 #include "WtLogger.h"
 #include "FastDelegate.h"
 #include "WtObject.h"
@@ -18,7 +17,7 @@ using namespace wt::framework;
 
 uint32_t CNetworkInterfaceAdapter::m_classId = REGISTER_CREATOR(CNetworkInterfaceAdapter_Class_Id, CNetworkInterfaceAdapter::Create);
 
-DEFINE_STATIC_LOGGER("core.netintf.NetworkInterfaceAdapter", devLogger)
+DEFINE_STATIC_LOGGER("core.NetworkInterfaceAdapter", devLogger)
 
 CNetworkInterfaceAdapter::CNetworkInterfaceAdapter(std::string& adpName) :
 													_strAdapName(adpName),

@@ -1,18 +1,18 @@
 #include "StdAfx.h"
 
 #include "EthernetPacket.h"
-#include "PacketHeaderDb.h"
 #include "net/HeaderTypes.h"
 #include "CommonPacketUtils.h"
 #include "PacketHeader.h"
-#include "PacketDb.h"
-#include "RelationManager.h"
+#include "WtDataStore.h"
 #include "CoreConsts.h"
 #include "WtObjectDb.h"
 #include "RelationInfo.h"
 #include "WtLogger.h"
 #include "WtObject.h"
 #include "WtObjectRegistrar.h"
+#include "PacketHeaderFactory.h"
+#include "CaptureLibraryDefs.h"
 
 using namespace wt::core;
 using namespace wt::framework;
@@ -39,11 +39,9 @@ CWtObject* CEthernetPacket::Create()
 	return new CEthernetPacket();
 }
 
-bool CEthernetPacket::Init(uint32_t hnd,
-						   const pcapPktHdr *pkt,
-						   const uint8_t* pktData)
+bool CEthernetPacket::Init(wt::core::capturelibrary::CapturedPkt* pkt)
 {
-	CPacket::Init(hnd, pkt, pktData);
+	CPacket::Init(pkt);
 
 	CreateHeaders();
 
@@ -75,8 +73,8 @@ void CEthernetPacket::GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
 
 bool CEthernetPacket::CreateHeaders()
 {
-	wt::framework::CRelationManager *rm = wt::framework::CRelationManager::Instance();
-	CPacketHeaderDb& phd = CPacketHeaderDb::Instance();
+	wt::framework::CWtDataStore &ds = wt::framework::CWtDataStore::Instance();
+	CPacketHeaderFactory &phf = CPacketHeaderFactory::Instance();
 
 	uint32_t hdrOffset = 0 ;
 	uint32_t hdr = WT_ETH ;
@@ -88,9 +86,9 @@ bool CEthernetPacket::CreateHeaders()
 
 	for (; hdr != WT_UNKWN; )
 	{
-		curHnd = phd.AddNewHeader(GetWtoHandle(),hdr, hdrOffset, &(m_pktData.front()));
+		curHnd = ds.AddObject(phf.GetClassIdForHdrType(hdr), (CWtObject*)this);
 
-		if (PACKETHDRHND_NULL == curHnd)
+		if (WTOBJECT_HND_NULL == curHnd)
 		{
 			/*Unknown header or insufficient memory.
 			 */
@@ -99,19 +97,19 @@ bool CEthernetPacket::CreateHeaders()
 			continue;
 		}
 
-		WtoHandle wHnd = phd.GetHeader(curHnd)->GetWtoHandle();
+		CPacketHeader *pktHdr = dynamic_cast<CPacketHeader *>(ds.GetObjectFromHnd(curHnd));
+
+		pktHdr->Init(hdrOffset, &(m_pktData.front()));
 
 		if (isFirstHdr)
 		{
-			rm->AddRelation(GetWtoHandle(), wHnd, RelationType(BottomMostHeader()));
+			ds.AddRelationship(GetWtoHandle(), curHnd, RelationType(BottomMostHeader()));
 		}
 		else
 		{
-			rm->AddRelation(GetWtoHandle(), wHnd, RelationType(StackedOnHeader()));
+			ds.AddRelationship(GetWtoHandle(), curHnd, RelationType(StackedOnHeader()));
 			dbg << " : " ;
 		}
-
-		CPacketHeader *pktHdr = phd.GetHeader(curHnd);
 
 		OnNewPacketHeader(pktHdr);
 
@@ -122,11 +120,10 @@ bool CEthernetPacket::CreateHeaders()
 		dbg << pktHdr->GetHeaderAbbrName();
 	}
 
-	if (PACKETHDRHND_NULL != curHnd)
+	if (WTOBJECT_HND_NULL != curHnd)
 	{
-		WtoHandle wHnd = phd.GetHeader(curHnd)->GetWtoHandle();
 		//Add TopMostHeader Relation
-		rm->AddRelation(GetWtoHandle(), wHnd, RelationType(TopMostHeader()));
+		ds.AddRelationship(GetWtoHandle(), curHnd, RelationType(TopMostHeader()));
 	}
 
 	LOG_INFO( devLogger(), dbg.str()) ;

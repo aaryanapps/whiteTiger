@@ -87,15 +87,24 @@ uint32_t CCommonPacketUtils::GetHeaderLength(uint32_t hdr)
 	default:
 		return WT_UNKWN_HDRLEN;
 	}
-	
+
 }
 int64_t CCommonPacketUtils::ConvertTimeValToU64(timeval& tv)
 {
 	int64_t sec, usec;
 	sec  = (int64_t)tv.tv_sec;
 	usec = (int64_t)tv.tv_usec;
-	return ((WT_USEC * sec) + usec);	
+	return ((WT_USEC * sec) + usec);
 }
+
+int64_t CCommonPacketUtils::ConvertTimeValToU64(uint32_t _sec, uint32_t _usec)
+{
+	int64_t sec, usec;
+	sec  = (int64_t)_sec;
+	usec = (int64_t)_usec;
+	return ((WT_USEC * sec) + usec);
+}
+
 
 std::string CCommonPacketUtils::ConvertMicroSecToSecString(int64_t usec)
 {
@@ -130,14 +139,14 @@ std::string CCommonPacketUtils::GetIpFromU32(uint32_t ip)
 	std::stringstream s;
 //	s << static_cast<uint32_t> (ip&0xff) << ".";
 //	s << static_cast<uint32_t> ((ip>>8)&0xff)  << "." ;
-//	s << static_cast<uint32_t> ((ip>>16)&0xff) << "." ;	
+//	s << static_cast<uint32_t> ((ip>>16)&0xff) << "." ;
 //	s << static_cast<uint32_t> ((ip>>24)&0xff) ;
 	s << static_cast<uint32_t> ((ip>>24)&0xff) << "." ;
 	s << static_cast<uint32_t> ((ip>>16)&0xff) << "." ;
 	s << static_cast<uint32_t> ((ip>>8)&0xff)  << "." ;
 	s << static_cast<uint32_t> (ip&0xff) ;
-	
-	return s.str();	
+
+	return s.str();
 }
 
 std::string CCommonPacketUtils::GetHexFromU8(const uint8_t *data, uint32_t len)
@@ -151,7 +160,7 @@ std::string CCommonPacketUtils::GetHexFromU8(const uint8_t *data, uint32_t len)
 		ss << std::setw(2) << std::setfill('0') << (int) *_data ;
 		++_data;
 	}
-	
+
 	return ss.str();
 }
 
@@ -209,13 +218,13 @@ uint16_t CCommonPacketUtils::GetU16(uint8_t* data)
 std::string CCommonPacketUtils::GetIpFromU32(uint32_t ip)
 {
 	std::stringstream s;
-	
+
 	s << static_cast<uint32_t> ((ip>>24)&0xff) << "." ;
 	s << static_cast<uint32_t> ((ip>>16)&0xff) << "." ;
 	s << static_cast<uint32_t> ((ip>>8)&0xff)  << "." ;
 	s << static_cast<uint32_t> (ip&0xff) ;
 
-	return s.str();	
+	return s.str();
 }
 
 #else

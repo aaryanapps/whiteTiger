@@ -6,11 +6,12 @@
 #include "CoreConsts.h"
 #include "WtObject.h"
 #include "WtObjectRegistrar.h"
+#include "PacketHeaderFactory.h"
 
 using namespace wt::core;
 
-//uint32_t CIpv6Header::m_classId = CIpv6Header_Class_Id ;
 uint32_t CIpv6Header::m_classId = REGISTER_CREATOR(CIpv6Header_Class_Id, CIpv6Header::Create);
+uint32_t CIpv6Header::m_hdrType = REGISTER_HDRTYPE(WT_IPV6,CIpv6Header_Class_Id) ;
 
 CIpv6Header::CIpv6Header()
 {
@@ -27,7 +28,7 @@ wt::framework::CWtObject* CIpv6Header::Create()
 	return new CIpv6Header();
 }
 
-bool CIpv6Header::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
+bool CIpv6Header::Init(uint32_t hdrOffset, const uint8_t* pktData)
 {
 	return true;
 }

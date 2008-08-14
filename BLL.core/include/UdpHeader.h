@@ -13,7 +13,6 @@ class CUdpHeader : public CPacketHeader {
 
 public:
 	CUdpHeader();
-	CUdpHeader(uint32_t hnd,  uint32_t len, const uint8_t* hdrData);
     virtual ~CUdpHeader();
 
     std::string GetHeaderAbbrName()
@@ -28,7 +27,7 @@ public:
 	static wt::framework::CWtObject* Create();
 
     uint32_t GetHeaderLength() {return m_hdrLen;}
-    virtual bool Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData);
+    virtual bool Init(uint32_t hdrOffset, const uint8_t* pktData);
 
 	virtual uint32_t HeaderToCreateNext();
 
@@ -48,6 +47,9 @@ public:
 
 protected:
 	static uint32_t m_classId;
+
+	static uint32_t m_hdrType;
+
 	virtual bool ValidateHeader();
 	virtual bool ParseHeader();
 
@@ -55,7 +57,6 @@ private:
 
 	uint32_t m_hdrLen;
 	std::string m_hdrTypeInStr;
-	uint32_t m_hdrType;
 
 	udp_hdr		*m_hdr;
 	std::string m_infoStr;

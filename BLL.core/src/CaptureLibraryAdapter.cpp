@@ -11,7 +11,6 @@
 #include "CaptureLibraryInterface.h"
 #include "CaptureLibraryDefs.h"
 
-#include "PacketDb.h"
 #include "WtLogger.h"
 
 #include "pcap.h"

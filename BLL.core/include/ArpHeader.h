@@ -20,7 +20,7 @@ public:
 
     std::string GetHeaderAbbrName() ;
     uint32_t GetHeaderLength() {return m_hdrLen;}
-    virtual bool Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData);
+    virtual bool Init(uint32_t hdrOffset, const uint8_t* pktData);
 
 	virtual uint32_t HeaderToCreateNext();
 
@@ -43,6 +43,8 @@ public:
 
 protected:
 	static uint32_t m_classId;
+
+	static uint32_t m_hdrType;
 
 	virtual bool ValidateHeader();
 	virtual bool ParseHeader();

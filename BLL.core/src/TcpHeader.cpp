@@ -3,18 +3,17 @@
 #include "TcpHeader.h"
 #include "Globals.h"
 #include "net/HeaderTypes.h"
-#include "PacketHeaderDb.h"
-#include "PcapDefs.h"
 #include "CommonPacketUtils.h"
 #include "WtLogger.h"
 #include "CoreConsts.h"
 #include "WtObject.h"
 #include "WtObjectRegistrar.h"
+#include "PacketHeaderFactory.h"
 
 using namespace wt::core;
 
-//uint32_t CTcpHeader::m_classId = CTcpHeader_Class_Id ;
 uint32_t CTcpHeader::m_classId = REGISTER_CREATOR(CTcpHeader_Class_Id, CTcpHeader::Create);
+uint32_t CTcpHeader::m_hdrType = REGISTER_HDRTYPE(WT_TCP,CTcpHeader_Class_Id) ;
 
 //DEFINE_STATIC_LOGGER("core.TcpHeader", devLogger);
 
@@ -33,9 +32,8 @@ CTcpHeader::~CTcpHeader()
 
 }
 
-bool CTcpHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
+bool CTcpHeader::Init(uint32_t hdrOffset, const uint8_t* pktData)
 {
-	m_hdrType = WT_TCP_HDR;
 	m_hdrTypeInStr = WT_TCP_STR;
 	m_hdrLen = WT_TCP_HDRLEN ;
 

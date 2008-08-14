@@ -13,7 +13,7 @@ class CEthernetHeader : public CPacketHeader {
 
 public:
 	CEthernetHeader();
-	CEthernetHeader(uint32_t hnd,  uint32_t hdrOffset, const uint8_t* pktData);
+	CEthernetHeader(uint32_t hdrOffset, const uint8_t* pktData);
     virtual ~CEthernetHeader();
 
     std::string GetHeaderAbbrName()
@@ -35,7 +35,7 @@ public:
 
     virtual uint32_t HeaderToCreateNext();
 
-    bool Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData);
+    bool Init(uint32_t hdrOffset, const uint8_t* pktData);
 
     virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
     {
@@ -52,16 +52,16 @@ public:
 protected:
 	static uint32_t m_classId;
 
+	static uint32_t m_hdrType;
+
 	virtual bool ValidateHeader();
 	virtual bool ParseHeader();
 
 private:
 
-	uint32_t m_hdrHnd;
 	uint32_t m_hdrLen;
 	std::string m_hdrTypeInStr;
 	const uint8_t *m_hdrData;
-	uint16_t m_hdrType;
 
 	ether_hdr *m_hdr;
 	wt::framework::types::CMacAddress m_srcMac;

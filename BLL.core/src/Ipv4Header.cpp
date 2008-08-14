@@ -3,18 +3,17 @@
 #include "Ipv4Header.h"
 #include "Globals.h"
 #include "net/HeaderTypes.h"
-#include "PacketHeaderDb.h"
-#include "PcapDefs.h"
 #include "CommonPacketUtils.h"
 #include "WtLogger.h"
 #include "CoreConsts.h"
 #include "WtObject.h"
 #include "WtObjectRegistrar.h"
+#include "PacketHeaderFactory.h"
 
 using namespace wt::core;
 
-//uint32_t CIpv4Header::m_classId = CIpv4Header_Class_Id ;
 uint32_t CIpv4Header::m_classId = REGISTER_CREATOR(CIpv4Header_Class_Id, CIpv4Header::Create);
+uint32_t CIpv4Header::m_hdrType = REGISTER_HDRTYPE(WT_IP,CIpv4Header_Class_Id) ;
 
 //DEFINE_STATIC_LOGGER("bll.Ipv4Header", devLogger);
 
@@ -35,11 +34,9 @@ wt::framework::CWtObject* CIpv4Header::Create()
 	return new CIpv4Header();
 }
 
-bool CIpv4Header::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
+bool CIpv4Header::Init(uint32_t hdrOffset, const uint8_t* pktData)
 {
-	m_hdrType = WT_IP_HDR;
 	m_hdrTypeInStr = WT_IP_STR;
-	m_hdrHnd = hnd;
 
 	if (!pktData)
 	{

@@ -98,9 +98,36 @@ bool CWtDataStore::AddRelationship(CWtObject* src,
 	return true;
 }
 
+
+/*Add new relationship between two objects*/
+bool CWtDataStore::AddRelationship(WtoHandle src,
+						WtoHandle dst,
+						RelationType relId)
+{
+	CWtObject* pSrc = GetObjectFromHnd(src);
+	CWtObject* pDst = GetObjectFromHnd(dst);
+
+	if (NULL == pSrc || NULL == pDst)
+	{
+		return false;
+	}
+
+	return AddRelationship(pSrc, pDst, relId);
+
+}
+
+
 /*Remove relationship between two objects*/
 bool CWtDataStore::RemoveRelationship(CWtObject* src,
 						   CWtObject* dst,
+						   RelationType relId)
+{
+	return false;
+}
+
+/*Remove relationship between two objects*/
+bool CWtDataStore::RemoveRelationship(WtoHandle src,
+						   WtoHandle dst,
 						   RelationType relId)
 {
 	return false;
@@ -164,7 +191,18 @@ void CWtDataStore::GetObjects(CWtObject* src, WtoVec& wtv,
 }
 
 
+CWtObject* CWtDataStore::GetObjectFromHnd(WtoHandle wto)
+{
+	WtObjectsMap::const_iterator wit = _wtObjs.find(wto);
 
+	if (wit != _wtObjs.end())
+	{
+		return wit->second;
+	}
+
+	return NULL;
+
+}
 
 
 
@@ -202,15 +240,3 @@ bool CWtDataStore::AddWtObjectToDb(WtoHandle wtoHnd, CWtObject* wto)
 	return true;
 }
 
-CWtObject* CWtDataStore::GetObjectFromHnd(WtoHandle wto)
-{
-	WtObjectsMap::const_iterator wit = _wtObjs.find(wto);
-
-	if (wit != _wtObjs.end())
-	{
-		return wit->second;
-	}
-
-	return NULL;
-
-}

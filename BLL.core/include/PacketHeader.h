@@ -11,7 +11,7 @@ class CPacketHeader : public wt::framework::CWtObject {
 
 public:
 	CPacketHeader();
-    CPacketHeader(uint32_t hnd,  uint32_t len, const uint8_t* hdrData);
+    CPacketHeader(uint32_t len, const uint8_t* hdrData);
     virtual ~CPacketHeader();
 
     /*Returns the Class Id*/
@@ -20,8 +20,10 @@ public:
 	static wt::framework::CWtObject* Create();
 
 	virtual std::string GetHeaderAbbrName() = 0;
-    virtual uint32_t GetHeaderLength() = 0;
-    virtual bool Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData);
+
+	virtual uint32_t GetHeaderLength() = 0;
+
+    virtual bool Init(uint32_t hdrOffset, const uint8_t* pktData);
 
 	virtual uint32_t HeaderToCreateNext() = 0;
 
@@ -45,7 +47,6 @@ protected:
 	virtual bool ParseHeader() = 0;
 
 private:
-	uint32_t 	m_hdrHnd;
 
 	uint32_t m_hdrLen;
 	std::string m_hdrTypeInStr;

@@ -3,18 +3,16 @@
 #include "UdpHeader.h"
 #include "Globals.h"
 #include "net/HeaderTypes.h"
-#include "PacketHeaderDb.h"
-#include "PcapDefs.h"
 #include "CommonPacketUtils.h"
 #include "CoreConsts.h"
 #include "WtObject.h"
 #include "WtObjectRegistrar.h"
+#include "PacketHeaderFactory.h"
 
 using namespace wt::core;
 
-//uint32_t CUdpHeader::m_classId = CUdpHeader_Class_Id ;
 uint32_t CUdpHeader::m_classId = REGISTER_CREATOR(CUdpHeader_Class_Id, CUdpHeader::Create);
-
+uint32_t CUdpHeader::m_hdrType = REGISTER_HDRTYPE(WT_TCP,CUdpHeader_Class_Id) ;
 
 CUdpHeader::CUdpHeader()
 {
@@ -31,9 +29,8 @@ CUdpHeader::~CUdpHeader()
 
 }
 
-bool CUdpHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
+bool CUdpHeader::Init(uint32_t hdrOffset, const uint8_t* pktData)
 {
-	m_hdrType = WT_UDP_HDR;
 	m_hdrTypeInStr = WT_UDP_STR;
 	m_hdrLen = WT_UDP_HDRLEN ;
 

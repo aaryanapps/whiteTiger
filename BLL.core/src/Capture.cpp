@@ -1,7 +1,6 @@
 #include "StdAfx.h"
 
 #include "Capture.h"
-#include "PacketDb.h"
 #include "WtLogger.h"
 #include "CoreConsts.h"
 #include "WtObject.h"

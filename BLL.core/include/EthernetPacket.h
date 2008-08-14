@@ -2,7 +2,7 @@
 #define _WT_ETHERNETPACKET_H__
 
 #include "Packet.h"
-#include "PcapDefs.h"
+#include "CaptureLibraryDefs.h"
 
 
 namespace wt {
@@ -15,7 +15,7 @@ class CEthernetPacket : public CPacket {
 public:
 	CEthernetPacket();
 	virtual ~CEthernetPacket();
-	virtual bool Init(uint32_t hnd, const pcapPktHdr *pkt, const uint8_t* pktData);
+	virtual bool Init(wt::core::capturelibrary::CapturedPkt* pkt);
 
     virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec);
 

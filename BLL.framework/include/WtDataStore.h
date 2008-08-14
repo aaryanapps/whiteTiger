@@ -40,6 +40,16 @@ public:
 							   CWtObject* dst,
 							   RelationType relId);
 
+	/*Add new relationship between two objects*/
+	bool	AddRelationship(WtoHandle src,
+							WtoHandle dst,
+							RelationType relId);
+
+	/*Remove relationship between two objects*/
+	bool	RemoveRelationship(WtoHandle src,
+							   WtoHandle dst,
+							   RelationType relId);
+
 
 	/*Get the parent for given child*/
 	CWtObject* 	GetParent(CWtObject* child);
@@ -56,6 +66,8 @@ public:
 	/*Get all objects of type classId under the given obj*/
 	void GetObjects(CWtObject* src, WtoVec& wtv, uint32_t wtoClassId, RelationType rel);
 
+	/*Get the object from hnd*/
+	CWtObject* GetObjectFromHnd(WtoHandle wto);
 
 private:
 	CWtDataStore();
@@ -66,9 +78,6 @@ private:
 
 	/*Add the WtoHandle to internal Db*/
 	bool AddWtObjectToDb(WtoHandle wtoHnd, CWtObject* wto);
-
-	/*Get the object from hnd*/
-	CWtObject* GetObjectFromHnd(WtoHandle wto);
 
 	WtObjectsMap _wtObjs;
 

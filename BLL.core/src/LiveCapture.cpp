@@ -2,7 +2,6 @@
 
 #include "LiveCapture.h"
 #include "Packet.h"
-#include "PacketDb.h"
 #include "Globals.h"
 #include "CoreConsts.h"
 #include "WtLogger.h"

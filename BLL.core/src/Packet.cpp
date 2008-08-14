@@ -2,9 +2,6 @@
 
 #include "Packet.h"
 #include "Globals.h"
-#include "PcapDefs.h"
-#include "PacketHeaderDb.h"
-#include "PacketDb.h"
 #include <sstream>
 #include "net/HeaderTypes.h"
 #include "WtLogger.h"
@@ -15,6 +12,7 @@
 
 #include "Capture.h"
 #include "CaptureType.h"
+#include "CaptureLibraryDefs.h"
 #include "CommonPacketUtils.h"
 #include "CoreConsts.h"
 #include "WtObject.h"
@@ -44,43 +42,22 @@ CPacket::~CPacket()
 
 }
 
-CPacket::CPacket(uint32_t hnd, const pcapPktHdr *pkt,
-							  const char* pktData) :
-							m_pktHnd(hnd),
-							m_pktLen(pkt->len), m_capLen(pkt->len),
-							m_tm(pkt->ts)
+CPacket::CPacket(wt::core::capturelibrary::CapturedPkt* pkt)
 {
-	m_pktData.reserve(pkt->len);
-
-	/* Store the binary Data*/
-	for (uint32_t i = 0; i < pkt->len ; ++i)
-	{
-		m_pktData.push_back(i);
-	}
-
+	Init(pkt);
 }
 
-bool CPacket::Init(uint32_t hnd,
-				   const pcapPktHdr *pkt,
-	  			   const uint8_t* pktData)
+bool CPacket::Init(wt::core::capturelibrary::CapturedPkt* pkt)
 {
-	m_pktHnd = hnd;
-	m_capLen = pkt->caplen;
-	m_pktLen = pkt->len;
-	m_tm	 = pkt->ts;
+	m_capLen = pkt->_capLen;
+	m_pktLen = pkt->_len;
 
-	m_pktData.reserve(pkt->len);
-
-	uint8_t *data = const_cast<uint8_t*> (pktData);
-	/* Store the binary Data*/
-	for (uint32_t i = 0; i < pkt->len ; ++i)
-	{
-		m_pktData.push_back(*data);
-		++data;
-	}
-
-	Poco::Timestamp tmp(CCommonPacketUtils::ConvertTimeValToU64(m_tm));
+	Poco::Timestamp tmp(CCommonPacketUtils::ConvertTimeValToU64(pkt->_ts._sec, pkt->_ts._usec));
 	m_ts = tmp ;
+
+	m_pktData.reserve(pkt->_capLen);
+
+	m_pktData.assign(pkt->_pktData.begin(), pkt->_pktData.begin());
 
 	/*Covert TimeStamp to String*/
 	CreateReadableTimeStamp();
@@ -88,10 +65,6 @@ bool CPacket::Init(uint32_t hnd,
 	//TODO: Initialize all the str vars
 	m_pktInfoStr = "Info Message from CPacket!!";
 
-	/* TODO: Solve the error comming from here.
-	CPacketDb& pd = CPacketDb::Instance();
-	pd.RegisterNewPacketHeaderNotification(m_pktHnd, m_newPktHdr);
-	*/
 	return true;
 }
 
@@ -151,8 +124,11 @@ void CPacket::CreateReadableTimeStamp()
 */
     }
 
+
     /* convert the timestamp to readable format */
-    local_tv_sec = m_tm.tv_sec;
+/*
+    local_tv_sec = m_ts.epochTime();
+    //uint64_t local_tv_usec = m_ts.epochMicroseconds();
     ltime=localtime(&local_tv_sec);
     strftime( timestr, sizeof timestr, "%H:%M:%S", ltime);
 
@@ -167,7 +143,7 @@ void CPacket::CreateReadableTimeStamp()
     m_pktTimeStamp += "." ;
     m_pktTimeStamp += s.str();
     m_pktTimeStamp += " " ;
-
+*/
     /* Bug in Poco Lib: %H or %h does not return the hour
     m_pktTimeStamp = Poco::DateTimeFormatter::format(m_ts,std::string("%h:%M:%S.%i"));
     */

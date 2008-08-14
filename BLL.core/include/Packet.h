@@ -2,9 +2,9 @@
 #define _WT_PACKET_H__
 
 #include "Globals.h"
-#include "PcapDefs.h"
 #include "FastDelegate.h"
 #include "WtObject.h"
+#include "CaptureLibraryDefs.h"
 #include "Poco/Timestamp.h"
 
 namespace wt {
@@ -17,7 +17,7 @@ class CPacket : public wt::framework::CWtObject {
 
 public:
     CPacket();
-    CPacket(uint32_t hnd, const pcapPktHdr *pkt, const char* pktData);
+    CPacket(wt::core::capturelibrary::CapturedPkt* pkt);
     virtual ~CPacket();
 
     virtual uint32_t GetClassId() {return m_classId; }
@@ -29,8 +29,6 @@ public:
     uint32_t GetPacketLength() {return m_pktLen;}
 
     uint32_t GetCapturedDataLength() {return m_capLen;}
-
-    uint32_t GetPacketHandle() { return m_pktHnd; }
 
     std::string GetTimeStamp(){return m_pktTimeStamp;}
 
@@ -50,7 +48,7 @@ public:
 
 	void SetStringValues(uint16_t colId, std::string& val);
 
-    virtual bool Init(uint32_t hnd, const pcapPktHdr *pkt, const uint8_t* pktData);
+    virtual bool Init(wt::core::capturelibrary::CapturedPkt* pkt);
 
     virtual void SetPacketIndex(uint32_t idx) {m_pktIndex = idx;}
 
@@ -67,7 +65,6 @@ protected:
 	//virtual void SetStringValues(uint16_t colId, std::string& val);
 private:
 
-	uint32_t m_pktHnd;
 	uint32_t m_pktLen;
 	uint32_t m_capLen;
 	uint32_t m_pktIndex;
@@ -80,12 +77,10 @@ private:
 	std::string m_protoStr;
 	std::string m_pktInfoStr;
 
-	timeval m_tm;
 	Poco::Timestamp m_ts;
 	uint32_t m_protocol;
 
 	//Delegates
-	NewPktHeaderDelegate m_newPktHdr;
 
 	void CreateReadableTimeStamp();
 	virtual void CreatePacketInfoText() = 0;

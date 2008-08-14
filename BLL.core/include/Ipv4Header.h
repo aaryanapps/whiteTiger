@@ -5,7 +5,6 @@
 #include "IpHeader.h"
 #include "Poco/Net/IPAddress.h"
 #include "net/ip.h"
-#include "PcapDefs.h"
 
 namespace wt {
 namespace core {
@@ -14,7 +13,7 @@ class CIpv4Header : public CIpHeader {
 
 public:
 	CIpv4Header();
-	CIpv4Header(uint32_t hnd,  uint32_t len, const uint8_t* hdrData);
+	CIpv4Header(uint32_t len, const uint8_t* hdrData);
     virtual ~CIpv4Header();
 
     std::string GetHeaderAbbrName()
@@ -38,7 +37,7 @@ public:
 
     virtual uint32_t HeaderToCreateNext();
 
-    bool Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData);
+    bool Init(uint32_t hdrOffset, const uint8_t* pktData);
 
     virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
     {
@@ -50,15 +49,16 @@ public:
 protected:
 	static uint32_t m_classId;
 
+	static uint32_t m_hdrType;
+
 	virtual bool ValidateHeader();
 	virtual bool ParseHeader();
 
 private:
-	uint32_t 	m_hdrHnd;
+
 	uint32_t 	m_hdrLen;
 	std::string m_hdrTypeInStr;
 	uint8_t*	m_hdrData;
-	uint16_t 	m_hdrType;
 
 	ip_hdr*		m_hdr;
 	Poco::Net::IPAddress m_srcAddr;

@@ -8,16 +8,17 @@
 #include "Globals.h"
 #include "CoreConsts.h"
 #include "EthernetHeader.h"
-#include "PacketHeaderDb.h"
 #include "net/HeaderTypes.h"
 #include "CommonPacketUtils.h"
 #include "WtObject.h"
 #include "WtObjectRegistrar.h"
+#include "PacketHeaderFactory.h"
 
 using namespace wt::core;
 
 //uint32_t CEthernetHeader::m_classId = CEthernetHeader_Class_Id ;
 uint32_t CEthernetHeader::m_classId = REGISTER_CREATOR(CEthernetHeader_Class_Id, CEthernetHeader::Create);
+uint32_t CEthernetHeader::m_hdrType = REGISTER_HDRTYPE(WT_ETH,CEthernetHeader_Class_Id) ;
 
 
 CEthernetHeader::CEthernetHeader() :
@@ -31,9 +32,9 @@ CEthernetHeader::~CEthernetHeader()
 
 }
 
-CEthernetHeader::CEthernetHeader(uint32_t hnd,  uint32_t hdrOffset, const uint8_t* pktData)
+CEthernetHeader::CEthernetHeader(uint32_t hdrOffset, const uint8_t* pktData)
 {
-	Init(hnd, hdrOffset, pktData);
+	Init(hdrOffset, pktData);
 }
 
 wt::framework::CWtObject* CEthernetHeader::Create()
@@ -41,11 +42,9 @@ wt::framework::CWtObject* CEthernetHeader::Create()
 	return new CEthernetHeader();
 }
 
-bool CEthernetHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
+bool CEthernetHeader::Init(uint32_t hdrOffset, const uint8_t* pktData)
 {
-	m_hdrType = WT_ETH;
 	m_hdrTypeInStr = WT_ETH_STR;
-	m_hdrHnd = hnd;
 	m_hdrLen = WT_ETH_HDRLEN ;
 
 	if (!pktData)

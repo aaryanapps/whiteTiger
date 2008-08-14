@@ -20,7 +20,7 @@ CPacketHeader::~CPacketHeader()
 
 }
 
-bool CPacketHeader::Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData)
+bool CPacketHeader::Init(uint32_t hdrOffset, const uint8_t* pktData)
 {
 	return false;
 }
