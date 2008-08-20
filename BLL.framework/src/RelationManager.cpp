@@ -37,24 +37,35 @@ CRelationManager& CRelationManager::Instance()
 
 }
 
-bool CRelationManager::AddRelation(CWtObject* pObj,
-								   CWtObject* cObj,
-								   RelationType relId)
+bool CRelationManager::AddRelation(CWtObject* sObj,
+								   CWtObject* dObj,
+								   RelationType relId,
+								   WtoType fromType,
+								   WtoType toType)
 {
-	if (!pObj || !cObj)
+	if (!sObj || !dObj)
 	{
 		return false;
 	}
 
-    uint32_t fromType = pObj->GetClassId();
-    uint32_t toType = cObj->GetClassId();
     uint32_t rel = relId.m_relId.AsInt();
 
-    uint32_t pObjHnd = pObj->GetWtoHandle();
-    uint32_t cObjHnd = cObj->GetWtoHandle();
+
+	if (fromType == WTOBJECT_CLASSID_NULL)
+	{
+		fromType = sObj->GetClassId();
+	}
+
+	if (toType == WTOBJECT_CLASSID_NULL)
+	{
+		toType = dObj->GetClassId();
+	}
+
+    uint32_t sObjHnd = sObj->GetWtoHandle();
+    uint32_t dObjHnd = dObj->GetWtoHandle();
 
     Statement stmt(*_mdbSession);
-    stmt << "Insert into ExistingRelations values(:from,:to,:fromType,:totype,:rel)" , use(pObjHnd) , use(cObjHnd), use(fromType), use(toType), use(rel) ;
+    stmt << "Insert into ExistingRelations values(:from,:to,:fromType,:totype,:rel)" , use(sObjHnd) , use(dObjHnd), use(fromType), use(toType), use(rel) ;
     stmt.execute();
 
     return true;

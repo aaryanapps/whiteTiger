@@ -27,6 +27,9 @@ public:
 					  CWtObject* dst,
 					  RelationType relId = ParentChild());
 
+	/*Create Object with the specified ID.*/
+	WtoHandle	CreateObject(uint32_t dstClassId);
+
 	/*Remove Object from the DataStore*/
 	bool 	RemoveObject(CWtObject* obj);
 

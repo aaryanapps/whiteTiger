@@ -26,7 +26,7 @@ DEFINE_STATIC_LOGGER("core.EthernetPacket", devLogger)
 
 CEthernetPacket::CEthernetPacket()
 {
-
+	AddAsDerivedClassId(CEthernetPacket_Class_Id);
 }
 
 CEthernetPacket::~CEthernetPacket()
@@ -61,14 +61,6 @@ bool CEthernetPacket::ValidatePacket()
 bool CEthernetPacket::ParsePacket()
 {
 	return true;
-}
-
-void CEthernetPacket::GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
-{
-	CPacket::GetInheritedTypes(typeIdVec);
-	typeIdVec.push_back(CEthernetPacket::m_classId);
-
-	return;
 }
 
 bool CEthernetPacket::CreateHeaders()

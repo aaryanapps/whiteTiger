@@ -22,6 +22,9 @@ public:
 	/*Get the List of Adapters*/
 	void 		GetAdaptersList(adapterVec& adVec) ;
 
+	/*Opens the Capture Adapter to capture packets on*/
+	bool 			OpenCaptureLibraryAdapter(std::string& adpName);
+
 	/*Start Capture on the Adapter*/
 	bool 		StartCapture(std::string& adpName);
 
@@ -51,8 +54,6 @@ private:
 	~CCaptureLibraryInterface();
 
 	bool 			IsAdapterOpen(std::string& adpName);
-
-	bool 			OpenCaptureLibraryAdapter(std::string& adpName);
 
 	CCaptureLibraryAdapter*	GetCaptureLibraryAdp(std::string& adpName);
 

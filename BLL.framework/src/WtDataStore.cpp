@@ -48,6 +48,20 @@ WtoHandle CWtDataStore::AddObject(uint32_t dstClassId,
 		return WTOBJECT_HND_NULL;
 	}
 
+	WtoHandle wHnd = CreateObject(dstClassId);
+
+	if (WTOBJECT_HND_NULL == wHnd)
+	{
+		return WTOBJECT_HND_NULL;
+	}
+
+	AddRelationship(src, GetObjectFromHnd(wHnd), relId);
+
+	return wHnd;
+}
+
+WtoHandle CWtDataStore::CreateObject(uint32_t dstClassId)
+{
 	CWtObjectRegistrar& wtoReg = CWtObjectRegistrar::Instance();
 
 	CWtObject* wto = wtoReg.CreateWtObject(dstClassId);
@@ -64,12 +78,8 @@ WtoHandle CWtDataStore::AddObject(uint32_t dstClassId,
 
 	WtoHandle wtoHnd = GetNextObjHandle();
 	wto->SetWtoHandle(wtoHnd);
+
 	AddWtObjectToDb(wtoHnd, wto);
-
-	CRelationManager& rm = CRelationManager::Instance();
-
-	//TODO: Decide if we should all wto -> src reverse Dir, maybe not
-	rm.AddRelation(src, wto, relId);
 
 	return wtoHnd;
 }
@@ -90,10 +100,19 @@ bool CWtDataStore::AddRelationship(CWtObject* src,
 		return false;
 	}
 
+	//TODO: Decide if we should all wto -> src reverse Dir, maybe not
+
 	CRelationManager& rm = CRelationManager::Instance();
 
-	//TODO: Decide if we should all wto -> src reverse Dir, maybe not
-	rm.AddRelation(src, dst, relId);
+	WtoTypeIdsSet inhtIds;
+	dst->GetInheritedTypes(inhtIds);
+
+	WtoTypeIdsSet::const_iterator iit = inhtIds.begin();
+
+	for(; iit != inhtIds.end(); iit++)
+	{
+		rm.AddRelation(src, dst, relId, WTOBJECT_CLASSID_NULL ,*iit);
+	}
 
 	return true;
 }

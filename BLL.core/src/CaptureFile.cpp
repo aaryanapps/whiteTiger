@@ -16,8 +16,7 @@
 
 using namespace wt::core;
 
-//uint32_t CCaptureFile::m_classId = 0x00000264 ;
-uint32_t CCaptureFile::m_classId = REGISTER_CREATOR(CArpHeader_Class_Id, CCaptureFile::Create);
+uint32_t CCaptureFile::m_classId = REGISTER_CREATOR(CCaptureFile_Class_Id, CCaptureFile::Create);
 
 //DEFINE_STATIC_LOGGER("core.CaptureFile", devLogger)
 
@@ -26,13 +25,13 @@ std::string CCaptureFile::m_defFile = "Untitled1" ;
 CCaptureFile::CCaptureFile(std::string& fname) :
 					m_fileName(fname)
 {
-
+	AddAsDerivedClassId(CCaptureFile_Class_Id);
 }
 
 CCaptureFile::CCaptureFile() :
 				m_fileName(CCaptureFile::m_defFile)
 {
-
+	AddAsDerivedClassId(CCaptureFile_Class_Id);
 }
 
 wt::framework::CWtObject* CCaptureFile::Create()

@@ -16,6 +16,7 @@ DEFINE_STATIC_LOGGER("core.Capture", devLogger)
 
 CCapture::CCapture()
 {
+	AddAsDerivedClassId(CCapture_Class_Id);
 	Init();
 }
 
@@ -26,6 +27,7 @@ CCapture::~CCapture()
 CCapture::CCapture(std::string& name) :
 					m_name(name)
 {
+	AddAsDerivedClassId(CCapture_Class_Id);
 	Init();
 }
 
@@ -54,8 +56,3 @@ void CCapture::AddPacketToMap(WtoHandle pHnd)
 
 }
 
-void CCapture::GetInheritedTypes(WtoTypeIdsVec& typeIdVec)
-{
-	typeIdVec.push_back(CCapture::m_classId);
-	return;
-}

@@ -20,7 +20,7 @@ CArpHeader::CArpHeader() :
 						  m_hdrLen(0),
 						  m_Impl(0)
 {
-
+	AddAsDerivedClassId(CArpHeader_Class_Id);
 }
 
 CArpHeader::~CArpHeader()

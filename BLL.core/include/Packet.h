@@ -24,8 +24,6 @@ public:
 
     static wt::framework::CWtObject* Create();
 
-    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec);
-
     uint32_t GetPacketLength() {return m_pktLen;}
 
     uint32_t GetCapturedDataLength() {return m_capLen;}

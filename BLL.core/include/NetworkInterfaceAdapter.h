@@ -39,12 +39,6 @@ public:
 
 	static wt::framework::CWtObject* Create();
 
-    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
-    {
-    	typeIdVec.push_back(CNetworkInterfaceAdapter::m_classId);
-    	return;
-    }
-
     bool RegisterOnNewPacket(Poco::Delegate<wt::framework::CWtObject, WtoHandle>& dl);
 
 	bool StartCapture();

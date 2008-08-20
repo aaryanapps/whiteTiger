@@ -21,7 +21,9 @@ public:
 	static CRelationManager& Instance();
 
 	bool AddRelation(CWtObject* from, CWtObject* to,
-			   		 RelationType relId = ParentChild());
+			   		 RelationType relId = ParentChild(),
+					 WtoType sType = WTOBJECT_CLASSID_NULL,
+					 WtoType dType = WTOBJECT_CLASSID_NULL);
 
 	bool RemoveRelation(CWtObject* from, CWtObject* to, RelationType relId = ParentChild());
 	WtoHandle GetParent(WtoHandle to);

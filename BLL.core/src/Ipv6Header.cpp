@@ -15,7 +15,7 @@ uint32_t CIpv6Header::m_hdrType = REGISTER_HDRTYPE(WT_IPV6,CIpv6Header_Class_Id)
 
 CIpv6Header::CIpv6Header()
 {
-
+	AddAsDerivedClassId(CIpv6Header_Class_Id);
 }
 
 CIpv6Header::~CIpv6Header()

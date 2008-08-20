@@ -39,12 +39,6 @@ public:
 	/*Returns the first packet object*/
 	virtual CWtObject* 	GetFirstPacket() ;
 
-	virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
-	{
-		typeIdVec.push_back(CCaptureType::m_classId);
-		return;
-	}
-
     /*Returns the Class Id*/
 	virtual uint32_t 	GetClassId() {return m_classId; }
 

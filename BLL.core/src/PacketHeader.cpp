@@ -12,7 +12,7 @@ uint32_t CPacketHeader::m_classId = REGISTER_CREATOR(CPacketHeader_Class_Id, CPa
 
 CPacketHeader::CPacketHeader()
 {
-
+	AddAsDerivedClassId(CPacketHeader_Class_Id);
 }
 
 CPacketHeader::~CPacketHeader()

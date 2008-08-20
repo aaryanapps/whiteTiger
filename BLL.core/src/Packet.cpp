@@ -29,6 +29,7 @@ DEFINE_STATIC_LOGGER("core.Packet", devLogger)
 
 CPacket::CPacket()
 {
+	AddAsDerivedClassId(CPacket_Class_Id);
 	//m_newPktHdr = fastdelegate::MakeDelegate(this, &CPacket::OnNewPacketHeader);
 }
 
@@ -68,20 +69,16 @@ bool CPacket::Init(wt::core::capturelibrary::CapturedPkt* pkt)
 	return true;
 }
 
-void CPacket::GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
-{
-	typeIdVec.push_back(CPacket::m_classId);
-	return;
-}
 
 //////// Private helpers
 
 void CPacket::CreateReadableTimeStamp()
 {
-    struct tm *ltime;
+/*
+	struct tm *ltime;
     char timestr[16];
     time_t local_tv_sec;
-
+*/
     Poco::Timestamp cts(m_ts);
     //int64_t diff(0L);
 

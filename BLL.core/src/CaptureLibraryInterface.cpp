@@ -30,9 +30,6 @@ CCaptureLibraryInterface::Instance()
 	return _am;
 }
 
-
-
-
 void
 CCaptureLibraryInterface::GetAdaptersList(adapterVec& adVec)
 {
@@ -53,7 +50,6 @@ CCaptureLibraryInterface::GetAdaptersList(adapterVec& adVec)
 
     if (ifs == NULL)
     {
-    	//TODO: Log Warn in log
     	LOG_WARN( devLogger() , "No Interface found for capture")
         return;
     }
@@ -186,9 +182,6 @@ WtoHandle CCaptureLibraryInterface::ParseFile(std::string& fname)
 }
 
 
-
-// Private
-
 bool CCaptureLibraryInterface::OpenCaptureLibraryAdapter(std::string& adpName)
 {
 
@@ -227,6 +220,9 @@ bool CCaptureLibraryInterface::OpenCaptureLibraryAdapter(std::string& adpName)
 
 	return false;
 }
+
+// Private
+
 
 Poco::Thread* CCaptureLibraryInterface::CreateThreadForAdp(std::string& adpName)
 {

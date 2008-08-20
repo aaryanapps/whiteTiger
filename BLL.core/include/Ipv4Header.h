@@ -39,12 +39,6 @@ public:
 
     bool Init(uint32_t hdrOffset, const uint8_t* pktData);
 
-    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
-    {
-    	CPacketHeader::GetInheritedTypes(typeIdVec);
-    	typeIdVec.push_back(CIpv4Header::m_classId);
-    	return;
-    }
 
 protected:
 	static uint32_t m_classId;

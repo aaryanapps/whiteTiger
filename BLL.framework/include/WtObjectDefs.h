@@ -14,6 +14,8 @@ namespace framework {
 
 	typedef std::vector<WtoType> WtoTypeIdsVec;
 
+	typedef std::set<WtoType> WtoTypeIdsSet;
+
 	typedef uint32_t WtoHandle;
 
 	typedef std::map<WtoHandle, CWtObject*> WtObjectsMap;
@@ -29,6 +31,7 @@ namespace framework {
 
 #define WTOBJECT_HND_NULL 0
 
+#define WTOBJECT_CLASSID_NULL 0
 
 
 #endif /*_WTOBJECTDEFS_H__*/

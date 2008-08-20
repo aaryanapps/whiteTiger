@@ -16,6 +16,34 @@ CWtObject::~CWtObject()
 {
 }
 
+/*Add the class ID to the list of derived classes*/
+void CWtObject::AddAsDerivedClassId(WtoType classId)
+{
+	if ( !IsInstanceOf(classId) )
+	{
+		m_derivedClassIds.insert(classId);
+	}
+}
+
+/*Add the class ID to the list of derived classes*/
+bool CWtObject::IsInstanceOf(WtoType classId)
+{
+	WtoTypeIdsSet::const_iterator wit = m_derivedClassIds.find(classId);
+
+	if (wit != m_derivedClassIds.end())
+	{
+		return true;
+	}
+
+	return false;
+}
+
+/*Calls the base class GetInheritedClassIds and get the classId*/
+void CWtObject::GetInheritedTypes(WtoTypeIdsSet& typeIdSet)
+{
+	typeIdSet = m_derivedClassIds;
+}
+
 CWtObject* 	CWtObject::GetParent()
 {
 	CWtDataStore &ds = CWtDataStore::Instance();

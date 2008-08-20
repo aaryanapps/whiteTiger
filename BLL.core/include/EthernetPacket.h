@@ -17,8 +17,6 @@ public:
 	virtual ~CEthernetPacket();
 	virtual bool Init(wt::core::capturelibrary::CapturedPkt* pkt);
 
-    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec);
-
     /*Returns the Class Id*/
 	virtual uint32_t 	GetClassId() {return m_classId; }
 

@@ -17,17 +17,25 @@ public:
 	//virtual void InitWto() = 0;
 
 	/*Calls the base class GetInheritedClassIds and get the classId*/
-	virtual void GetInheritedTypes(WtoTypeIdsVec& typeIdVec) = 0;
+	void GetInheritedTypes(WtoTypeIdsSet& typeIdVec);
 
+	/*Get the classId of the current object*/
 	virtual uint32_t GetClassId() = 0;
 
-	//virtual CWtObject*	Create() = 0;
+	/*Add the class ID to the list of derived classes*/
+	void AddAsDerivedClassId(WtoType classId);
 
+	/*Add the class ID to the list of derived classes*/
+	bool IsInstanceOf(WtoType classId);
+
+	/*Returns the parent of the object*/
 	CWtObject* 	GetParent();
 
+	/*Returns all the objects of given type and relation*/
 	void 		GetObjects(WtoVec& wtv, WtoType type,
 										RelationType rel = ParentChild());
 
+	/*Returns one object of given type and relation. Order is not maintained.*/
 	CWtObject*	GetObject(WtoType type, RelationType rel = ParentChild());
 
 
@@ -47,6 +55,8 @@ private:
 	WtoHandle m_wtoHnd;
 	WtoType   m_wtoType;
 	std::string m_wtoName;
+	WtoTypeIdsSet	m_derivedClassIds;
+
 };
 
 }

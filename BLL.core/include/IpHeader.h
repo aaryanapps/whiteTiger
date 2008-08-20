@@ -30,13 +30,6 @@ public:
 
     bool Init(uint32_t hnd, uint32_t hdrOffset, const uint8_t* pktData);
 
-    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
-    {
-    	CPacketHeader::GetInheritedTypes(typeIdVec);
-    	typeIdVec.push_back(CIpHeader::m_classId);
-    	return;
-    }
-
     /*Returns the Class Id*/
 	virtual uint32_t 	GetClassId() {return m_classId; }
 

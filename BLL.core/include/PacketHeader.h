@@ -34,11 +34,6 @@ public:
 
     virtual bool IsStringCapable(uint16_t colId) = 0;
 
-    virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
-    {
-    	typeIdVec.push_back(CPacketHeader::m_classId);
-    	return;
-    }
 
 protected:
 	static uint32_t m_classId;

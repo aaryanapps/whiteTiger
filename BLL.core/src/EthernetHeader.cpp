@@ -24,7 +24,7 @@ uint32_t CEthernetHeader::m_hdrType = REGISTER_HDRTYPE(WT_ETH,CEthernetHeader_Cl
 CEthernetHeader::CEthernetHeader() :
 									m_hdrLen(0)
 {
-
+	AddAsDerivedClassId(CEthernetHeader_Class_Id);
 }
 
 CEthernetHeader::~CEthernetHeader()
@@ -34,6 +34,7 @@ CEthernetHeader::~CEthernetHeader()
 
 CEthernetHeader::CEthernetHeader(uint32_t hdrOffset, const uint8_t* pktData)
 {
+	AddAsDerivedClassId(CEthernetHeader_Class_Id);
 	Init(hdrOffset, pktData);
 }
 

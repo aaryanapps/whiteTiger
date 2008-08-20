@@ -23,10 +23,8 @@ CNetworkInterfaceAdapter::CNetworkInterfaceAdapter(std::string& adpName) :
 													_strAdapName(adpName),
 													_captureStatus(CAPTURE_IDLE)
 {
-
+	AddAsDerivedClassId(CNetworkInterfaceAdapter_Class_Id);
 	_dNewPkt = fastdelegate::MakeDelegate(this, &CNetworkInterfaceAdapter::OnNewPacket);
-
-
 
 }
 

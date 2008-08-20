@@ -15,7 +15,7 @@ uint32_t CIpHeader::m_classId = REGISTER_CREATOR(CIpHeader_Class_Id, CIpHeader::
 
 CIpHeader::CIpHeader()
 {
-
+	AddAsDerivedClassId(CIpHeader_Class_Id);
 }
 
 CIpHeader::~CIpHeader()

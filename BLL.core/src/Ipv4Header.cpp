@@ -21,7 +21,7 @@ CIpv4Header::CIpv4Header() :
 							m_hdrLen(0),
 							m_hdr(0)
 {
-
+	AddAsDerivedClassId(CIpv4Header_Class_Id);
 }
 
 CIpv4Header::~CIpv4Header()

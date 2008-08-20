@@ -18,7 +18,7 @@ uint32_t CLiveCapture::m_classId = REGISTER_CREATOR(CLiveCapture_Class_Id, CLive
 
 CLiveCapture::CLiveCapture()
 {
-
+	AddAsDerivedClassId(CLiveCapture_Class_Id);
 }
 
 CLiveCapture::CLiveCapture(std::string& name)

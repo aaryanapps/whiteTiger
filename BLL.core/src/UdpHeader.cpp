@@ -16,7 +16,7 @@ uint32_t CUdpHeader::m_hdrType = REGISTER_HDRTYPE(WT_TCP,CUdpHeader_Class_Id) ;
 
 CUdpHeader::CUdpHeader()
 {
-
+	AddAsDerivedClassId(CTcpHeader_Class_Id);
 }
 
 wt::framework::CWtObject* CUdpHeader::Create()

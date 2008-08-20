@@ -33,13 +33,6 @@ public:
 	/*Get the next default filename.*/
 	static std::string&	GetDefaultFileName();
 
-	virtual void GetInheritedTypes(wt::framework::WtoTypeIdsVec& typeIdVec)
-	{
-		CCaptureType::GetInheritedTypes(typeIdVec);
-		typeIdVec.push_back(CCaptureFile::m_classId);
-		return;
-	}
-
 	//Getters,Setters
 	uint32_t 	GetDataLinkType(){ return m_dataLink; }
 

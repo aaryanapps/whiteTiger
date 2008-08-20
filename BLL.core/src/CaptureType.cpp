@@ -20,7 +20,7 @@ uint32_t CCaptureType::m_classId = REGISTER_CREATOR(CCaptureType_Class_Id, CCapt
 
 CCaptureType::CCaptureType()
 {
-
+	AddAsDerivedClassId(CCaptureType_Class_Id);
 }
 
 CCaptureType::~CCaptureType()
