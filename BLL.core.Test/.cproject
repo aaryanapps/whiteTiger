@@ -43,7 +43,7 @@
 <option id="gnu.cpp.compiler.option.warnings.nowarn.738304504" name="Inhibit all warnings (-w)" superClass="gnu.cpp.compiler.option.warnings.nowarn"/>
 <option id="gnu.cpp.compiler.option.warnings.allwarn.1994975549" name="All warnings (-Wall)" superClass="gnu.cpp.compiler.option.warnings.allwarn"/>
 <option id="gnu.cpp.compiler.option.warnings.toerrors.423959268" name="Warnings as errors (-Werror)" superClass="gnu.cpp.compiler.option.warnings.toerrors"/>
-<option id="gnu.cpp.compiler.option.other.other.715352608" name="Other flags" superClass="gnu.cpp.compiler.option.other.other"/>
+<option id="gnu.cpp.compiler.option.other.other.715352608" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -Wno-long-long" valueType="string"/>
 <option id="gnu.cpp.compiler.option.other.verbose.65532855" name="Verbose (-v)" superClass="gnu.cpp.compiler.option.other.verbose"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.211923505" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
@@ -552,7 +552,7 @@
 <option id="gnu.cpp.compiler.option.warnings.nowarn.871805217" name="Inhibit all warnings (-w)" superClass="gnu.cpp.compiler.option.warnings.nowarn"/>
 <option id="gnu.cpp.compiler.option.warnings.allwarn.2060128352" name="All warnings (-Wall)" superClass="gnu.cpp.compiler.option.warnings.allwarn"/>
 <option id="gnu.cpp.compiler.option.warnings.toerrors.1078232568" name="Warnings as errors (-Werror)" superClass="gnu.cpp.compiler.option.warnings.toerrors"/>
-<option id="gnu.cpp.compiler.option.other.other.994344286" name="Other flags" superClass="gnu.cpp.compiler.option.other.other"/>
+<option id="gnu.cpp.compiler.option.other.other.994344286" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -Wno-long-long" valueType="string"/>
 <option id="gnu.cpp.compiler.option.other.verbose.906577013" name="Verbose (-v)" superClass="gnu.cpp.compiler.option.other.verbose"/>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1301359264" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>

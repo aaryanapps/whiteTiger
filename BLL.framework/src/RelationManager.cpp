@@ -5,18 +5,20 @@
 #include "WtObject.h"
 #include "WtLogger.h"
 
+#include "Poco/Data/SQLite/Connector.h"
 #include "Poco/Data/RecordSet.h"
 
 using namespace wt::framework;
 using namespace Poco::Data;
 using namespace Poco::Data::Keywords;
 
+
 DEFINE_STATIC_LOGGER("framework.RelationManager", devLogger)
 
 CRelationManager::CRelationManager() :
 	m_init(false)
 {
-
+	Init();
 }
 
 CRelationManager::~CRelationManager()
@@ -26,14 +28,9 @@ CRelationManager::~CRelationManager()
 
 CRelationManager& CRelationManager::Instance()
 {
-	static CRelationManager* _rm = NULL;
-	if (!_rm)
-	{
-		_rm = new CRelationManager();
-		_rm->Init();
-	}
+	static CRelationManager _rm;
 
-	return *_rm;
+	return _rm;
 
 }
 
@@ -170,10 +167,14 @@ WtoHandle CRelationManager::GetObject(WtoHandle from,
 
 void CRelationManager::Init()
 {
+	// register SQLite connector
+	Poco::Data::SQLite::Connector::registerConnector();
+	_mdbSession = new Session("SQLite", "temp.db");
 
-	_mdbSession = new Session("SQLite", ":memory:");
+	// drop sample table, if it exists
+	*_mdbSession << "DROP TABLE IF EXISTS ExistingRelations", now;
 
-	*_mdbSession << "CREATE TABLE ExistingRelations (fromWt INT(4), toWt INT(4), fromWtType INT(4), toWtType INT(4), relId INT(4))" , now;
+	*_mdbSession << "CREATE TABLE ExistingRelations (fromWt INTEGER(4), toWt INTEGER(4), fromWtType INTEGER(4), toWtType INTEGER(4), relId INTEGER(4))", now;
 
 	m_init = true;
 
