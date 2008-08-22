@@ -38,24 +38,32 @@ CWtDataStore& CWtDataStore::Instance()
 
 
 /*Add New Object to the DataStore*/
-WtoHandle CWtDataStore::AddObject(uint32_t srcClassId,
-							 CWtObject* dst,
+WtoHandle CWtDataStore::AddObject(uint32_t dstClassId,
+							 CWtObject* src,
 							 RelationType relId)
 {
 
-	if (NULL == dst)
+	if (NULL == src)
 	{
 		return WTOBJECT_HND_NULL;
 	}
 
-	WtoHandle wHnd = CreateObject(srcClassId);
+	WtoHandle wHnd = CreateObject(dstClassId);
 
 	if (WTOBJECT_HND_NULL == wHnd)
 	{
 		return WTOBJECT_HND_NULL;
 	}
 
-	AddRelationship(GetObjectFromHnd(wHnd), dst, relId);
+	if (!AddRelationship(src, GetObjectFromHnd(wHnd), relId))
+	{
+    	std::stringstream ss;
+    	ss 	<< "Could not add relationship between: "
+    		<< dstClassId << "and src: " << src->GetClassId() ;
+		LOG_ERROR(devLogger(), ss.str())
+		//TODO: Fix Memory Leak, delete newly create object
+		return WTOBJECT_HND_NULL;
+	}
 
 	return wHnd;
 }
@@ -105,13 +113,13 @@ bool CWtDataStore::AddRelationship(CWtObject* src,
 	CRelationManager& rm = CRelationManager::Instance();
 
 	WtoTypeIdsSet inhtIds;
-	src->GetInheritedTypes(inhtIds);
+	dst->GetInheritedTypes(inhtIds);
 
 	WtoTypeIdsSet::const_iterator iit = inhtIds.begin();
 
 	for(; iit != inhtIds.end(); iit++)
 	{
-		rm.AddRelation(src, dst, relId,*iit, WTOBJECT_CLASSID_NULL);
+		rm.AddRelation(src, dst, relId, WTOBJECT_CLASSID_NULL,*iit);
 	}
 
 	return true;
@@ -259,6 +267,11 @@ WtoHandle CWtDataStore::GetNextObjHandle()
 
 bool CWtDataStore::AddWtObjectToDb(WtoHandle wtoHnd, CWtObject* wto)
 {
+	if (WTOBJECT_HND_NULL == wtoHnd || WTOBJECT_NULL == wto)
+	{
+		return false;
+	}
+
 	_wtObjs.insert(std::make_pair(wtoHnd, wto));
 	return true;
 }

@@ -37,8 +37,8 @@ CRelationManager& CRelationManager::Instance()
 bool CRelationManager::AddRelation(CWtObject* sObj,
 								   CWtObject* dObj,
 								   RelationType relId,
-								   WtoType fromType,
-								   WtoType toType)
+								   WtoType srcType,
+								   WtoType dstType)
 {
 	if (!sObj || !dObj)
 	{
@@ -48,41 +48,42 @@ bool CRelationManager::AddRelation(CWtObject* sObj,
     uint32_t rel = relId.m_relId.AsInt();
 
 
-	if (fromType == WTOBJECT_CLASSID_NULL)
+	if (srcType == WTOBJECT_CLASSID_NULL)
 	{
-		fromType = sObj->GetClassId();
+		srcType = sObj->GetClassId();
 	}
 
-	if (toType == WTOBJECT_CLASSID_NULL)
+	if (dstType == WTOBJECT_CLASSID_NULL)
 	{
-		toType = dObj->GetClassId();
+		dstType = dObj->GetClassId();
 	}
 
     uint32_t sObjHnd = sObj->GetWtoHandle();
     uint32_t dObjHnd = dObj->GetWtoHandle();
 
     Statement stmt(*_mdbSession);
-    stmt << "Insert into ExistingRelations values(:from,:to,:fromType,:totype,:rel)" , use(sObjHnd) , use(dObjHnd), use(fromType), use(toType), use(rel) ;
+    stmt << "Insert into ExistingRelations values(:src,:dst,:srcType,:dsttype,:rel)" , use(sObjHnd) , use(dObjHnd), use(srcType), use(dstType), use(rel) ;
     stmt.execute();
 
     return true;
 }
 
-bool CRelationManager::RemoveRelation(CWtObject* from,
-									  CWtObject* to,
+bool CRelationManager::RemoveRelation(CWtObject* src,
+									  CWtObject* dst,
 		   							  RelationType relId)
 {
-	if (!from || !to)
+	if (!src || !dst)
 	{
 		return false;
 	}
 
-	uint32_t src = from->GetWtoHandle();
-	uint32_t dst = to->GetWtoHandle();
+	uint32_t srcHnd = src->GetWtoHandle();
+	uint32_t dstHnd = dst->GetWtoHandle();
 	uint32_t rel = relId.m_relId.AsInt();
 
+	//TODO: Add the classId to be checked for removal too.
 	Statement stmt(*_mdbSession);
-	stmt << "Delete From ExistingRelations Where fromWt=:frm AND toWt=:to AND relId=:rel" , use(src), use(dst), use(rel) ;
+	stmt << "Delete From ExistingRelations Where srcClass=:src AND dstClass=:dst AND relId=:rel" , use(srcHnd), use(dstHnd), use(rel) ;
 
 	stmt.execute();
     return true;
@@ -90,18 +91,18 @@ bool CRelationManager::RemoveRelation(CWtObject* from,
 }
 
 void CRelationManager::GetObjects(WtoHndVec& wtv,
-								  CWtObject* to,
-								  uint32_t fromClassType,
+								  CWtObject* src,
+								  uint32_t dstClassType,
 								  RelationType relId)
 {
 
 	Statement stmt(*_mdbSession);
 
 	uint32_t rel = relId.m_relId.AsInt();
-	uint32_t toType = to->GetClassId();
-	uint32_t toHnd  = to->GetWtoHandle();
+	uint32_t srcClassType = src->GetClassId();
+	uint32_t srcHnd  = src->GetWtoHandle();
 
-	stmt << "SELECT fromWt FROM ExistingRelations where toWt=:toHnd AND toWtType=:toType AND fromWtType=:fromClassType AND relId=:rel" , use(toHnd) , use(toType), use(fromClassType), use(rel) ;
+	stmt << "SELECT dstClass FROM ExistingRelations where srcClass=:srcHnd AND srcClassType=:srcType AND dstClassType=:srcClassType AND relId=:rel" , use(srcHnd) , use(srcClassType), use(dstClassType), use(rel) ;
 	stmt.execute();
 
 	RecordSet rs(stmt);
@@ -133,7 +134,7 @@ WtoHandle CRelationManager::GetParent(CWtObject* child)
 	uint32_t childType = child->GetClassId();
 
 	Statement stmt(*_mdbSession);
-	stmt << "select toWt from ExistingRelations where fromWt=:to AND fromWtType=:childType AND relId=:r" , use(childHnd) , use(childType), use(re) ;
+	stmt << "select srcClass from ExistingRelations where dstClass=:to AND dstClassType=:childType AND relId=:r" , use(childHnd) , use(childType), use(re) ;
 	stmt.execute();
 
 	RecordSet rs(stmt);
@@ -180,7 +181,7 @@ void CRelationManager::Init()
 	// drop sample table, if it exists
 	*_mdbSession << "DROP TABLE IF EXISTS ExistingRelations", now;
 
-	*_mdbSession << "CREATE TABLE ExistingRelations (fromWt INTEGER(4), toWt INTEGER(4), fromWtType INTEGER(4), toWtType INTEGER(4), relId INTEGER(4))", now;
+	*_mdbSession << "CREATE TABLE ExistingRelations (srcClass INTEGER(4), dstClass INTEGER(4), srcClassType INTEGER(4), dstClassType INTEGER(4), relId INTEGER(4))", now;
 
 	m_init = true;
 

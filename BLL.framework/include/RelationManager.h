@@ -20,18 +20,24 @@ public:
 
 	static CRelationManager& Instance();
 
-	bool AddRelation(CWtObject* from, CWtObject* to,
+	/*Add relation between the src,dst objects.*/
+	bool AddRelation(CWtObject* src, CWtObject* dst,
 			   		 RelationType relId = ParentChild(),
 					 WtoType sType = WTOBJECT_CLASSID_NULL,
 					 WtoType dType = WTOBJECT_CLASSID_NULL);
 
-	bool RemoveRelation(CWtObject* from, CWtObject* to, RelationType relId = ParentChild());
+	/*Removes the specified relation between the src and dst*/
+	bool RemoveRelation(CWtObject* src, CWtObject* dst, RelationType relId = ParentChild());
+
+	/*Return the parent handle*/
 	WtoHandle GetParent(CWtObject* child);
 
-	void GetObjects(WtoHndVec& wtv, CWtObject* to, uint32_t toClassType, RelationType relId = ParentChild());
+	/*Get all objects of type dstClassType */
+	void GetObjects(WtoHndVec& wtv, CWtObject* src, uint32_t dstClassType, RelationType relId = ParentChild());
 
-	WtoHandle GetObject( CWtObject* to,
-						  uint32_t  from,
+	/*Get Objet of type dstClassID*/
+	WtoHandle GetObject( CWtObject* src,
+						  uint32_t  dstClassId,
 						  RelationType relId = ParentChild());
 private:
 	void Init();

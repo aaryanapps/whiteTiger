@@ -32,8 +32,8 @@ int main(int argc, const char* argv[])
 
 
 	WtoVec wtv;
-	prj.GetObjects(wtv,CLiveCapture_Class_Id);
-	std::cout << "LiveCapture Objects under Project: " << wtv.size() << std::endl;
+	prj.GetObjects(wtv,CCaptureType_Class_Id);
+	std::cout << "LiveCapture Objects under Project (using base class - CaptureType): " << wtv.size() << std::endl;
 
 	WtoVec::const_iterator wit;
 

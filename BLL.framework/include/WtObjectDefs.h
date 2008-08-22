@@ -33,5 +33,6 @@ namespace framework {
 
 #define WTOBJECT_CLASSID_NULL 0
 
+#define WTOBJECT_NULL 0
 
 #endif /*_WTOBJECTDEFS_H__*/
