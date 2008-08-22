@@ -26,12 +26,12 @@ public:
 					 WtoType dType = WTOBJECT_CLASSID_NULL);
 
 	bool RemoveRelation(CWtObject* from, CWtObject* to, RelationType relId = ParentChild());
-	WtoHandle GetParent(WtoHandle to);
+	WtoHandle GetParent(CWtObject* child);
 
-	void GetObjects(WtoHndVec& wtv, WtoHandle from, uint32_t toClassType, RelationType relId = ParentChild());
+	void GetObjects(WtoHndVec& wtv, CWtObject* to, uint32_t toClassType, RelationType relId = ParentChild());
 
-	WtoHandle GetObject( WtoHandle from,
-						  uint32_t  to,
+	WtoHandle GetObject( CWtObject* to,
+						  uint32_t  from,
 						  RelationType relId = ParentChild());
 private:
 	void Init();

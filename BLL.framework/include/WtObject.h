@@ -44,16 +44,12 @@ public:
 	WtoHandle GetWtoHandle() {return m_wtoHnd;}
 	void SetWtoHandle(WtoHandle hnd) {m_wtoHnd = hnd;}
 
-	WtoHandle GetWtoType() {return m_wtoType;}
-	void SetWtoType(WtoType type) {m_wtoType = type;}
-
 	void SetWtoName(std::string& name) {m_wtoName = name;}
 	std::string GetWtoName() {return m_wtoName;}
 
 
 private:
 	WtoHandle m_wtoHnd;
-	WtoType   m_wtoType;
 	std::string m_wtoName;
 	WtoTypeIdsSet	m_derivedClassIds;
 

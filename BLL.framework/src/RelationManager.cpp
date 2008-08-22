@@ -90,14 +90,18 @@ bool CRelationManager::RemoveRelation(CWtObject* from,
 }
 
 void CRelationManager::GetObjects(WtoHndVec& wtv,
-								  WtoHandle from,
-								  uint32_t toClassType,
+								  CWtObject* to,
+								  uint32_t fromClassType,
 								  RelationType relId)
 {
 
 	Statement stmt(*_mdbSession);
+
 	uint32_t rel = relId.m_relId.AsInt();
-	stmt << "SELECT toWt FROM ExistingRelations where fromWt=:frmWt AND toWtType=:toWt AND relId=:rel" , use(from) , use(toClassType), use(rel) ;
+	uint32_t toType = to->GetClassId();
+	uint32_t toHnd  = to->GetWtoHandle();
+
+	stmt << "SELECT fromWt FROM ExistingRelations where toWt=:toHnd AND toWtType=:toType AND fromWtType=:fromClassType AND relId=:rel" , use(toHnd) , use(toType), use(fromClassType), use(rel) ;
 	stmt.execute();
 
 	RecordSet rs(stmt);
@@ -110,8 +114,6 @@ void CRelationManager::GetObjects(WtoHndVec& wtv,
 		std::size_t cols = rs.columnCount();
 		for (std::size_t col = 0; col < cols; ++col ) /*Will run one time for one column*/
 		{
-			/*Get tht object pointer froWtoHandlem map in WtObjectDb*/
-
 			int32_t hnd = rs[col].convert<int>();
 			ss << "Column:" << col << "=" <<  hnd;
 			ss << "   ," ;
@@ -123,24 +125,26 @@ void CRelationManager::GetObjects(WtoHndVec& wtv,
 
 }
 
-WtoHandle CRelationManager::GetParent(WtoHandle to)
+WtoHandle CRelationManager::GetParent(CWtObject* child)
 {
 	RelationType rel = ParentChild();
 	uint32_t re = rel.Id();
+	uint32_t childHnd = child->GetWtoHandle();
+	uint32_t childType = child->GetClassId();
+
 	Statement stmt(*_mdbSession);
-	stmt << "select fromWt from ExistingRelations where toWt=:to AND relId=:r" , use(to) , use(re) ;
+	stmt << "select toWt from ExistingRelations where fromWt=:to AND fromWtType=:childType AND relId=:r" , use(childHnd) , use(childType), use(re) ;
 	stmt.execute();
 
 	RecordSet rs(stmt);
 	bool more = rs.moveFirst();
 
 	int32_t hnd = WTOBJECT_HND_NULL;
-	while ( more ) /*Should run one or zero time*/
+	while ( more ) /*Should run one time coz there has to be a parent*/
 	{
 		std::size_t cols = rs.columnCount();
-		for (std::size_t col = 0; col < cols; ++cols ) /*Will run one time one column*/
+		for (std::size_t col = 0; col < cols; ++col ) /*Will run one time one column*/
 		{
-			/*Get tht object pointer froWtoHandlem map in WtObjectDb*/
 			hnd = rs[col].convert<int>();
 		}
 
@@ -150,17 +154,19 @@ WtoHandle CRelationManager::GetParent(WtoHandle to)
 	if (WTOBJECT_HND_NULL == hnd)
 	{
 		std::stringstream ss;
-		ss << "Cound not find Parent for WTO " << to << " In Db. Check ASAP!!!";
+		ss << "Could not find Parent for WTO " << child->GetWtoHandle() << " In Db. Check ASAP!!!";
 		LOG_ERROR(devLogger(), ss.str()) ;
 	}
 
 	return hnd;
 }
 
-WtoHandle CRelationManager::GetObject(WtoHandle from,
-								  	   uint32_t  to,
+WtoHandle CRelationManager::GetObject(CWtObject* to,
+								  	   uint32_t  from,
 								  	   RelationType relId)
 {
+	WtoHndVec wtv;
+	//Call GetObjects and return the first one.
 	return WTOBJECT_HND_NULL;
 }
 

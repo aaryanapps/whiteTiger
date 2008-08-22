@@ -15,7 +15,7 @@ public:
     CLiveCapture(std::string& name);
     ~CLiveCapture();
 
-	virtual uint32_t 	GetClassId() {return m_classId; }
+	uint32_t 	GetClassId() {return CLiveCapture::m_classId; }
 
 	static wt::framework::CWtObject* Create();
 
