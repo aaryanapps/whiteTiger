@@ -1,5 +1,4 @@
 
-#include "PcapDefs.h"
 #include "EthernetPacket.h"
 
 namespace wt {

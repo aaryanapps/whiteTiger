@@ -4,15 +4,20 @@
 #include "Project.h"
 #include "WtDataStore.h"
 #include "CoreConsts.h"
+#include "Capture.h"
 #include "CaptureType.h"
 #include "LiveCapture.h"
+#include "CaptureLibraryDefs.h"
+#include "CaptureLibraryInterface.h"
+#include "NetworkInterfaceAdapter.h"
+
 
 using namespace wt::framework;
 using namespace wt::core;
+using namespace wt::core::capturelibrary;
 
-int main(int argc, const char* argv[])
+void SystemTest()
 {
-
 	CProject& prj = CProject::Instance();
 	CWtDataStore& ds = CWtDataStore::Instance();
 
@@ -28,8 +33,13 @@ int main(int argc, const char* argv[])
 	std::cout << "Live Capture 4 Created: " << wtHnd3 << std::endl;
 	std::cout << "Live Capture 5 Created: " << wtHnd4 << std::endl;
 
-	std::cout << "5 Live Capture Created!! " << std::endl;
+	std::cout << "5 Live Captures Created!! " << std::endl;
 
+	std::cout << "Capture 1 created: " << ds.AddObject(CCapture_Class_Id, &prj) << std::endl;
+	std::cout << "Capture 2 created: " << ds.AddObject(CCapture_Class_Id, &prj) << std::endl;
+	std::cout << "Capture 3 created: " << ds.AddObject(CCapture_Class_Id, &prj) << std::endl;
+
+	std::cout << "3 Captures Created!! " << std::endl;
 
 	WtoVec wtv;
 	prj.GetObjects(wtv,CCaptureType_Class_Id);
@@ -62,6 +72,66 @@ int main(int argc, const char* argv[])
 	std::cout << "Base CaptureType IsInstanceOf: " << wto->IsInstanceOf(CCaptureType_Class_Id) << std::endl;
 	std::cout << "Live Capture IsInstanceOf: " << wto->IsInstanceOf(CLiveCapture_Class_Id) << std::endl;
 
+	return;
+}
+
+int main(int argc, const char* argv[])
+{
+
+//	SystemTest();
+
+	CProject& prj = CProject::Instance();
+	CWtDataStore& ds = CWtDataStore::Instance();
+
+	//Create Capture Object under project
+	WtoHandle capHnd = ds.AddObject(CCapture_Class_Id, &prj);
+	CCapture* capPtr = dynamic_cast<CCapture*> (ds.GetObjectFromHnd(capHnd));
+
+	//Create NetworkAdapter Object under project
+	//TODO: currently, Network interface is created under capture.
+	WtoHandle nwHnd = ds.AddObject(CNetworkInterfaceAdapter_Class_Id, capPtr);
+	CNetworkInterfaceAdapter* nwPtr = dynamic_cast<CNetworkInterfaceAdapter*> (ds.GetObjectFromHnd(nwHnd));
+
+	//Add relationship between capture and networkadapter.
+
+	//Create Live Capture under Capture Object
+	WtoHandle lvcHnd = ds.AddObject(CLiveCapture_Class_Id, &prj);
+	CLiveCapture* lvcPtr = dynamic_cast<CLiveCapture*> (ds.GetObjectFromHnd(lvcHnd));
+
+	//Get List of Available Adapters
+	CCaptureLibraryInterface &cif = CCaptureLibraryInterface::Instance();
+
+	adapterVec aVec;
+
+	cif.GetAdaptersList(aVec);
+	if (aVec.empty())
+	{
+		std::cout << "No Adapters found for capturing" << std::endl;
+	}
+	else
+	{
+		adapterVec::const_iterator ait = aVec.begin();
+
+		for(;ait != aVec.end(); ++ait)
+		{
+			std::cout << "Adapter : " << *ait << std::endl;
+		}
+	}
+	//Open desired Adapter for capture.
+
+	std::string s("eth0");
+	cif.OpenCaptureLibraryAdapter(s);
+
+	/*Set the Adapter Name*/
+	nwPtr->SetAdapterName(s);
+
+	//Start Capture using CaptureLibraryInterface
+	nwPtr->StartCapture();
+
+	std::cout << "Capture Status: " << nwPtr->GetCaptureStatus() << std::endl;
+
+	uint32_t testi;
+	std::cin >> testi;
 
 	std::cout << "Core.Test compiled and run successfully!!" << std::endl;
 

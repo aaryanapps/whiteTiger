@@ -37,31 +37,30 @@ CCaptureLibraryInterface::GetAdaptersList(adapterVec& adVec)
 	adVec.clear();
 
 	//TODO: MayBe? Check if AdapterList is already populated
-
-	pcap_if_t** ifs = NULL;
-	char* err = NULL;
+	pcap_if_t *ifs;
+	char errBuf[256];
 
     // Retrieve the interfaces list
-    if (pcap_findalldevs(ifs, err) == -1)
+    if (pcap_findalldevs(&ifs, errBuf) == -1)
     {
     	LOG_ERROR( devLogger() , "Error occurred while fetching list of interfaces")
     	return;
     }
 
-    if (ifs == NULL)
+    if (NULL == ifs)
     {
     	LOG_WARN( devLogger() , "No Interface found for capture")
         return;
     }
 
-    while (*ifs)
+    while (NULL != ifs)
     {
-        if ((*ifs)->name)
+        if (ifs->name)
         {
-    		adVec.push_back(std::string((*ifs)->name));
+    		adVec.push_back(std::string(ifs->name));
         }
 
-        (*ifs) = (*ifs)->next;
+        ifs = ifs->next;
     }
 
 	return;
@@ -106,6 +105,7 @@ CCaptureLibraryInterface::RegisterNewPacketNotification(std::string& adpName,
 	}
 	else
 	{
+		//Open Adapter first, then register.
 		return 0;
 	}
 }
@@ -214,6 +214,8 @@ bool CCaptureLibraryInterface::OpenCaptureLibraryAdapter(std::string& adpName)
 
 			_mActAdapters.insert(std::make_pair(adpName,adpInfo));
 			//TODO: Check if added to map. If not, delete both objects.
+
+			capAdp->InitInterface();
 		}
 		return true;
 	}
@@ -277,6 +279,7 @@ bool CCaptureLibraryInterface::StartCaptureInThread(std::string& adpName)
 	else
 	{
 		pTh->start(*GetCaptureLibraryAdp(adpName));
+		return true;
 	}
 
 

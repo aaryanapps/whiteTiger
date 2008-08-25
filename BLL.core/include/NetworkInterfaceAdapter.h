@@ -55,6 +55,12 @@ public:
 
 	CaptureState GetCaptureStatus() { return _captureStatus;}
 
+	/*Get the Adapter Name*/
+	std::string GetAdapterName() { return _strAdapName; }
+
+	/*Set the AdapterName*/
+	void 		SetAdapterName(std::string& name) { _strAdapName = name; }
+
 private:
 	static uint32_t m_classId;
 
@@ -65,11 +71,14 @@ private:
 
 
 	std::string  	_strAdapName;			/*Adapter Name*/
+
 	Poco::BasicEvent<WtoHandle> NewPacket;
+
 	CaptureState	_captureStatus;			/*Capture Status*/
 
 	wt::core::capturelibrary::NewPktDelegate	_dNewPkt;
 
+	uint32_t 		_iregId;				/*Registration Id */
 };
 
 }

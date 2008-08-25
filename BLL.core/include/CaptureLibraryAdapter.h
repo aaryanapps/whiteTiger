@@ -64,7 +64,7 @@ private:
 
 	std::string _strAdapter; 			/* Name of Adapter*/
 	pcap_t*		_pPcapDesc; 			/*Pcap descriptor*/
-	NewPktDelegateMap	_mNewPktDels;	/*Vector which holds all the */
+	NewPktDelegateMap	_mNewPktDels;	/*Map which holds all the regid and delgates*/
 
 };
 

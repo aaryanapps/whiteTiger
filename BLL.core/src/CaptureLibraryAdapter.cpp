@@ -44,7 +44,7 @@ void CCaptureLibraryAdapter::OnNewPacket(u_char *param,
 	 * Give it to those subscribed for notification
 	 */
 
-	CCaptureLibraryAdapter *capAdp = (CCaptureLibraryAdapter*) (*param);
+	CCaptureLibraryAdapter *capAdp = reinterpret_cast<CCaptureLibraryAdapter*> (param);
 
 	CapturedPkt cp;
 	cp._ts._sec = header->ts.tv_sec;
@@ -59,14 +59,14 @@ void CCaptureLibraryAdapter::OnNewPacket(u_char *param,
 
 void CCaptureLibraryAdapter::SendNotifications(CapturedPkt& pkt)
 {
-	LOG_ERROR(devLogger(), "Sending New Pkt Notification")
+	LOG_DEBUG(devLogger(), "Sending New Pkt Notification")
 
-	NewPktDelegateMap::const_iterator it = _mNewPktDels.begin();
+	NewPktDelegateMap::const_iterator dit = _mNewPktDels.begin();
 
-	while(it != _mNewPktDels.end())
+	while(dit != _mNewPktDels.end())
 	{
-		(it->second._newpktDel)(&pkt,it->second._data);
-		++it;
+		(dit->second._newpktDel)(&pkt,dit->second._data);
+		++dit;
 	}
 
 }
@@ -123,14 +123,15 @@ void CCaptureLibraryAdapter::run()
 	}
 
 	std::stringstream ss;
-	ss 	<< "Starting Capture on Adapter: "
+	ss 	<< "In run: Starting Capture on Adapter: "
 		<< this->_strAdapter ;
 
 	LOG_DEBUG( devLogger() , ss.str() );
 
-	uint8_t *uData = (uint8_t *) (this);
+	u_char* Data = (u_char*)(this);
+
 	int32_t ret = pcap_loop(_pPcapDesc,-1, &CCaptureLibraryAdapter::OnNewPacket,
-							 uData);
+							 Data);
 
 	if ( -1 == ret)
 	{
@@ -145,7 +146,7 @@ bool CCaptureLibraryAdapter::RegisterNewPacketNotification(uint32_t regId,
 
 	NewPktDelegateMap::const_iterator it = _mNewPktDels.find(regId);
 
-	if (it != _mNewPktDels.end())
+	if (it == _mNewPktDels.end())
 	{
 		_mNewPktDels.insert(std::make_pair(regId, pktDelInfo));
 		return true;

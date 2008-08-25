@@ -2,6 +2,7 @@
 
 #include "NetworkInterfaceAdapter.h"
 #include "CaptureLibraryInterface.h"
+#include "CaptureLibraryDefs.h"
 #include "CoreConsts.h"
 #include "WtLogger.h"
 #include "FastDelegate.h"
@@ -60,6 +61,12 @@ bool CNetworkInterfaceAdapter::StartCapture()
 
 	CCaptureLibraryInterface& cli = CCaptureLibraryInterface::Instance();
 
+	wt::core::capturelibrary::NewPktDelegateInfo del;
+	del._newpktDel = _dNewPkt;
+	del._data = NULL;
+
+	_iregId = cli.RegisterNewPacketNotification(_strAdapName, del);
+
 	ret = cli.StartCapture(_strAdapName);
 
 	if ( !ret )
@@ -70,6 +77,7 @@ bool CNetworkInterfaceAdapter::StartCapture()
     }
 	else
 	{
+		SetCaptureStatus (CAPTURE_RUNNING);
 		return true;
 	}
 
@@ -97,31 +105,8 @@ void CNetworkInterfaceAdapter::OnNewPacket(CapturedPkt* pkt, void* data)
 	LOG_DEBUG(devLogger(), "Received new packet notification");
 
 	//TODO: Addlogic to process new packet notification
-	/*
-    CPacketDb& pdb = CPacketDb::Instance();
-    WtoHandle pktHnd = pdb.AddNewPacket(this->GetWtoHandle(),
-    									this->GetDataLinkType(),
-										header, pkt_data);
-
-
-    CPacket* pkt = pdb.GetPacket(pktHnd);
-    if (pkt)
-    {
-    	std::stringstream ss;
-    	ss << pkt->GetTimeStamp()
-    			  << ", Length: " <<
-					pkt->GetPacketLength();
-
-    	LOG_ERROR( devLogger() , ss.str() );
-
-    }
-    else
-    {
-    	// Could not create the Packet
-    	// Various Reasons: no memory, unsupported datalink, etc
-    	//
-    }
-
+	/* Call the Protocol dissector
+	 * Parse the packet. Create header objects as required.
 	 */
 
 	return;
