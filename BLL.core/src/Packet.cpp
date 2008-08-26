@@ -21,9 +21,8 @@
 using namespace wt::core;
 using namespace wt::framework;
 
-//uint32_t CPacket::m_classId = 0x00000100 ;
-uint32_t CPacket::m_classId = REGISTER_CREATOR(CPacket_Class_Id, CPacket::Create);
 
+uint32_t CPacket::m_classId = REGISTER_CREATOR(CPacket_Class_Id, CPacket::Create);
 
 DEFINE_STATIC_LOGGER("core.Packet", devLogger)
 
@@ -45,6 +44,7 @@ CPacket::~CPacket()
 
 CPacket::CPacket(wt::core::capturelibrary::CapturedPkt* pkt)
 {
+	AddAsDerivedClassId(CPacket_Class_Id);
 	Init(pkt);
 }
 

@@ -177,10 +177,10 @@ CWtObject* 	CWtDataStore::GetParent(WtoHandle child)
 }
 
 /*Get the given class id object type for given obj*/
-CWtObject* 	CWtDataStore::GetObject(WtoHandle src, uint32_t wtoClassId, RelationType rel)
+CWtObject* 	CWtDataStore::GetObject(WtoHandle src, uint32_t dstClassId, RelationType rel)
 {
 	CRelationManager& rm = CRelationManager::Instance();
-	WtoHandle wto = rm.GetObject(GetObjectFromHnd(src),wtoClassId, rel);
+	WtoHandle wto = rm.GetObject(GetObjectFromHnd(src),dstClassId, rel);
 
 	return GetObjectFromHnd(wto);
 
@@ -188,18 +188,18 @@ CWtObject* 	CWtDataStore::GetObject(WtoHandle src, uint32_t wtoClassId, Relation
 
 /*Get all objects of type classId under the given obj*/
 void CWtDataStore::GetObjects(WtoHandle src, WtoVec& wtv,
-							  uint32_t wtoClassId, RelationType rel)
+							  uint32_t dstClassId, RelationType rel)
 {
 	if (WTOBJECT_HND_NULL == src)
 	{
 		return;
 	}
-	GetObjects(GetObjectFromHnd(src), wtv, wtoClassId, rel);
+	GetObjects(GetObjectFromHnd(src), wtv, dstClassId, rel);
 }
 
 /*Get all objects of type classId under the given obj*/
 void CWtDataStore::GetObjects(CWtObject* src, WtoVec& wtv,
-							  uint32_t wtoClassId, RelationType rel)
+							  uint32_t dstClassId, RelationType rel)
 {
 	if (NULL == src)
 	{
@@ -209,7 +209,7 @@ void CWtDataStore::GetObjects(CWtObject* src, WtoVec& wtv,
 	WtoHndVec wVec;
 	CRelationManager& rm = CRelationManager::Instance();
 
-	rm.GetObjects(wVec, src, wtoClassId, rel);
+	rm.GetObjects(wVec, src, dstClassId, rel);
 
 	WtoHndVec::const_iterator wit = wVec.begin();
 

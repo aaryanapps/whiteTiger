@@ -23,8 +23,8 @@ public:
 	static CWtDataStore& Instance();
 
 	/*Add New Object to the DataStore*/
-	WtoHandle	AddObject(uint32_t srcClassId,
-					  CWtObject* dst,
+	WtoHandle	AddObject(uint32_t dstClassId,
+					  CWtObject* src,
 					  RelationType relId = ParentChild());
 
 	/*Create Object with the specified ID.*/
@@ -61,13 +61,13 @@ public:
 	CWtObject* 	GetParent(WtoHandle child);
 
 	/*Get the given class id object type for given obj*/
-	CWtObject* 	GetObject(WtoHandle src, uint32_t wtoClassId, RelationType rel);
+	CWtObject* 	GetObject(WtoHandle src, uint32_t dstClassId, RelationType rel);
 
 	/*Get all objects of type classId under the given obj*/
-	void GetObjects(WtoHandle src, WtoVec& wtv, uint32_t wtoClassId, RelationType rel);
+	void GetObjects(WtoHandle src, WtoVec& wtv, uint32_t dstClassId, RelationType rel);
 
 	/*Get all objects of type classId under the given obj*/
-	void GetObjects(CWtObject* src, WtoVec& wtv, uint32_t wtoClassId, RelationType rel);
+	void GetObjects(CWtObject* src, WtoVec& wtv, uint32_t dstClassId, RelationType rel);
 
 	/*Get the object from hnd*/
 	CWtObject* GetObjectFromHnd(WtoHandle wto);

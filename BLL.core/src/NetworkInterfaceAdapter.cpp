@@ -8,9 +8,9 @@
 #include "FastDelegate.h"
 #include "WtObject.h"
 #include "WtObjectRegistrar.h"
+#include "PacketParser.h"
 
 #include "Poco/BasicEvent.h"
-#include "Poco/Thread.h"
 
 using namespace wt::core;
 using namespace wt::core::capturelibrary;
@@ -108,6 +108,10 @@ void CNetworkInterfaceAdapter::OnNewPacket(CapturedPkt* pkt, void* data)
 	/* Call the Protocol dissector
 	 * Parse the packet. Create header objects as required.
 	 */
+
+	CPacketParser &pp = CPacketParser::Instance();
+	pp.ParsePacket(GetParent(), pkt, 1);
+
 
 	return;
 }
