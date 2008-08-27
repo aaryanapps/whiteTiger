@@ -202,6 +202,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\CaptureLibraryFileParser.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\CaptureLibraryInterface.cpp"
 				>
 			</File>
@@ -255,6 +259,10 @@
 			</File>
 			<File
 				RelativePath=".\src\PacketHeaderFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\PacketParser.cpp"
 				>
 			</File>
 			<File
@@ -328,6 +336,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\CaptureLibraryFileParser.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\CaptureLibraryInterface.h"
 				>
 			</File>
@@ -393,6 +405,10 @@
 			</File>
 			<File
 				RelativePath=".\include\PacketHeaderFactory.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\PacketParser.h"
 				>
 			</File>
 			<File
