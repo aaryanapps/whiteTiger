@@ -19,6 +19,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ui", "ui\ui.vcproj", "{4053
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BLL.core.Test", "BLL.core.Test\BLL.core.Test.vcproj", "{51BF802F-B06D-48DC-AD97-9CFD1794DC5B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{55DD319C-32C2-40C7-B109-7352F5EE840C} = {55DD319C-32C2-40C7-B109-7352F5EE840C}
+		{216ACAF8-D99F-4EEC-BBAB-1F6AE09828D2} = {216ACAF8-D99F-4EEC-BBAB-1F6AE09828D2}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,8 +30,8 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{216ACAF8-D99F-4EEC-BBAB-1F6AE09828D2}.Debug|Win32.ActiveCfg = Release|Win32
-		{216ACAF8-D99F-4EEC-BBAB-1F6AE09828D2}.Debug|Win32.Build.0 = Release|Win32
+		{216ACAF8-D99F-4EEC-BBAB-1F6AE09828D2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{216ACAF8-D99F-4EEC-BBAB-1F6AE09828D2}.Debug|Win32.Build.0 = Debug|Win32
 		{216ACAF8-D99F-4EEC-BBAB-1F6AE09828D2}.Release|Win32.ActiveCfg = Release|Win32
 		{216ACAF8-D99F-4EEC-BBAB-1F6AE09828D2}.Release|Win32.Build.0 = Release|Win32
 		{55DD319C-32C2-40C7-B109-7352F5EE840C}.Debug|Win32.ActiveCfg = Debug|Win32

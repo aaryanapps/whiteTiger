@@ -58,9 +58,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="bll.cored bll.frameworkd PocoFoundationd"
+				AdditionalDependencies="../BLL.core/$(ConfigurationName)/bll.cored.lib ../BLL.framework/$(ConfigurationName)/bll.frameworkd.lib ../lib/Win32/$(ConfigurationName)/PocoFoundationd.lib"
 				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName)d.exe"
-				AdditionalLibraryDirectories="../../bin/Linux/Debug"
+				AdditionalLibraryDirectories="../../bin/Win32/Debug"
 				GenerateDebugInformation="true"
 				TargetMachine="1"
 			/>
@@ -88,7 +88,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Copy binary to bin"
-				CommandLine="copy bll.core.Testd ../../bin/Linux/Debug"
+				CommandLine="copy .\$(ConfigurationName)\$(ProjectName)d.exe ..\bin\Win32\$(ConfigurationName)\"
 			/>
 		</Configuration>
 		<Configuration
@@ -133,9 +133,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="bll.cored bll.frameworkd PocoFoundationd"
+				AdditionalDependencies="../BLL.core/$(ConfigurationName)/bll.core.lib ../BLL.framework/$(ConfigurationName)/bll.framework.lib ../lib/Win32/$(ConfigurationName)/PocoFoundation.lib"
 				OutputFile="$(ProjectDir)$(ConfigurationName)\$(ProjectName).exe"
-				AdditionalLibraryDirectories="../../bin/Linux/Debug"
+				AdditionalLibraryDirectories="../../bin/Win32/Debug"
 				GenerateDebugInformation="true"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"

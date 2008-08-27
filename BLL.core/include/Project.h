@@ -15,7 +15,7 @@
 namespace wt {
 namespace core {
 
-class CProject : public wt::framework::CWtObject {
+class CORE_EXPORT CProject : public wt::framework::CWtObject {
 
 public:
 	static CProject& Instance();

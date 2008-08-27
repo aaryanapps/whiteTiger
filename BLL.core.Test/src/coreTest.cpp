@@ -147,7 +147,6 @@ int main(int argc, const char* argv[])
 
 	CProject& prj = CProject::Instance();
 	CWtDataStore& ds = CWtDataStore::Instance();
-
 	//Create Capture Object under project
 	WtoHandle capHnd = ds.AddObject(CCapture_Class_Id, &prj);
 	CCapture* capPtr = dynamic_cast<CCapture*> (ds.GetObjectFromHnd(capHnd));
@@ -164,6 +163,8 @@ int main(int argc, const char* argv[])
 	/*Parse the file*/
 	capFlPtr->ParseFile();
 
+	uint32_t testi;
+	std::cin >> testi;
 
 	WtoVec wtv;
 	capPtr->GetObjects(wtv,CPacket_Class_Id);

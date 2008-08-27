@@ -40,7 +40,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\include;..\BLL.framework\include;..\include;..\include\Pcap"
-				PreprocessorDefinitions="CORE_DLL;WIN32"
+				PreprocessorDefinitions="CORE_DLL;WIN32;__BYTE_ORDER = __LITTLE_ENDIAN"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -89,7 +89,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Copying the binary to bin directory.."
-				CommandLine="copy .\$(ConfigurationName)\$(ProjectName).dll ..\bin\Win32\$(ConfigurationName)\$(TargetName).dll&#x0D;&#x0A;"
+				CommandLine="copy .\$(ConfigurationName)\$(ProjectName)d.dll ..\bin\Win32\$(ConfigurationName)\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
@@ -118,7 +118,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalIncludeDirectories=".\include;..\BLL.framework\include;..\include;..\include\Pcap"
-				PreprocessorDefinitions="CORE_DLL;WIN32"
+				PreprocessorDefinitions="CORE_DLL;WIN32;__BYTE_ORDER = __LITTLE_ENDIAN"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"
 				WarningLevel="3"
@@ -166,6 +166,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="copy .\$(ConfigurationName)\$(ProjectName).dll ..\bin\Win32\$(ConfigurationName)\"
 			/>
 		</Configuration>
 	</Configurations>
@@ -263,6 +264,10 @@
 			</File>
 			<File
 				RelativePath=".\src\PacketParser.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Project.cpp"
 				>
 			</File>
 			<File
@@ -409,6 +414,10 @@
 			</File>
 			<File
 				RelativePath=".\include\PacketParser.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Project.h"
 				>
 			</File>
 			<File

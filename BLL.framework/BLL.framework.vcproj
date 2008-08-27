@@ -88,7 +88,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy .\$(ConfigurationName)\$(ProjectName)d.dll ..\bin\Win32\$(ConfigurationName)\$(TargetName)d.dll&#x0D;&#x0A;"
+				CommandLine="copy .\$(ConfigurationName)\$(ProjectName)d.dll ..\bin\Win32\$(ConfigurationName)\&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
