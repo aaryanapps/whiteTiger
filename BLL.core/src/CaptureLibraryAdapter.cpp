@@ -20,7 +20,7 @@ using namespace wt::core::capturelibrary;
 DEFINE_STATIC_LOGGER("core.capturelibrary.CaptureLibraryAdapter", devLogger)
 
 CCaptureLibraryAdapter::CCaptureLibraryAdapter(std::string &adpName):
-												_strAdapter(adpName)
+												_strAdapter(adpName), _pPcapDesc(NULL)
 {
 
 
@@ -61,33 +61,44 @@ void CCaptureLibraryAdapter::SendNotifications(CapturedPkt& pkt)
 {
 	LOG_DEBUG(devLogger(), "Sending New Pkt Notification")
 
-	NewPktDelegateMap::const_iterator dit = _mNewPktDels.begin();
+	NewPktDelegateMap::iterator dit = _mNewPktDels.begin();
 
-	while(dit != _mNewPktDels.end())
+	for( ;dit != _mNewPktDels.end(); ++dit)
 	{
 		(dit->second._newpktDel)(&pkt,dit->second._data);
-		++dit;
 	}
 
 }
 
 bool CCaptureLibraryAdapter::InitInterface()
 {
-    char Errbuf[PCAP_ERRBUF_SIZE];
-
-    _pPcapDesc = pcap_open_live (_strAdapter.c_str(), 65535, 0, 0, Errbuf);
-
-    if (_pPcapDesc == NULL)
-    {
-    	std::stringstream ss;
-    	ss 	<< "Could not initialize Adapter: "
-    		<< this->_strAdapter ;
-
-    	LOG_ERROR( devLogger() , ss.str() );
-    	return false;
-    }
-
+	_pPcapDesc = Init();
+	if (NULL == _pPcapDesc)
+	{
+		return false;
+	}
     return true;
+}
+
+pcap_t* CCaptureLibraryAdapter::Init()
+{
+
+   char Errbuf[PCAP_ERRBUF_SIZE];
+
+	pcap_t* _pcapDesc = pcap_open_live (_strAdapter.c_str(), 65535, 0, 0, Errbuf);
+
+	if (_pcapDesc == NULL)
+	{
+		std::stringstream ss;
+		ss 	<< "Could not initialize Adapter: "
+			<< this->_strAdapter ;
+		LOG_ERROR( devLogger() , ss.str() );
+
+		//TODO: Get the pcap error message.
+		return _pcapDesc;
+	}
+
+	return _pcapDesc;
 }
 
 bool CCaptureLibraryAdapter::IsCaptureRunning()

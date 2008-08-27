@@ -2,6 +2,7 @@
 
 #include "CaptureLibraryInterface.h"
 #include "CaptureLibraryAdapter.h"
+#include "CaptureLibraryFileParser.h"
 #include "WtLogger.h"
 
 #include "pcap.h"
@@ -174,14 +175,6 @@ CCaptureLibraryInterface::StopCapture(std::string& adpName, uint32_t regId)
 	return false;
 }
 
-
-
-WtoHandle CCaptureLibraryInterface::ParseFile(std::string& fname)
-{
-	return WTOBJECT_HND_NULL;
-}
-
-
 bool CCaptureLibraryInterface::OpenCaptureLibraryAdapter(std::string& adpName)
 {
 
@@ -297,4 +290,22 @@ bool CCaptureLibraryInterface::IsAdapterOpen(std::string& adpName)
 	}
 
 	return false;
+}
+
+bool CCaptureLibraryInterface::ParsePcapFile(std::string& fileName,
+											 NewPktDelegateInfo& pktDelInfo)
+{
+
+	CCaptureLibraryFileParser* fp = new CCaptureLibraryFileParser(fileName);
+
+	fp->RegisterNewPacketNotification(1,
+			pktDelInfo);
+
+	fp->ParsePcapFile();
+
+	Poco::Thread *pth = CreateThreadForAdp(fileName);
+
+	pth->start(*fp);
+
+	return true;
 }

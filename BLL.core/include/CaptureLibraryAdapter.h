@@ -25,7 +25,7 @@ typedef std::map<uint32_t, NewPktDelegateInfo> NewPktDelegateMap;
 class CCaptureLibraryAdapter: public Poco::Runnable {
 public:
 	CCaptureLibraryAdapter(std::string& adpName);
-	~CCaptureLibraryAdapter();
+	virtual ~CCaptureLibraryAdapter();
 
     /* prototype of the packet handler in pcap library*/
     static void OnNewPacket(u_char *param,
@@ -33,7 +33,7 @@ public:
     						const u_char *pkt_data);
 
     /*Main Entry point in the Runnable. */
-	void 		run();
+	virtual void 		run();
 
 	/*Initialize the Interface (pcap_open_live)*/
     bool 		InitInterface();
@@ -56,6 +56,11 @@ public:
 
     /*Returns the interface Datalink*/
     uint32_t 	GetDataLinkType();
+
+
+protected:
+	/*Init the pcap desc.*/
+	virtual pcap_t* Init();
 
 private:
 

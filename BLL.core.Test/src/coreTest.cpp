@@ -7,6 +7,8 @@
 #include "Capture.h"
 #include "CaptureType.h"
 #include "LiveCapture.h"
+#include "CaptureFile.h"
+
 #include "CaptureLibraryDefs.h"
 #include "CaptureLibraryInterface.h"
 #include "NetworkInterfaceAdapter.h"
@@ -75,10 +77,8 @@ void SystemTest()
 	return;
 }
 
-int main(int argc, const char* argv[])
+void LiveCaptureTest()
 {
-
-//	SystemTest();
 
 	CProject& prj = CProject::Instance();
 	CWtDataStore& ds = CWtDataStore::Instance();
@@ -132,6 +132,57 @@ int main(int argc, const char* argv[])
 
 	uint32_t testi;
 	std::cin >> testi;
+
+
+}
+
+
+int main(int argc, const char* argv[])
+{
+
+//	SystemTest();
+
+	//LiveCaptureTest();
+
+
+	CProject& prj = CProject::Instance();
+	CWtDataStore& ds = CWtDataStore::Instance();
+
+	//Create Capture Object under project
+	WtoHandle capHnd = ds.AddObject(CCapture_Class_Id, &prj);
+	CCapture* capPtr = dynamic_cast<CCapture*> (ds.GetObjectFromHnd(capHnd));
+
+	//Create CaptureFile under Capture Object
+	WtoHandle capFlHnd = ds.AddObject(CCaptureFile_Class_Id, capPtr);
+	CCaptureFile* capFlPtr = dynamic_cast<CCaptureFile*> (ds.GetObjectFromHnd(capFlHnd));
+
+	std::string fname("output.pcap");
+
+	/*Set the Adapter Name*/
+	capFlPtr->SetFileName(fname);
+
+	/*Parse the file*/
+	capFlPtr->ParseFile();
+
+
+	WtoVec wtv;
+	capPtr->GetObjects(wtv,CPacket_Class_Id);
+	std::cout << "Total Packets under Capture: " << wtv.size() << std::endl;
+
+	WtoVec::const_iterator wit;
+
+	uint32_t pktCnt = 0;
+
+	for (wit = wtv.begin(); wit != wtv.end(); ++wit)
+	{
+		pktCnt++;
+		CWtObject* wto = ds.GetObjectFromHnd((*wit)->GetWtoHandle());
+		WtoVec phdr;
+		wto->GetObjects(phdr,CPacketHeader_Class_Id);
+		std::cout << "	--------Packet #: " << pktCnt << " , Total Headers under packet: " << phdr.size() << std::endl;
+
+	}
+
 
 	std::cout << "Core.Test compiled and run successfully!!" << std::endl;
 

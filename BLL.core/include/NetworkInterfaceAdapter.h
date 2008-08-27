@@ -69,7 +69,6 @@ private:
 
 	void NotifyNewPacket(WtoHandle pHnd);
 
-
 	std::string  	_strAdapName;			/*Adapter Name*/
 
 	Poco::BasicEvent<WtoHandle> NewPacket;

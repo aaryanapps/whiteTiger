@@ -10,6 +10,7 @@
 
 #include "CaptureType.h"
 #include "BllCoreExport.h"
+#include "CaptureLibraryDefs.h"
 
 namespace wt {
 namespace core {
@@ -27,16 +28,22 @@ public:
     /*Returns the Class Id*/
 	virtual uint32_t 	GetClassId() {return m_classId; }
 
-	/*Get the filename*/
-	std::string 		GetFileName() { return m_fileName; }
-
 	/*Get the next default filename.*/
 	static std::string&	GetDefaultFileName();
+
+	void 		OnNewPacket(wt::core::capturelibrary::CapturedPkt* pkt, void* data);
 
 	//Getters,Setters
 	uint32_t 	GetDataLinkType(){ return m_dataLink; }
 
-	void 		GetDataLinkType(uint32_t dtType){ m_dataLink = dtType; }
+	void 		SetDataLinkType(uint32_t dtType){ m_dataLink = dtType; }
+
+	/*Get the filename*/
+	std::string 		GetFileName() { return m_fileName; }
+
+	/*Set the filename*/
+	void 		 		SetFileName(std::string& fname) { m_fileName = fname; }
+
 
 	static wt::framework::CWtObject* Create();
 
@@ -51,7 +58,10 @@ private:
 	static std::string 	m_defFile; /*Number representing the default file #*/
 
 	uint32_t 		m_dataLink; /*Data link of the capture*/
+
 	std::string 	m_fileName;	/*Name of the file*/
+
+	wt::core::capturelibrary::NewPktDelegate	m_dNewPkt;
 
 
 };

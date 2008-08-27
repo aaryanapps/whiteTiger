@@ -47,7 +47,8 @@ public:
 	bool		UnRegisterNewPacketNotification(std::string& adpName, uint32_t regId);
 
 	/*Parse the given file Name*/
-	wt::framework::WtoHandle	ParseFile(std::string& fname);
+	bool		ParsePcapFile(std::string& fileName,
+							  NewPktDelegateInfo& pktDelInfo);
 
 private:
 	CCaptureLibraryInterface();

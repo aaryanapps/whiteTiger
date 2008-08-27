@@ -58,7 +58,7 @@ bool CPacket::Init(wt::core::capturelibrary::CapturedPkt* pkt)
 
 	m_pktData.reserve(pkt->_capLen);
 
-	m_pktData.assign(pkt->_pktData.begin(), pkt->_pktData.begin());
+	m_pktData = pkt->_pktData;
 
 	/*Covert TimeStamp to String*/
 	CreateReadableTimeStamp();
