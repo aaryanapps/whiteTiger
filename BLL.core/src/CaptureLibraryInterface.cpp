@@ -295,17 +295,21 @@ bool CCaptureLibraryInterface::IsAdapterOpen(std::string& adpName)
 bool CCaptureLibraryInterface::ParsePcapFile(std::string& fileName,
 											 NewPktDelegateInfo& pktDelInfo)
 {
+	CCaptureLibraryFileParser fp(fileName);
 
-	CCaptureLibraryFileParser* fp = new CCaptureLibraryFileParser(fileName);
-
-	fp->RegisterNewPacketNotification(1,
+	fp.RegisterNewPacketNotification(1,
 			pktDelInfo);
 
-	fp->ParsePcapFile();
+	std::string thName("Parsing File: ");
+	thName += fileName;
 
-	Poco::Thread *pth = CreateThreadForAdp(fileName);
+	fp.ParsePcapFile();
 
-	pth->start(*fp);
+	Poco::Thread pth(thName);
+
+	pth.start(fp);
+
+	pth.join();
 
 	return true;
 }

@@ -31,7 +31,9 @@
 <option id="gnu.cpp.compiler.so.debug.option.debugging.level.660503318" name="Debug Level" superClass="gnu.cpp.compiler.so.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.option.preprocessor.nostdinc.1922722226" name="Do not search system directories (-nostdinc)" superClass="gnu.cpp.compiler.option.preprocessor.nostdinc"/>
 <option id="gnu.cpp.compiler.option.preprocessor.preprocess.1950510319" name="Preprocess only (-E)" superClass="gnu.cpp.compiler.option.preprocessor.preprocess"/>
-<option id="gnu.cpp.compiler.option.preprocessor.def.1339744651" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def"/>
+<option id="gnu.cpp.compiler.option.preprocessor.def.1339744651" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
+<listOptionValue builtIn="false" value="__BYTE_ORDER=__LITTLE_ENDIAN"/>
+</option>
 <option id="gnu.cpp.compiler.option.preprocessor.undef.2016590727" name="Undefined symbols (-U)" superClass="gnu.cpp.compiler.option.preprocessor.undef"/>
 <option id="gnu.cpp.compiler.option.include.paths.860010616" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 <listOptionValue builtIn="false" value="&quot;${workspace_loc:/BLL.framework/include}&quot;"/>

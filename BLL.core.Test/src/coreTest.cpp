@@ -162,10 +162,11 @@ int main(int argc, const char* argv[])
 
 	/*Parse the file*/
 	capFlPtr->ParseFile();
-
-	uint32_t testi;
-	std::cin >> testi;
-
+/*
+	uint32_t itest;
+	std::cout << "Enter any value to continue " << std::endl ;
+	std::cin >> itest;
+*/
 	WtoVec wtv;
 	capPtr->GetObjects(wtv,CPacket_Class_Id);
 	std::cout << "Total Packets under Capture: " << wtv.size() << std::endl;
@@ -185,7 +186,7 @@ int main(int argc, const char* argv[])
 	}
 
 
-	std::cout << "Core.Test compiled and run successfully!!" << std::endl;
+	std::cout << "Core.Test compiled and ran successfully!!" << std::endl;
 
 	return 0;
 
