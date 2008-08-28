@@ -31,8 +31,7 @@ protected :
 private:
 
 	virtual void CreatePacketInfoText();
-	virtual bool CreateHeaders();
-	void OnNewPacketHeader(CPacketHeader* pktHdr);
+
 };
 }
 }
