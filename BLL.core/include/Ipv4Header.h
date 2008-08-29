@@ -16,6 +16,11 @@ public:
 	CIpv4Header(uint32_t len, const uint8_t* hdrData);
     virtual ~CIpv4Header();
 
+    virtual uint32_t GetHeaderType()
+    {
+    	return m_hdrType;
+    }
+
     std::string GetHeaderAbbrName()
     {
     	std::string s("Ipv4");
@@ -38,6 +43,8 @@ public:
     virtual uint32_t HeaderToCreateNext();
 
     bool Init(uint32_t hdrOffset, const uint8_t* pktData);
+
+    static uint32_t RegisterHdrTypes();
 
 
 protected:

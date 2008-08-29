@@ -91,6 +91,7 @@ bool CPacketParser::CreateHeaders(CPacket* parentPkt, CapturedPkt* pkt)
 
 	uint32_t hdrOffset = 0 ;
 	uint32_t hdr = WT_ETH ;
+	uint32_t nxtHdr = WT_SELF_HEADER;
 	WtoHandle curHnd = WTOBJECT_HND_NULL;
 	WtoHandle preHnd = WTOBJECT_HND_NULL;
 	bool status = true ;
@@ -99,7 +100,7 @@ bool CPacketParser::CreateHeaders(CPacket* parentPkt, CapturedPkt* pkt)
 
 	for (; hdr != WT_UNKWN; )
 	{
-		curHnd = ds.AddObject(phf.GetClassIdForHdrType(hdr), (CWtObject*)parentPkt);
+		curHnd = ds.AddObject(phf.GetClassIdForHdrType(hdr, nxtHdr), (CWtObject*)parentPkt);
 
 		if (WTOBJECT_HND_NULL == curHnd)
 		{
@@ -129,7 +130,8 @@ bool CPacketParser::CreateHeaders(CPacket* parentPkt, CapturedPkt* pkt)
 		OnNewPacketHeader(pktHdr);
 
 		hdrOffset += pktHdr->GetHeaderLength();
-		hdr = pktHdr->HeaderToCreateNext();
+		hdr = pktHdr->GetHeaderType();
+		nxtHdr = pktHdr->HeaderToCreateNext();
 		isFirstHdr = false;
 		preHnd = curHnd;
 		dbg << pktHdr->GetHeaderAbbrName();

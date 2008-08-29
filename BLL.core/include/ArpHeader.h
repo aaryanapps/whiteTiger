@@ -18,6 +18,11 @@ public:
 
     static CWtObject* Create();
 
+    virtual uint32_t GetHeaderType()
+    {
+    	return m_hdrType;
+    }
+
     std::string GetHeaderAbbrName() ;
     uint32_t GetHeaderLength() {return m_hdrLen;}
     virtual bool Init(uint32_t hdrOffset, const uint8_t* pktData);

@@ -4,11 +4,12 @@
 
 #include "net/ether_types.h"
 #include "net/ether.h"
+#include "net/HeaderTypes.h"
 
 #include "Globals.h"
 #include "CoreConsts.h"
 #include "EthernetHeader.h"
-#include "net/HeaderTypes.h"
+
 #include "CommonPacketUtils.h"
 #include "WtObject.h"
 #include "WtObjectRegistrar.h"
@@ -18,7 +19,28 @@ using namespace wt::core;
 
 //uint32_t CEthernetHeader::m_classId = CEthernetHeader_Class_Id ;
 uint32_t CEthernetHeader::m_classId = REGISTER_CREATOR(CEthernetHeader_Class_Id, CEthernetHeader::Create);
-uint32_t CEthernetHeader::m_hdrType = REGISTER_HDRTYPE(WT_ETH,CEthernetHeader_Class_Id) ;
+uint32_t CEthernetHeader::m_hdrType = CEthernetHeader::RegisterHdrTypes();
+
+uint32_t CEthernetHeader::RegisterHdrTypes()
+{
+	uint32_t hdr = REGISTER_HDRTYPE(WT_ETH,
+								    WT_SELF_HEADER,
+									CEthernetHeader_Class_Id) ;
+
+	REGISTER_HDRTYPE(WT_ETH,
+ 				     WT_ARP,
+					 CArpHeader_Class_Id) ;;
+
+	REGISTER_HDRTYPE(WT_ETH,
+ 				     WT_IP,
+					 CIpv4Header_Class_Id) ;
+
+	REGISTER_HDRTYPE(WT_ETH,
+ 				     WT_IPV6,
+					 CIpv6Header_Class_Id) ;
+
+	return hdr;
+}
 
 
 CEthernetHeader::CEthernetHeader() :

@@ -19,6 +19,8 @@ public:
 
 	static wt::framework::CWtObject* Create();
 
+	virtual uint32_t GetHeaderType() = 0;
+
 	virtual std::string GetHeaderAbbrName() = 0;
 
 	virtual uint32_t GetHeaderLength() = 0;
@@ -47,8 +49,6 @@ private:
 	std::string m_hdrTypeInStr;
 	uint8_t *m_hdrData;
 	uint32_t m_hdrType;
-
-	virtual bool CreateHeaders(){return false;};
 
 };
 }

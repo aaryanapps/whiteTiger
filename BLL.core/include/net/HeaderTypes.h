@@ -184,8 +184,8 @@ MOSPF, Multicast Open Shortest Path First.
 
 #define WT_TCP 6
 #define WT_UDP 17
-#define WT_ICMP 1
-#define WT_ICMP_V6 58
+#define WT_IP_ ICMP 1
+#define WT_IP_ICMP_V6 58
 #define WT_IGAP_IGMP_RGMP 2
 #define WT_IPV6_OV_V4 41
 #define WT_IPV6_FRAG 44
@@ -232,7 +232,7 @@ MOSPF, Multicast Open Shortest Path First.
 #define WT_ARP_ETHERTYPE_
 
 /*
- * Columns informaiton that each header can support
+ * Columns information that each header can support
  * For e.g. Ethernet can support srcAddr as mac address
  * Ip can support ip address
  */
@@ -242,7 +242,12 @@ MOSPF, Multicast Open Shortest Path First.
 #define Column_Protocol_String 7
 #define Column_Info_String 8
 
-#define REGISTER_HDRTYPE(hdr,cls) \
-	wt::core::CPacketHeaderFactory::Instance().RegisterHeader(hdr , cls)
+#define WT_SELF_HEADER 999999
+
+#define WT_NEXT_HDR_UNKWN 999998
+
+
+#define REGISTER_HDRTYPE(hdr,nxtHdr,cls) \
+	wt::core::CPacketHeaderFactory::Instance().RegisterHeader(hdr , nxtHdr ,cls)
 
 #endif /*_WT_HEADERTYPES_H__*/

@@ -27,33 +27,55 @@ CPacketHeaderFactory& CPacketHeaderFactory::Instance()
 	return _phf;
 }
 
-uint32_t CPacketHeaderFactory::RegisterHeader(uint32_t hdrType, uint32_t hdrClassId)
+uint32_t CPacketHeaderFactory::RegisterHeader(uint32_t hdrType,
+											  uint32_t nextHdrType,
+											  uint32_t hdrClassId)
 {
-	HdrType2IdMap* hMap = GetHeaderMap();
-	HdrType2IdMap::const_iterator hit = hMap->find(hdrType);
 
-	if (hit == hMap->end())
+	if (!IsHdrTypeRegistered(hdrType))
 	{
-		hMap->insert(std::make_pair(hdrType, hdrClassId));
+		HdrType2NxtHdrMap* hMap = GetHeaderMap();
+		HdrType2IdMap nxtHdrMap;
+		nxtHdrMap.insert(std::make_pair(nextHdrType, hdrClassId));
+		hMap->insert(std::make_pair(hdrType, nxtHdrMap));
 		return hdrType;
 	}
 	else
 	{
-		return WT_UNKWN;
+		if (!IsNextHdrTypeRegistered(hdrType, nextHdrType))
+		{
+			HdrType2NxtHdrMap* hMap = GetHeaderMap();
+			HdrType2NxtHdrMap::const_iterator hit = hMap->find(hdrType);
+			if (hit != hMap->end())
+			{
+				HdrType2IdMap nxtHdrMap = hit->second ;
+				nxtHdrMap.insert(std::make_pair(nextHdrType, hdrClassId));
+				return hdrType;
+			}
+			else
+			{
+				//Should not reach here.
+				return WT_UNKWN;
+			}
+		}
+		else
+		{
+			//Should not reach here as it is already registered.
+			return WT_UNKWN;
+		}
 	}
-
 }
 
-HdrType2IdMap* CPacketHeaderFactory::GetHeaderMap()
+HdrType2NxtHdrMap* CPacketHeaderFactory::GetHeaderMap()
 {
-	static HdrType2IdMap _mHdrMap;
+	static HdrType2NxtHdrMap _mHdrMap;
 	return &_mHdrMap;
 }
 
-uint32_t CPacketHeaderFactory::GetClassIdForHdrType(uint32_t hdrType)
+uint32_t CPacketHeaderFactory::GetClassIdForHdrType(uint32_t hdrType, uint32_t nextHdrType)
 {
-	HdrType2IdMap* hMap = GetHeaderMap();
-	HdrType2IdMap::const_iterator hit = hMap->find(hdrType);
+	HdrType2NxtHdrMap* hMap = GetHeaderMap();
+	HdrType2NxtHdrMap::const_iterator hit = hMap->find(hdrType);
 
 	if (hit == hMap->end())
 	{
@@ -61,7 +83,56 @@ uint32_t CPacketHeaderFactory::GetClassIdForHdrType(uint32_t hdrType)
 	}
 	else
 	{
-		return hit->second;
-	}
+		HdrType2IdMap::const_iterator nhit = hit->second.find(nextHdrType);
 
+		if (nhit != hit->second.end())
+		{
+			return nhit->second;
+		}
+		else
+		{
+			return WT_UNKWN;
+		}
+	}
+}
+
+
+bool CPacketHeaderFactory::IsHdrTypeRegistered(uint32_t hdrType)
+{
+	HdrType2NxtHdrMap* hMap = GetHeaderMap();
+	HdrType2NxtHdrMap::const_iterator hit = hMap->find(hdrType);
+
+	if (hit == hMap->end())
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+
+bool CPacketHeaderFactory::IsNextHdrTypeRegistered(uint32_t hdrType, uint32_t nextHdrType)
+{
+	HdrType2NxtHdrMap* hMap = GetHeaderMap();
+	HdrType2NxtHdrMap::const_iterator hit = hMap->find(hdrType);
+
+	if (hit == hMap->end())
+	{
+		return false;
+	}
+	else
+	{
+		HdrType2IdMap::const_iterator nhit = hit->second.find(nextHdrType);
+
+		if (nhit != hit->second.end())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }

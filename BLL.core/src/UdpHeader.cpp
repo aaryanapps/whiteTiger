@@ -12,7 +12,9 @@
 using namespace wt::core;
 
 uint32_t CUdpHeader::m_classId = REGISTER_CREATOR(CUdpHeader_Class_Id, CUdpHeader::Create);
-uint32_t CUdpHeader::m_hdrType = REGISTER_HDRTYPE(WT_UDP,CUdpHeader_Class_Id) ;
+uint32_t CUdpHeader::m_hdrType = REGISTER_HDRTYPE(WT_UDP,
+												  WT_SELF_HEADER,
+												  CUdpHeader_Class_Id) ;
 
 std::string CUdpHeader::m_hdrTypeInStr = WT_UDP_STR;
 uint32_t  	CUdpHeader::m_hdrLen = WT_UDP_HDRLEN ;

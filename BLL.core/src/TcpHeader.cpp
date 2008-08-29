@@ -13,7 +13,9 @@
 using namespace wt::core;
 
 uint32_t CTcpHeader::m_classId = REGISTER_CREATOR(CTcpHeader_Class_Id, CTcpHeader::Create);
-uint32_t CTcpHeader::m_hdrType = REGISTER_HDRTYPE(WT_TCP,CTcpHeader_Class_Id) ;
+uint32_t CTcpHeader::m_hdrType = REGISTER_HDRTYPE(WT_TCP,
+												  WT_SELF_HEADER,
+												  CTcpHeader_Class_Id) ;
 
 std::string CTcpHeader::m_hdrTypeInStr = WT_TCP_STR;
 uint32_t 	CTcpHeader::m_hdrLen = WT_TCP_HDRLEN ;

@@ -13,7 +13,25 @@
 using namespace wt::core;
 
 uint32_t CIpv4Header::m_classId = REGISTER_CREATOR(CIpv4Header_Class_Id, CIpv4Header::Create);
-uint32_t CIpv4Header::m_hdrType = REGISTER_HDRTYPE(WT_IP,CIpv4Header_Class_Id) ;
+uint32_t CIpv4Header::m_hdrType = CIpv4Header::RegisterHdrTypes();
+
+uint32_t CIpv4Header::RegisterHdrTypes()
+{
+	uint32_t hdr = REGISTER_HDRTYPE(WT_IP,
+								    WT_SELF_HEADER,
+									CIpv4Header_Class_Id) ;
+
+	REGISTER_HDRTYPE(WT_IP,
+ 				     WT_TCP,
+					 CTcpHeader_Class_Id) ;
+
+	REGISTER_HDRTYPE(WT_IP,
+ 				     WT_UDP,
+					 CUdpHeader_Class_Id) ;
+
+	return hdr;
+}
+
 
 //DEFINE_STATIC_LOGGER("bll.Ipv4Header", devLogger);
 

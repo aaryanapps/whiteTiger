@@ -18,6 +18,11 @@ public:
 	CIpv6Header(uint32_t hnd,  uint32_t len, const uint8_t* hdrData);
     virtual ~CIpv6Header();
 
+    virtual uint32_t GetHeaderType()
+    {
+    	return m_hdrType;
+    }
+
     std::string GetHeaderAbbrName()
     {
     	std::string s("Ipv6");
@@ -42,6 +47,7 @@ public:
 
     bool Init(uint32_t hdrOffset, const uint8_t* pktData);
 
+    static uint32_t RegisterHdrTypes();
 
 protected:
 	static uint32_t m_classId;

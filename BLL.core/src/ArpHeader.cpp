@@ -14,7 +14,7 @@
 using namespace wt::core;
 
 uint32_t CArpHeader::m_classId = REGISTER_CREATOR(CArpHeader_Class_Id, CArpHeader::Create);
-uint32_t CArpHeader::m_hdrType = REGISTER_HDRTYPE(WT_ARP,CArpHeader_Class_Id) ;
+uint32_t CArpHeader::m_hdrType = REGISTER_HDRTYPE(WT_ARP,WT_SELF_HEADER, CArpHeader_Class_Id) ;
 
 CArpHeader::CArpHeader() :
 						  m_hdrLen(0),

@@ -15,6 +15,11 @@ public:
 	CTcpHeader();
     virtual ~CTcpHeader();
 
+    virtual uint32_t GetHeaderType()
+    {
+    	return m_hdrType;
+    }
+
     std::string GetHeaderAbbrName()
     {
     	std::string s("Tcp");

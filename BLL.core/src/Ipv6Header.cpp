@@ -11,7 +11,25 @@
 using namespace wt::core;
 
 uint32_t CIpv6Header::m_classId = REGISTER_CREATOR(CIpv6Header_Class_Id, CIpv6Header::Create);
-uint32_t CIpv6Header::m_hdrType = REGISTER_HDRTYPE(WT_IPV6,CIpv6Header_Class_Id) ;
+uint32_t CIpv6Header::m_hdrType = CIpv6Header::RegisterHdrTypes();
+
+uint32_t CIpv6Header::RegisterHdrTypes()
+{
+	uint32_t hdr = REGISTER_HDRTYPE(WT_IPV6,
+								    WT_SELF_HEADER,
+									CIpv6Header_Class_Id) ;
+
+	REGISTER_HDRTYPE(WT_IPV6,
+ 				     WT_TCP,
+					 CTcpHeader_Class_Id) ;
+
+	REGISTER_HDRTYPE(WT_IPV6,
+ 				     WT_UDP,
+					 CUdpHeader_Class_Id) ;
+
+	return hdr;
+}
+
 
 CIpv6Header::CIpv6Header()
 {

@@ -16,6 +16,11 @@ public:
 	CEthernetHeader(uint32_t hdrOffset, const uint8_t* pktData);
     virtual ~CEthernetHeader();
 
+    virtual uint32_t GetHeaderType()
+    {
+    	return m_hdrType;
+    }
+
     std::string GetHeaderAbbrName()
     {
     	std::string s("EthII");
@@ -41,6 +46,8 @@ public:
 	virtual uint32_t 	GetClassId() {return m_classId; }
 
 	static wt::framework::CWtObject* Create();
+
+	static uint32_t RegisterHdrTypes();
 
 protected:
 	static uint32_t m_classId;
