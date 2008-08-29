@@ -13,6 +13,7 @@
 #include "CaptureLibraryInterface.h"
 #include "NetworkInterfaceAdapter.h"
 
+#include "Packet.h"
 
 using namespace wt::framework;
 using namespace wt::core;
@@ -181,7 +182,15 @@ int main(int argc, const char* argv[])
 		CWtObject* wto = ds.GetObjectFromHnd((*wit)->GetWtoHandle());
 		WtoVec phdr;
 		wto->GetObjects(phdr,CPacketHeader_Class_Id);
-		std::cout << "	--------Packet #: " << pktCnt << " , Total Headers under packet: " << phdr.size() << std::endl;
+		CPacket* ptrPkt = dynamic_cast<CPacket*>(wto);
+		if (NULL == ptrPkt)
+		{
+			std::cout << "NULL Packet Ptr" << std::endl;
+			break;
+		}
+		std::cout << "	--------Packet #: " << pktCnt
+				  << " , Total Headers under packet: " << phdr.size()
+				  << " , InfoString: " << ptrPkt->GetInfoText() << std::endl;
 
 	}
 

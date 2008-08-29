@@ -49,8 +49,8 @@ protected:
 
 private:
 
-	uint32_t m_hdrLen;
-	std::string m_hdrTypeInStr;
+	static uint32_t 	m_hdrLen;
+	static std::string 	m_hdrTypeInStr;
 
 	udp_hdr		*m_hdr;
 	std::string m_infoStr;
@@ -59,8 +59,6 @@ private:
 	uint16_t 	m_dPort;
 	uint16_t	m_len;
 	uint16_t	m_chksum;
-
-	//std::string GetTcpFlag();
 
 };
 }

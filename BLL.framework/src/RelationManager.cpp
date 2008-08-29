@@ -63,7 +63,14 @@ bool CRelationManager::AddRelation(CWtObject* sObj,
 
     Statement stmt(*_mdbSession);
     stmt << "Insert into ExistingRelations values(:src,:dst,:srcType,:dsttype,:rel)" , use(sObjHnd) , use(dObjHnd), use(srcType), use(dstType), use(rel) ;
-    stmt.execute();
+    Poco::Data::Statement::ResultType rs = stmt.execute();
+
+    if (rs <= 0)
+    {
+		std::stringstream ss;
+		ss << "Could not add relation for src WTO " << srcType << " to DST WTO: " << dstType << " .In Db. Check ASAP!!!";
+		LOG_ERROR( devLogger(), ss.str())
+    }
 
     return true;
 }

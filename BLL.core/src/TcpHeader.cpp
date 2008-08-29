@@ -15,9 +15,27 @@ using namespace wt::core;
 uint32_t CTcpHeader::m_classId = REGISTER_CREATOR(CTcpHeader_Class_Id, CTcpHeader::Create);
 uint32_t CTcpHeader::m_hdrType = REGISTER_HDRTYPE(WT_TCP,CTcpHeader_Class_Id) ;
 
-//DEFINE_STATIC_LOGGER("core.TcpHeader", devLogger);
+std::string CTcpHeader::m_hdrTypeInStr = WT_TCP_STR;
+uint32_t 	CTcpHeader::m_hdrLen = WT_TCP_HDRLEN ;
 
-CTcpHeader::CTcpHeader()
+DEFINE_STATIC_LOGGER("core.TcpHeader", devLogger)
+
+CTcpHeader::CTcpHeader() :
+						m_hdr(NULL),
+						m_sPort(0),
+						m_dPort(0),
+						m_seq(0),
+						m_ack(0),
+						m_win(0),
+						m_flag(0),
+						m_bSyn(false),
+						m_bAck(false),
+						m_bFin(false),
+						m_bRst(false),
+						m_bPsh(false),
+						m_bUrg(false),
+						m_bEce(false),
+						m_bCwr(false)
 {
 	AddAsDerivedClassId(CTcpHeader_Class_Id);
 }
@@ -34,8 +52,7 @@ CTcpHeader::~CTcpHeader()
 
 bool CTcpHeader::Init(uint32_t hdrOffset, const uint8_t* pktData)
 {
-	m_hdrTypeInStr = WT_TCP_STR;
-	m_hdrLen = WT_TCP_HDRLEN ;
+
 
 	if (!pktData)
 	{
@@ -95,8 +112,7 @@ std::string CTcpHeader::GetDstAddrString()
 
 std::string CTcpHeader::GetProtocolString()
 {
-	std::string s(WT_TCP_STR);
-	return s;
+	return m_hdrTypeInStr;
 }
 
 std::string CTcpHeader::GetInfoString()
@@ -105,7 +121,7 @@ std::string CTcpHeader::GetInfoString()
 
 	ss << m_sPort << " > ";
 	ss << m_dPort << " " ;
-	ss << GetTcpFlag() << " ";
+	ss << GetTcpFlagString() << " ";
 	ss << "Seq=" << m_seq << " ";
 	ss << "Ack=" << m_ack << " ";
 	ss << "Win=" << m_win << " ";
@@ -127,13 +143,53 @@ bool CTcpHeader::ParseHeader()
 	m_flag	= m_hdr->th_flags ;
 	m_win	= CCommonPacketUtils::GetNetworkToHostOrder(m_hdr->th_win);
 
-	//TODO: Create the appropriate Data class e.g Http, Https, Telnet, Ftp, etc.
+	if (m_flag & TH_ACK)
+	{
+		m_bAck = true;
+	}
 
+	if (m_flag & TH_SYN)
+	{
+		m_bSyn = true;
+	}
+
+	if (m_flag & TH_CWR)
+	{
+		m_bCwr = true;
+	}
+
+	if (m_flag & TH_ECE)
+	{
+		m_bEce = true;
+	}
+
+	if (m_flag & TH_URG)
+	{
+		m_bUrg = true;
+	}
+
+	if (m_flag & TH_PUSH)
+	{
+		m_bPsh = true;
+	}
+
+	if (m_flag & TH_RST)
+	{
+		m_bRst = true;
+	}
+
+	if (m_flag & TH_FIN)
+	{
+		m_bFin = true;
+	}
+
+	LOG_DEBUG( devLogger(), "Completed Parsing TCP Header") ;
 	return true;
 }
 
 uint32_t CTcpHeader::HeaderToCreateNext()
 {
+	//TODO: Create the appropriate Data class e.g Http, Https, Telnet, Ftp, etc.
 	return WT_UNKWN;
 }
 
@@ -141,66 +197,54 @@ uint32_t CTcpHeader::HeaderToCreateNext()
 /////// Private Methods;
 
 
-
-
-
-std::string CTcpHeader::GetTcpFlag()
+std::string CTcpHeader::GetTcpFlagString()
 {
 	std::stringstream flg;
 
-	bool isAck = false;
-	bool isSyn = false;
-
 	flg << "[" ;
 
-	if (m_flag & TH_ACK)
+	if (m_bSyn)
 	{
-		isAck = true;
-	}
-
-	if (m_flag & TH_SYN)
-	{
-		isSyn = true;
 		flg << "SYN";
 	}
 
-	if (isAck && isSyn)
+	if (m_bAck && m_bSyn)
 		flg << "," ;
 
-	if (isAck)
+	if (m_bAck)
 		flg << "ACK";
 
-	if (isAck && !isSyn)
+	if (m_bAck && !m_bSyn)
 	{
 
-		if (m_flag & TH_CWR)
+		if (m_bCwr)
 		{
-			flg << "CWR";
+			flg << " CWR";
 		}
 
-		if (m_flag & TH_ECE)
+		if (m_bEce)
 		{
-			flg << "ECE";
+			flg << " ECE";
 		}
 
-		if (m_flag & TH_URG)
+		if (m_bUrg)
 		{
-			flg << "URG";
+			flg << " URG";
 		}
 
-		if (m_flag & TH_PUSH)
+		if (m_bPsh)
 		{
-			flg << "PUSH";
+			flg << " PUSH";
 		}
 
-		if (m_flag & TH_RST)
+		if (m_bRst)
 		{
-			flg << "RST";
+			flg << " RST";
 		}
 
-		if (m_flag & TH_FIN)
+		if (m_bFin)
 		{
-			flg << "FIN";
+			flg << " FIN";
 		}
 
 	}

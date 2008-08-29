@@ -91,8 +91,8 @@ bool CPacketParser::CreateHeaders(CPacket* parentPkt, CapturedPkt* pkt)
 
 	uint32_t hdrOffset = 0 ;
 	uint32_t hdr = WT_ETH ;
-	WtoHandle curHnd ;
-	WtoHandle preHnd ;
+	WtoHandle curHnd = WTOBJECT_HND_NULL;
+	WtoHandle preHnd = WTOBJECT_HND_NULL;
 	bool status = true ;
 	bool isFirstHdr = true ;
 	std::stringstream dbg;

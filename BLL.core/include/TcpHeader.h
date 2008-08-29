@@ -27,16 +27,26 @@ public:
 	static wt::framework::CWtObject* Create();
 
     uint32_t GetHeaderLength() {return m_hdrLen;}
+
     virtual bool Init(uint32_t hdrOffset, const uint8_t* pktData);
 
 	virtual uint32_t HeaderToCreateNext();
 
-    virtual std::string GetSrcAddrString();
-    virtual std::string GetDstAddrString();
+    virtual std::string GetSrcAddrString() ;
+    virtual std::string GetDstAddrString() ;
     virtual std::string GetProtocolString();
-    virtual std::string GetInfoString();
+    virtual std::string GetInfoString() ;
 
     virtual bool IsStringCapable(uint16_t colId);
+
+    bool IsFin() const {return m_bFin;}
+    bool IsSyn() const {return m_bSyn;}
+    bool IsRst() const {return m_bRst;}
+    bool IsPsh() const {return m_bPsh;}
+    bool IsAck() const {return m_bAck;}
+    bool IsUrg() const {return m_bUrg;}
+    bool IsEce() const {return m_bEce;}
+    bool IsCwr() const {return m_bCwr;}
 
 
 protected:
@@ -49,8 +59,8 @@ protected:
 
 private:
 
-	uint32_t m_hdrLen;
-	std::string m_hdrTypeInStr;
+	static uint32_t m_hdrLen;
+	static std::string m_hdrTypeInStr;
 
 	tcp_hdr		*m_hdr;
 	std::string m_infoStr;
@@ -62,7 +72,16 @@ private:
 	uint16_t	m_win;
 	uint8_t		m_flag;
 
-	std::string GetTcpFlag();
+	bool 		m_bSyn;
+	bool		m_bAck;
+	bool 		m_bFin;
+	bool 		m_bRst;
+	bool 		m_bPsh;
+	bool 		m_bUrg;
+	bool 		m_bEce;
+	bool 		m_bCwr;
+
+	std::string GetTcpFlagString();
 
 };
 }
